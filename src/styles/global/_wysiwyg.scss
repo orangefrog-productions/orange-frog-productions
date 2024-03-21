@@ -1,0 +1,71 @@
+@use "../abstracts" as *;
+@use "./paragraphs";
+@use "./headlines";
+
+.base-wysiwyg {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+
+  &::after {
+    display: table;
+    clear: both;
+    content: "";
+  }
+
+  .post-edit-link {
+    font-size: 1.6rem;
+  }
+
+  p {
+    @extend .p-two;
+  }
+
+  a {
+    @extend .p-one;
+    transition: all 0.3s;
+    color: $primaryColor;
+    font-weight: bold;
+    font-size: 1em;
+
+    &:hover {
+      color: $blackColor;
+    }
+  }
+
+  h1 {
+    @extend .hl-one;
+  }
+
+  h2 {
+    @extend .hl-two;
+  }
+
+  h3 {
+    @extend .hl-three;
+  }
+
+  h4 {
+    @extend .hl-four;
+  }
+
+  ul {
+    margin-bottom: 2.5rem;
+
+    li {
+      @extend .p-two;
+      color: $blackColor;
+      position: relative;
+      margin-bottom: 0.75em;
+      padding-left: 0.75em;
+
+      &::before {
+        position: absolute;
+        top: 0.1em;
+        left: 0;
+        padding-right: 0.5em;
+        color: rgba($blackColor, 0.75);
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+---
+import { baseData } from "../data/siteData";
+import "../styles/styles.scss";
+const {
+  metaImg = null,
+  metaTitle = null,
+  metaDescription = null,
+} = Astro.props;
+
+const title = metaTitle ? metaTitle : baseData.title;
+const description = metaDescription ? metaDescription : baseData.description;
+const imgSrc = metaImg ? metaImg : baseData.siteImg;
+const baseUrl = Astro.url ? Astro.url : baseData.url;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Astro description" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
