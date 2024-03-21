@@ -1,0 +1,8 @@
+---
+const { ele = "div", classes, ...rest } = Astro.props;
+const Tag = ele;
+---
+
+<div class:list={[`base-wysiwyg`, classes]} ..rest>
+  <slot />
+</div>

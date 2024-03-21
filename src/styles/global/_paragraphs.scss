@@ -2,6 +2,8 @@
 @use "../utils";
 
 .paragraph-all {
+  color: abstracts.$blackColor;
+  font-family: abstracts.$primaryFont;
   font-weight: normal;
   font-stretch: normal;
   font-style: normal;
@@ -9,19 +11,21 @@
 }
 
 .p-one {
-  @include utils.font-sizer(2.4, 3, 76.8, 150, 1.8);
+  @include utils.font-sizer(2.2, 2.7, 76.8, 150, 2.2);
   @extend .paragraph-all;
-  color: abstracts.$blackColor;
 }
 
 .p-two {
-  @include utils.font-sizer(1.6, 1.7, 76.8, 150, 1.6);
+  @include utils.font-sizer(2, 2.2, 76.8, 150, 1.8);
   @extend .paragraph-all;
-  color: abstracts.$blackColor;
 }
 
 .p-three {
-  @include utils.font-sizer(1.2, 1.4, 76.8, 150, 1.4);
+  @include utils.font-sizer(1.8, 2, 76.8, 150, 1.8);
   @extend .paragraph-all;
-  color: abstracts.$blackColor;
+}
+
+.p-four {
+  @include utils.font-sizer(1.6, 1.9, 76.8, 150, 1.6);
+  @extend .paragraph-all;
 }

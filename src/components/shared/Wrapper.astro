@@ -1,0 +1,7 @@
+---
+const { wrapType = "med", classes, modifier } = Astro.props;
+---
+
+<div class:list={[`wrap-${wrapType}`, classes, modifier]}>
+  <slot />
+</div>

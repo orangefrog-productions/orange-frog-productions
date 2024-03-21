@@ -1,0 +1,8 @@
+---
+const { ele = "h1", hlstyle = "one", classes, modifier, ...rest } = Astro.props;
+const Tag = ele;
+---
+
+<Tag {...rest} class:list={[`hl-${hlstyle}`, classes, modifier]}>
+  <slot />
+</Tag>
