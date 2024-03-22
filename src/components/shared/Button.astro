@@ -1,0 +1,8 @@
+---
+const { ele = "a", btnstyle = "one", classes, modifier, ...rest } = Astro.props;
+const Tag = ele;
+---
+
+<Tag  {...rest} class:list={[`btn-${btnstyle}`, classes, modifier]}>
+  <slot />
+</Tag>

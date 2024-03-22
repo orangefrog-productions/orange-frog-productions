@@ -1,21 +1,20 @@
-@use "../abstracts";
+@use "../abstracts" as *;
 @use "../utils";
 
 .btn {
-  @include utils.font-sizer(1.4, 1.8, 76.8, 150, 1.8);
+  @include utils.font-sizer(1.4, 1.9, 76.8, 150, 1.8);
   position: relative;
   display: inline-block;
-  padding: 0.75rem 2.5rem;
+  padding: 1.7rem 2.2rem;
   transition: all 0.3s ease;
-  border-radius: 1rem;
-  border: 0.1rem solid abstracts.$primaryColor;
-  background-color: abstracts.$secondaryColor;
-  color: abstracts.$whiteColor;
-  font-family: abstracts.$primaryFont;
-  font-weight: normal;
+  border: none;
+  background-color: $secondaryColor;
+  color: $whiteColor;
+  font-family: $primaryFont;
+  font-weight: bold;
   font-stretch: normal;
   font-style: normal;
-  line-height: 2;
+  line-height: 1;
   letter-spacing: normal;
   text-align: center;
   text-transform: uppercase;
@@ -27,9 +26,8 @@
 
   &:hover {
     cursor: pointer;
-    color: abstracts.$accentColor;
-    background-color: abstracts.$blackColor;
-    border-color: abstracts.$blackColor;
+    color: $whiteColor;
+    background-color: $primaryColor;
   }
 
   &:disabled {
@@ -37,20 +35,21 @@
     cursor: not-allowed;
 
     &:hover {
-      color: abstracts.$accentColor;
-      background-color: abstracts.$blackColor;
+      background-color: $primaryColor;
       cursor: not-allowed;
     }
   }
 }
 
 .btn-one {
-  background-color: abstracts.$primaryColor;
-  color: abstracts.$whiteColor;
+  @extend .btn;
 }
 
 .btn-two {
-  @include utils.font-sizer(2.4, 3, 76.8, 150, 2.8);
-  background-color: abstracts.$primaryColor;
-  color: abstracts.$whiteColor;
+  @extend .btn;
+  background-color: $primaryColor;
+
+  &:hover {
+    background-color: $secondaryColor;
+  }
 }
