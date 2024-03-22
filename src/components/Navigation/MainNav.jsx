@@ -9,14 +9,30 @@ const MainNav = () => {
   const [btnChecked, setBtnChecked] = useState(false);
 
   useEffect(() => {
-    drawertl.current = gsap.timeline({ paused: true });
+    drawertl.current = gsap.timeline({ paused: true, yoyo: true });
     const drawer = document.querySelector(".nav-drawer");
-
-    drawertl.current.fromTo(
-      drawer,
-      { autoAlpha: 0, y: "-100%" },
-      { autoAlpha: 1, y: "0%" }
+    const secondaryBg = document.querySelector(
+      ".nav-drawer-secondary-background-color"
     );
+    const menuLayer = document.querySelector(".menu-layer");
+
+    drawertl.current
+      .add("start")
+      .fromTo(
+        drawer,
+        { y: "-100%" },
+        { y: "0%", duration: 0.1, ease: "power4.out" }
+      )
+      .fromTo(
+        secondaryBg,
+        { y: "-100%" },
+        { y: "0%", duration: 0.3, ease: "power4.out" }
+      )
+      .fromTo(
+        menuLayer,
+        { y: "-100%" },
+        { y: "0%", duration: 0.5, ease: "power4.out" }
+      );
   }, []);
 
   useEffect(() => {
