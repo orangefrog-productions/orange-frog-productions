@@ -1,6 +1,6 @@
 import "./navDrawer.scss";
 
-const NavDrawer = ({ isOpen, setIsOpen, setBtnChecked, origin }) => {
+const NavDrawer = ({ isOpen, origin }) => {
   return (
     <div className={`nav-drawer ${isOpen ? "active" : ""}`}>
       <div className="main-nav-wrapper"></div>
