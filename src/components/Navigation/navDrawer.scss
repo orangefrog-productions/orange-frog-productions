@@ -1,5 +1,5 @@
 @use "../../styles/abstracts/" as *;
-@use "../../styles/global/paragraphs";
+@use "../../styles/global/wrappers";
 
 .nav-drawer {
   position: fixed;
@@ -11,6 +11,7 @@
   transform: translateY(-100%);
   background: $blackColor;
   opacity: 0;
+  overflow-x: hidden;
   overflow-y: scroll;
   z-index: -99999999;
 
@@ -21,12 +22,9 @@
   }
 
   .main-nav-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
+    @extend .wrap-med;
     height: 100%;
-    margin: 0;
-    padding: 0;
     overflow-x: hidden;
+    overflow-y: scroll;
   }
 }
