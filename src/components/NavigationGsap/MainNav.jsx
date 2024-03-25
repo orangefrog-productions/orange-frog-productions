@@ -2,8 +2,9 @@ import { useState } from "react";
 
 import Hamburger from "./Hamburger";
 import NavButton from "./NavButton";
+import "./mainNav.scss";
 
-const MainNav = ({ mainMenu }) => {
+const MainNav = ({ mainMenu, contactInfo }) => {
   const [state, setState] = useState({
     initial: false,
     clicked: null,
@@ -42,7 +43,7 @@ const MainNav = ({ mainMenu }) => {
   return (
     <>
       <NavButton handleMenu={handleMenu} disabled={disabled} state={state} />
-      <Hamburger state={state} mainMenu={mainMenu} />
+      <Hamburger state={state} mainMenu={mainMenu} contactInfo={contactInfo} />
     </>
   );
 };

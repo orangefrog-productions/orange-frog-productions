@@ -1,0 +1,79 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/headlines";
+@use "../../styles/global/paragraphs";
+@use "../../styles/global/wrappers";
+
+.info {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: calc(100%);
+
+  @media (min-width: 768px) {
+    width: calc(40%);
+  }
+
+  &-social {
+    width: 100%;
+
+    h3 {
+      @extend .p-three;
+      margin: 0 auto;
+      color: $whiteColor;
+    }
+
+    ul {
+      li {
+        @extend .p-three;
+        margin-bottom: 0rem;
+
+        a {
+          @extend .p-three;
+          margin-left: 4rem;
+          margin-bottom: 0rem;
+          color: $whiteColor;
+
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+      }
+    }
+  }
+  &-phone {
+    width: 100%;
+    margin-top: 2.5rem;
+
+    p {
+      @extend .p-three;
+      color: $whiteColor;
+
+      a {
+        @extend .p-three;
+        color: $whiteColor;
+
+        &:hover {
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+
+  &-address {
+    width: 100%;
+
+    p {
+      @extend .p-three;
+      color: $whiteColor;
+    }
+  }
+
+  &-hours {
+    width: 100%;
+
+    p {
+      @extend .p-three;
+      color: $whiteColor;
+    }
+  }
+}

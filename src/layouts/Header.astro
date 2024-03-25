@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import Wrapper from "../components/shared/Wrapper.astro";
 import MainNav from "../components/NavigationGsap/MainNav";
 import "./header.scss";
 
@@ -49,32 +50,48 @@ const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
                 }
             }
 
+            contactInformation {
+              contactInformation {
+                callUsPhoneNumber
+                hoursOfOperation
+                streetLocation
+                  socialMediaLinks {
+                    facebookLink
+                    instagramLink
+                    linkedinLink
+                  }
+                }
+              }
+
 
         }
     `,
   }),
 });
 const { data } = await response.json();
+
+console.log("data: ",data)
 ---
 
 <header>
-  <div class="wrapper">
-    <div class="logo">
-      <div class="logo-wrap">
-        <h1>
-          <a href="/">
-            <Image
-            src={data.logoOptions.logoOptions.mainLogo.sourceUrl}
-            alt={`Orange Frog Productions.`}
-            inferSize={true}
-            />
-          </a>
-          <span>Orange Frog Productions.</span>
-        </h1>
+  <Wrapper>
+      <div class="logo">
+        <div class="logo-wrap">
+          <h1>
+            <a href="/">
+              <Image
+              src={data.logoOptions.logoOptions.mainLogo.sourceUrl}
+              alt={`Orange Frog Productions.`}
+              inferSize={true}
+              loading="eager"
+              />
+            </a>
+            <span>Orange Frog Productions.</span>
+          </h1>
+        </div>
       </div>
-    </div>
-  </div>
-  <MainNav client:only="react" mainMenu={data.menu} />
+  </Wrapper>
+  <MainNav client:only="react" mainMenu={data.menu} contactInfo={data.contactInformation.contactInformation} />
 </header>
 
 

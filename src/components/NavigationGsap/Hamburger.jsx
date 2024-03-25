@@ -13,13 +13,13 @@ import careerssrc from "./assests/careers.jpg";
 import contactssrc from "./assests/start-a-project.jpg";
 
 import MenuItem from "./MenuItem";
+import NavInfo from "./NavInfo";
 
-const Hamburger = ({ state, mainMenu }) => {
+const Hamburger = ({ state, mainMenu, contactInfo }) => {
   let menu = useRef(null);
   let revealMenu = useRef(null);
   let revealMenuBackground = useRef(null);
   let cityBackground = useRef(null);
-  let info = useRef(null);
 
   const pagebgs = [
     { name: "Home", image: homesrc },
@@ -34,6 +34,7 @@ const Hamburger = ({ state, mainMenu }) => {
 
   useEffect(() => {
     const links = document.querySelectorAll(".menu-links-item li");
+    const info = document.querySelectorAll(".info");
 
     if (state.clicked === false) {
       // close menu
@@ -196,33 +197,7 @@ const Hamburger = ({ state, mainMenu }) => {
                 })}
               </ul>
             </nav>
-
-            <div ref={(el) => (info = el)} className="info">
-              <h3>Our Promise</h3>
-              <p>
-                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
-                odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
-                turpis. Suspendisse urna nibh viverra non semper suscipit
-                posuere a pede.
-              </p>
-            </div>
-
-            {/* <div className="locations">
-              Locations:
-              {pagebgs.map((page, index) => {
-                return (
-                  <span
-                    key={index}
-                    onMouseEnter={() => {
-                      handlePage(page.image);
-                    }}
-                    onMouseOut={handlePageReturn}
-                  >
-                    {page.name}
-                  </span>
-                );
-              })}
-            </div> */}
+            <NavInfo contactInfo={contactInfo} />
           </div>
         </div>
       </div>
