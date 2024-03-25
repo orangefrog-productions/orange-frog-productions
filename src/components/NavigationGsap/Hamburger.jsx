@@ -179,7 +179,8 @@ const Hamburger = ({ state, mainMenu, contactInfo }) => {
                   }
 
                   const bgImg = pagebgs.find((bg) => bg.name === item.label);
-                  console.log("bgImg", bgImg);
+
+                  console.log("item", item);
 
                   return (
                     <MenuItem
