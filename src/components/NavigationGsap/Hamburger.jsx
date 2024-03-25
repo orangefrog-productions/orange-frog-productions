@@ -12,7 +12,7 @@ import careerssrc from "./assests/wedding-dance-floor-1@3x.jpg";
 import contactssrc from "./assests/wedding-dance-floor-2@3x.jpg";
 import MenuItem from "./MenuItem";
 
-const Hamburger = ({ state }) => {
+const Hamburger = ({ state, mainMenu }) => {
   let menu = useRef(null);
   let revealMenu = useRef(null);
   let revealMenuBackground = useRef(null);
@@ -32,6 +32,7 @@ const Hamburger = ({ state }) => {
 
   useEffect(() => {
     const links = document.querySelectorAll(".menu-links-item li");
+
     if (state.clicked === false) {
       // close menu
       gsap.to([revealMenu, revealMenuBackground], {
@@ -109,10 +110,9 @@ const Hamburger = ({ state }) => {
   };
 
   const handlePage = (page) => {
-    console.log("page", page.src);
     gsap.to(cityBackground, {
       duration: 0,
-      background: `url(${page.src}) center center`,
+      background: `url(${page}) center center`,
     });
     gsap.to(cityBackground, {
       duration: 0.4,
@@ -168,85 +168,24 @@ const Hamburger = ({ state }) => {
           <div className="menu-links">
             <nav>
               <ul>
-                <MenuItem
-                  href={`/`}
-                  title="Home"
-                  handlePage={handlePage}
-                  handleHover={handleHover}
-                  handleHoverExit={handleHoverExit}
-                  handlePageReturn={handlePageReturn}
-                  bgImg={pagebgs[0].image}
-                />
-
-                <MenuItem
-                  href={`/services`}
-                  title="Design Capabilities"
-                  handlePage={handlePage}
-                  handleHover={handleHover}
-                  handleHoverExit={handleHoverExit}
-                  handlePageReturn={handlePageReturn}
-                  bgImg={pagebgs[1].image}
-                />
-
-                <MenuItem
-                  href={`/portfolio`}
-                  title="Our Work"
-                  handlePage={handlePage}
-                  handleHover={handleHover}
-                  handleHoverExit={handleHoverExit}
-                  handlePageReturn={handlePageReturn}
-                  bgImg={pagebgs[2].image}
-                />
-
-                <MenuItem
-                  href={`/about`}
-                  title="Design Team"
-                  handlePage={handlePage}
-                  handleHover={handleHover}
-                  handleHoverExit={handleHoverExit}
-                  handlePageReturn={handlePageReturn}
-                  bgImg={pagebgs[3].image}
-                />
-
-                <MenuItem
-                  href={`/testimonials`}
-                  title="Words from Clients"
-                  handlePage={handlePage}
-                  handleHover={handleHover}
-                  handleHoverExit={handleHoverExit}
-                  handlePageReturn={handlePageReturn}
-                  bgImg={pagebgs[4].image}
-                />
-
-                <MenuItem
-                  href={`/news`}
-                  title="News & Ideas"
-                  handlePage={handlePage}
-                  handleHover={handleHover}
-                  handleHoverExit={handleHoverExit}
-                  handlePageReturn={handlePageReturn}
-                  bgImg={pagebgs[5].image}
-                />
-
-                <MenuItem
-                  href={`/careers`}
-                  title="Careers"
-                  handlePage={handlePage}
-                  handleHover={handleHover}
-                  handleHoverExit={handleHoverExit}
-                  handlePageReturn={handlePageReturn}
-                  bgImg={pagebgs[6].image}
-                />
-
-                <MenuItem
-                  href={`/contact`}
-                  title="Start a Project"
-                  handlePage={handlePage}
-                  handleHover={handleHover}
-                  handleHoverExit={handleHoverExit}
-                  handlePageReturn={handlePageReturn}
-                  bgImg={pagebgs[7].image}
-                />
+                {mainMenu.menuItems.nodes.map((item, index) => {
+                  if (item.parentId) {
+                    return null;
+                  }
+                  return (
+                    <MenuItem
+                      key={index}
+                      href={item.uri}
+                      title={item.label}
+                      handlePage={handlePage}
+                      handleHover={handleHover}
+                      handleHoverExit={handleHoverExit}
+                      handlePageReturn={handlePageReturn}
+                      bgImg={item.menuOptions.menuHeaderImage.sourceUrl}
+                      subMenu={item.childItems.nodes}
+                    />
+                  );
+                })}
               </ul>
             </nav>
 

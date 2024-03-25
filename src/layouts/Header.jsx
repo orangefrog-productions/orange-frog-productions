@@ -4,13 +4,57 @@ import Hamburger from "../components/NavigationGsap/Hamburger";
 import NavButton from "../components/NavigationGsap/NavButton";
 import "./header.scss";
 
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query MainMenuQuery {
+            menu(id: "Main Menu", idType: NAME) {
+                menuItems {
+                    nodes {
+                        label
+                        uri
+                        parentId
+                        menuOptions {
+                            menuHeaderImage {
+                              sourceUrl
+                              altText
+                            }
+                        }
+
+                        childItems {
+                            nodes {
+                                label
+                                uri
+                                menuOptions {
+                                    menuHeaderImage {
+                                        sourceUrl
+                                        altText
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    `,
+  }),
+});
+
+const { data } = await response.json();
+
+console.log("data", data);
+
 const Header = () => {
   const [state, setState] = useState({
     initial: false,
     clicked: null,
     menuName: "Menu",
   });
-
   const [disabled, setDisabled] = useState(false);
 
   const handleMenu = () => {
@@ -56,7 +100,7 @@ const Header = () => {
         </div>
       </div>
 
-      <Hamburger state={state} />
+      <Hamburger state={state} mainMenu={data.menu} />
     </header>
   );
 };

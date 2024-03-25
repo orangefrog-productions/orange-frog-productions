@@ -6,7 +6,9 @@ const MenuItem = ({
   handleHoverExit,
   handlePageReturn,
   bgImg,
+  subMenu,
 }) => {
+  console.log("subMenu", subMenu);
   return (
     <div className="menu-links-item">
       <li>

@@ -47,8 +47,8 @@
       left: 0;
       width: 100%;
       opacity: 0;
-      background-size: cover;
-      background-repeat: no-repeat;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
       animation: camerapan 30s infinite;
     }
 
