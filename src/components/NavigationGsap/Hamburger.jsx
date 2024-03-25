@@ -10,20 +10,13 @@ import testimonialssrc from "./assests/wedding-band-stage@3x.jpg";
 import newssrc from "./assests/wedding-chandelier@3x.jpg";
 import careerssrc from "./assests/wedding-dance-floor-1@3x.jpg";
 import contactssrc from "./assests/wedding-dance-floor-2@3x.jpg";
+import MenuItem from "./MenuItem";
 
 const Hamburger = ({ state }) => {
   let menu = useRef(null);
   let revealMenu = useRef(null);
   let revealMenuBackground = useRef(null);
   let cityBackground = useRef(null);
-  let line1 = useRef(null);
-  let line2 = useRef(null);
-  let line3 = useRef(null);
-  let line4 = useRef(null);
-  let line5 = useRef(null);
-  let line6 = useRef(null);
-  let line7 = useRef(null);
-  let line8 = useRef(null);
   let info = useRef(null);
 
   const pagebgs = [
@@ -38,6 +31,7 @@ const Hamburger = ({ state }) => {
   ];
 
   useEffect(() => {
+    const links = document.querySelectorAll(".menu-links-item li");
     if (state.clicked === false) {
       // close menu
       gsap.to([revealMenu, revealMenuBackground], {
@@ -69,7 +63,7 @@ const Hamburger = ({ state }) => {
       });
       staggerReveal(revealMenuBackground, revealMenu);
       fadeInUp(info);
-      staggerText(line1, line2, line3, line4, line5, line6, line7, line8);
+      staggerText(links);
     }
   }, [state]);
 
@@ -86,18 +80,9 @@ const Hamburger = ({ state }) => {
     });
   };
 
-  const staggerText = (
-    node1,
-    node2,
-    node3,
-    node4,
-    node5,
-    node6,
-    node7,
-    node8
-  ) => {
+  const staggerText = (links) => {
     gsap.fromTo(
-      [node1, node2, node3, node4, node5, node6, node7, node8],
+      [...links],
       {
         y: 100,
       },
@@ -183,142 +168,85 @@ const Hamburger = ({ state }) => {
           <div className="menu-links">
             <nav>
               <ul>
-                <div className="menu-links-item">
-                  <li ref={(el) => (line1 = el)}>
-                    <a
-                      onMouseEnter={(e) => {
-                        handlePage(pagebgs[0].image);
-                        handleHover(e);
-                      }}
-                      onMouseOut={(e) => {
-                        handleHoverExit(e);
-                        handlePageReturn();
-                      }}
-                      href="/"
-                    >
-                      Home
-                    </a>
-                  </li>
-                </div>
-                <div className="menu-links-item">
-                  <li ref={(el) => (line2 = el)}>
-                    <a
-                      onMouseEnter={(e) => {
-                        handlePage(pagebgs[1].image);
-                        handleHover(e);
-                      }}
-                      onMouseOut={(e) => {
-                        handleHoverExit(e);
-                        handlePageReturn();
-                      }}
-                      href="/services"
-                    >
-                      Design Capabilities
-                    </a>
-                  </li>
-                </div>
-                <div className="menu-links-item">
-                  <li ref={(el) => (line3 = el)}>
-                    <a
-                      onMouseEnter={(e) => {
-                        handlePage(pagebgs[2].image);
-                        handleHover(e);
-                      }}
-                      onMouseOut={(e) => {
-                        handleHoverExit(e);
-                        handlePageReturn();
-                      }}
-                      href="/portfolio"
-                    >
-                      Our Work
-                    </a>
-                  </li>
-                </div>
-                <div className="menu-links-item">
-                  <li ref={(el) => (line4 = el)}>
-                    <a
-                      onMouseEnter={(e) => {
-                        handlePage(pagebgs[3].image);
-                        handleHover(e);
-                      }}
-                      onMouseOut={(e) => {
-                        handleHoverExit(e);
-                        handlePageReturn();
-                      }}
-                      href="/about"
-                    >
-                      Design Team
-                    </a>
-                  </li>
-                </div>
-                <div className="menu-links-item">
-                  <li ref={(el) => (line5 = el)}>
-                    <a
-                      onMouseEnter={(e) => {
-                        handlePage(pagebgs[4].image);
-                        handleHover(e);
-                      }}
-                      onMouseOut={(e) => {
-                        handleHoverExit(e);
-                        handlePageReturn();
-                      }}
-                      href="/testimonials"
-                    >
-                      Words from Clients
-                    </a>
-                  </li>
-                </div>
-                <div className="menu-links-item">
-                  <li ref={(el) => (line6 = el)}>
-                    <a
-                      onMouseEnter={(e) => {
-                        handlePage(pagebgs[5].image);
-                        handleHover(e);
-                      }}
-                      onMouseOut={(e) => {
-                        handleHoverExit(e);
-                        handlePageReturn();
-                      }}
-                      href="/news"
-                    >
-                      News & Ideas
-                    </a>
-                  </li>
-                </div>
-                <div className="menu-links-item">
-                  <li ref={(el) => (line7 = el)}>
-                    <a
-                      onMouseEnter={(e) => {
-                        handlePage(pagebgs[6].image);
-                        handleHover(e);
-                      }}
-                      onMouseOut={(e) => {
-                        handleHoverExit(e);
-                        handlePageReturn();
-                      }}
-                      href="/careers"
-                    >
-                      Careers
-                    </a>
-                  </li>
-                </div>
-                <div className="menu-links-item">
-                  <li ref={(el) => (line8 = el)}>
-                    <a
-                      onMouseEnter={(e) => {
-                        handlePage(pagebgs[7].image);
-                        handleHover(e);
-                      }}
-                      onMouseOut={(e) => {
-                        handleHoverExit(e);
-                        handlePageReturn();
-                      }}
-                      href="/contact"
-                    >
-                      Start a Project
-                    </a>
-                  </li>
-                </div>
+                <MenuItem
+                  href={`/`}
+                  title="Home"
+                  handlePage={handlePage}
+                  handleHover={handleHover}
+                  handleHoverExit={handleHoverExit}
+                  handlePageReturn={handlePageReturn}
+                  bgImg={pagebgs[0].image}
+                />
+
+                <MenuItem
+                  href={`/services`}
+                  title="Design Capabilities"
+                  handlePage={handlePage}
+                  handleHover={handleHover}
+                  handleHoverExit={handleHoverExit}
+                  handlePageReturn={handlePageReturn}
+                  bgImg={pagebgs[1].image}
+                />
+
+                <MenuItem
+                  href={`/portfolio`}
+                  title="Our Work"
+                  handlePage={handlePage}
+                  handleHover={handleHover}
+                  handleHoverExit={handleHoverExit}
+                  handlePageReturn={handlePageReturn}
+                  bgImg={pagebgs[2].image}
+                />
+
+                <MenuItem
+                  href={`/about`}
+                  title="Design Team"
+                  handlePage={handlePage}
+                  handleHover={handleHover}
+                  handleHoverExit={handleHoverExit}
+                  handlePageReturn={handlePageReturn}
+                  bgImg={pagebgs[3].image}
+                />
+
+                <MenuItem
+                  href={`/testimonials`}
+                  title="Words from Clients"
+                  handlePage={handlePage}
+                  handleHover={handleHover}
+                  handleHoverExit={handleHoverExit}
+                  handlePageReturn={handlePageReturn}
+                  bgImg={pagebgs[4].image}
+                />
+
+                <MenuItem
+                  href={`/news`}
+                  title="News & Ideas"
+                  handlePage={handlePage}
+                  handleHover={handleHover}
+                  handleHoverExit={handleHoverExit}
+                  handlePageReturn={handlePageReturn}
+                  bgImg={pagebgs[5].image}
+                />
+
+                <MenuItem
+                  href={`/careers`}
+                  title="Careers"
+                  handlePage={handlePage}
+                  handleHover={handleHover}
+                  handleHoverExit={handleHoverExit}
+                  handlePageReturn={handlePageReturn}
+                  bgImg={pagebgs[6].image}
+                />
+
+                <MenuItem
+                  href={`/contact`}
+                  title="Start a Project"
+                  handlePage={handlePage}
+                  handleHover={handleHover}
+                  handleHoverExit={handleHoverExit}
+                  handlePageReturn={handlePageReturn}
+                  bgImg={pagebgs[7].image}
+                />
               </ul>
             </nav>
 
