@@ -137,7 +137,7 @@ const Hamburger = ({ state }) => {
 
     gsap.from(cityBackground, {
       duration: 0.4,
-      skewY: 2,
+      // skewY: 2,
       transformOrigin: "right top",
     });
   };
@@ -178,176 +178,175 @@ const Hamburger = ({ state }) => {
           ref={(el) => (cityBackground = el)}
           className="menu-city-background"
         ></div>
-        <div className="container">
-          <div className="wrapper">
-            <div className="menu-links">
-              <nav>
-                <ul>
-                  <div className="menu-links-item">
-                    <li ref={(el) => (line1 = el)}>
-                      <a
-                        onMouseEnter={(e) => {
-                          handlePage(pagebgs[0].image);
-                          handleHover(e);
-                        }}
-                        onMouseOut={(e) => {
-                          handleHoverExit(e);
-                          handlePageReturn();
-                        }}
-                        href="/"
-                      >
-                        Home
-                      </a>
-                    </li>
-                  </div>
-                  <div className="menu-links-item">
-                    <li ref={(el) => (line2 = el)}>
-                      <a
-                        onMouseEnter={(e) => {
-                          handlePage(pagebgs[1].image);
-                          handleHover(e);
-                        }}
-                        onMouseOut={(e) => {
-                          handleHoverExit(e);
-                          handlePageReturn();
-                        }}
-                        href="/services"
-                      >
-                        Design Capabilities
-                      </a>
-                    </li>
-                  </div>
-                  <div className="menu-links-item">
-                    <li ref={(el) => (line3 = el)}>
-                      <a
-                        onMouseEnter={(e) => {
-                          handlePage(pagebgs[2].image);
-                          handleHover(e);
-                        }}
-                        onMouseOut={(e) => {
-                          handleHoverExit(e);
-                          handlePageReturn();
-                        }}
-                        href="/portfolio"
-                      >
-                        Our Work
-                      </a>
-                    </li>
-                  </div>
-                  <div className="menu-links-item">
-                    <li ref={(el) => (line4 = el)}>
-                      <a
-                        onMouseEnter={(e) => {
-                          handlePage(pagebgs[3].image);
-                          handleHover(e);
-                        }}
-                        onMouseOut={(e) => {
-                          handleHoverExit(e);
-                          handlePageReturn();
-                        }}
-                        href="/about"
-                      >
-                        Design Team
-                      </a>
-                    </li>
-                  </div>
-                  <div className="menu-links-item">
-                    <li ref={(el) => (line5 = el)}>
-                      <a
-                        onMouseEnter={(e) => {
-                          handlePage(pagebgs[4].image);
-                          handleHover(e);
-                        }}
-                        onMouseOut={(e) => {
-                          handleHoverExit(e);
-                          handlePageReturn();
-                        }}
-                        href="/testimonials"
-                      >
-                        Words from Clients
-                      </a>
-                    </li>
-                  </div>
-                  <div className="menu-links-item">
-                    <li ref={(el) => (line6 = el)}>
-                      <a
-                        onMouseEnter={(e) => {
-                          handlePage(pagebgs[5].image);
-                          handleHover(e);
-                        }}
-                        onMouseOut={(e) => {
-                          handleHoverExit(e);
-                          handlePageReturn();
-                        }}
-                        href="/news"
-                      >
-                        News & Ideas
-                      </a>
-                    </li>
-                  </div>
-                  <div className="menu-links-item">
-                    <li ref={(el) => (line7 = el)}>
-                      <a
-                        onMouseEnter={(e) => {
-                          handlePage(pagebgs[6].image);
-                          handleHover(e);
-                        }}
-                        onMouseOut={(e) => {
-                          handleHoverExit(e);
-                          handlePageReturn();
-                        }}
-                        href="/careers"
-                      >
-                        Careers
-                      </a>
-                    </li>
-                  </div>
-                  <div className="menu-links-item">
-                    <li ref={(el) => (line8 = el)}>
-                      <a
-                        onMouseEnter={(e) => {
-                          handlePage(pagebgs[7].image);
-                          handleHover(e);
-                        }}
-                        onMouseOut={(e) => {
-                          handleHoverExit(e);
-                          handlePageReturn();
-                        }}
-                        href="/contact"
-                      >
-                        Start a Project
-                      </a>
-                    </li>
-                  </div>
-                </ul>
-              </nav>
 
-              <div ref={(el) => (info = el)} className="info">
-                <h3>Our Promise</h3>
-                <p>
-                  Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                  Donec odio. Quisque volutpat mattis eros. Nullam malesuada
-                  erat ut turpis. Suspendisse urna nibh viverra non semper
-                  suscipit posuere a pede.
-                </p>
-              </div>
-
-              <div className="locations">
-                Locations:
-                {pagebgs.map((page, index) => {
-                  return (
-                    <span
-                      key={index}
-                      onMouseEnter={() => {
-                        handlePage(page.image);
+        <div className="wrapper">
+          <div className="menu-links">
+            <nav>
+              <ul>
+                <div className="menu-links-item">
+                  <li ref={(el) => (line1 = el)}>
+                    <a
+                      onMouseEnter={(e) => {
+                        handlePage(pagebgs[0].image);
+                        handleHover(e);
                       }}
-                      onMouseOut={handlePageReturn}
+                      onMouseOut={(e) => {
+                        handleHoverExit(e);
+                        handlePageReturn();
+                      }}
+                      href="/"
                     >
-                      {page.name}
-                    </span>
-                  );
-                })}
-              </div>
+                      Home
+                    </a>
+                  </li>
+                </div>
+                <div className="menu-links-item">
+                  <li ref={(el) => (line2 = el)}>
+                    <a
+                      onMouseEnter={(e) => {
+                        handlePage(pagebgs[1].image);
+                        handleHover(e);
+                      }}
+                      onMouseOut={(e) => {
+                        handleHoverExit(e);
+                        handlePageReturn();
+                      }}
+                      href="/services"
+                    >
+                      Design Capabilities
+                    </a>
+                  </li>
+                </div>
+                <div className="menu-links-item">
+                  <li ref={(el) => (line3 = el)}>
+                    <a
+                      onMouseEnter={(e) => {
+                        handlePage(pagebgs[2].image);
+                        handleHover(e);
+                      }}
+                      onMouseOut={(e) => {
+                        handleHoverExit(e);
+                        handlePageReturn();
+                      }}
+                      href="/portfolio"
+                    >
+                      Our Work
+                    </a>
+                  </li>
+                </div>
+                <div className="menu-links-item">
+                  <li ref={(el) => (line4 = el)}>
+                    <a
+                      onMouseEnter={(e) => {
+                        handlePage(pagebgs[3].image);
+                        handleHover(e);
+                      }}
+                      onMouseOut={(e) => {
+                        handleHoverExit(e);
+                        handlePageReturn();
+                      }}
+                      href="/about"
+                    >
+                      Design Team
+                    </a>
+                  </li>
+                </div>
+                <div className="menu-links-item">
+                  <li ref={(el) => (line5 = el)}>
+                    <a
+                      onMouseEnter={(e) => {
+                        handlePage(pagebgs[4].image);
+                        handleHover(e);
+                      }}
+                      onMouseOut={(e) => {
+                        handleHoverExit(e);
+                        handlePageReturn();
+                      }}
+                      href="/testimonials"
+                    >
+                      Words from Clients
+                    </a>
+                  </li>
+                </div>
+                <div className="menu-links-item">
+                  <li ref={(el) => (line6 = el)}>
+                    <a
+                      onMouseEnter={(e) => {
+                        handlePage(pagebgs[5].image);
+                        handleHover(e);
+                      }}
+                      onMouseOut={(e) => {
+                        handleHoverExit(e);
+                        handlePageReturn();
+                      }}
+                      href="/news"
+                    >
+                      News & Ideas
+                    </a>
+                  </li>
+                </div>
+                <div className="menu-links-item">
+                  <li ref={(el) => (line7 = el)}>
+                    <a
+                      onMouseEnter={(e) => {
+                        handlePage(pagebgs[6].image);
+                        handleHover(e);
+                      }}
+                      onMouseOut={(e) => {
+                        handleHoverExit(e);
+                        handlePageReturn();
+                      }}
+                      href="/careers"
+                    >
+                      Careers
+                    </a>
+                  </li>
+                </div>
+                <div className="menu-links-item">
+                  <li ref={(el) => (line8 = el)}>
+                    <a
+                      onMouseEnter={(e) => {
+                        handlePage(pagebgs[7].image);
+                        handleHover(e);
+                      }}
+                      onMouseOut={(e) => {
+                        handleHoverExit(e);
+                        handlePageReturn();
+                      }}
+                      href="/contact"
+                    >
+                      Start a Project
+                    </a>
+                  </li>
+                </div>
+              </ul>
+            </nav>
+
+            <div ref={(el) => (info = el)} className="info">
+              <h3>Our Promise</h3>
+              <p>
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec
+                odio. Quisque volutpat mattis eros. Nullam malesuada erat ut
+                turpis. Suspendisse urna nibh viverra non semper suscipit
+                posuere a pede.
+              </p>
+            </div>
+
+            <div className="locations">
+              Locations:
+              {pagebgs.map((page, index) => {
+                return (
+                  <span
+                    key={index}
+                    onMouseEnter={() => {
+                      handlePage(page.image);
+                    }}
+                    onMouseOut={handlePageReturn}
+                  >
+                    {page.name}
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>

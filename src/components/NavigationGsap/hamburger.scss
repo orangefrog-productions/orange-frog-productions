@@ -1,5 +1,6 @@
 @use "../../styles/abstracts/" as *;
 @use "../../styles/global/headlines";
+@use "../../styles/global/wrappers";
 
 .hamburger-menu {
   display: none;
@@ -13,15 +14,11 @@
   z-index: 9;
   overflow-x: scroll;
 
-  // not sure if needed. //
-  .container {
-    width: 128rem;
-    min-width: 128rem;
-    margin: 0 auto;
-
-    .wrapper {
-      padding: 0 5rem;
-    }
+  .wrapper {
+    @extend .wrap-med;
+    align-items: flex-start;
+    position: relative;
+    height: 100%;
   }
 
   .menu-secondary-background-color {
@@ -46,75 +43,73 @@
       position: absolute;
       top: 0;
       right: 0;
-      bottom: 55%;
+      bottom: calc(100% - 30rem);
       left: 0;
       width: 100%;
       opacity: 0;
-      // background-size: cover;
+      background-size: cover;
       background-repeat: no-repeat;
       animation: camerapan 30s infinite;
     }
 
-    .wrapper {
+    .menu-links {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: space-between;
       position: relative;
+      top: 30rem;
 
-      .menu-links {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-        top: 20rem;
+      nav {
+        width: calc(60%);
 
-        nav {
-          display: block;
+        ul {
+          width: 100%;
+          padding: 0;
+          margin: 0;
 
-          ul {
-            padding: 0;
-            margin: 0;
+          .menu-links-item {
+            height: 6rem;
+            overflow: hidden;
+          }
 
-            .menu-links-item {
-              height: 7.5rem;
-              overflow: hidden;
-            }
+          li {
+            position: relative;
+            width: 100%;
 
-            li {
-              font-size: 5rem;
+            a {
+              @extend .hl-three;
+              display: block;
+              position: absolute;
+              color: $whiteColor;
               cursor: pointer;
 
-              position: relative;
-              width: 70rem;
-
-              a {
-                @extend .hl-two;
-                display: block;
-                position: absolute;
-                color: $whiteColor;
-
-                &:hover {
-                  color: $secondaryColor;
-                }
+              &:hover {
+                color: $secondaryColor;
               }
             }
           }
         }
+      }
 
-        .info {
-          color: $whiteColor;
-          width: 30rem;
+      .info {
+        width: calc(40%);
+        color: $whiteColor;
 
-          h3 {
-            font-size: 1.2rem;
-            margin: 1rem auto;
-          }
+        h3 {
+          font-size: 1.2rem;
+          margin: 1rem auto;
+        }
 
-          p {
-            margin: 0 auto;
-            font-size: 0.8rem;
-          }
+        p {
+          margin: 0 auto;
+          font-size: 0.8rem;
         }
       }
 
       .locations {
+        width: calc(100%);
         position: absolute;
         bottom: -8rem;
         color: $whiteColor;
