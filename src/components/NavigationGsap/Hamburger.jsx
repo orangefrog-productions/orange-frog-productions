@@ -166,6 +166,7 @@ const Hamburger = ({ state, mainMenu }) => {
           className="menu-city-background"
         ></div>
         <div className="menu-city-background-default"></div>
+        <div className="menu-city-background-graphic"></div>
 
         <div className="wrapper">
           <div className="menu-links">
@@ -206,7 +207,7 @@ const Hamburger = ({ state, mainMenu }) => {
               </p>
             </div>
 
-            <div className="locations">
+            {/* <div className="locations">
               Locations:
               {pagebgs.map((page, index) => {
                 return (
@@ -221,7 +222,7 @@ const Hamburger = ({ state, mainMenu }) => {
                   </span>
                 );
               })}
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

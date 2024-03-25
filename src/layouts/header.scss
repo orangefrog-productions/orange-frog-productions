@@ -4,19 +4,31 @@
 header {
   .wrapper {
     @extend .wrap-med;
+    position: relative;
+    z-index: 10;
   }
 
-  .inner-header {
+  .logo {
     position: relative;
     width: 100%;
+    padding: 0 2rem;
     z-index: 10;
 
-    .logo {
-      width: 100%;
+    &-wrap {
+      max-width: 20rem;
+    }
+
+    h1 {
+      margin: 0;
 
       a {
         font-weight: 700;
         color: $blackColor;
+      }
+
+      span {
+        position: absolute;
+        left: -999%;
       }
     }
   }

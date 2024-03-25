@@ -1,5 +1,5 @@
 ---
-import Header from "./Header";
+import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 import { baseData } from "../data/siteData";
 import "../styles/styles.scss";
@@ -51,7 +51,7 @@ const baseUrl = Astro.url ? Astro.url : baseData.url;
 		 <meta name="twitter:creator" content={"Orange Frog Productions"} />
 	</head>
 	<body>
-		<Header client:only="react"/>
+		<Header />
 		<main>
 			<slot />
 		</main>

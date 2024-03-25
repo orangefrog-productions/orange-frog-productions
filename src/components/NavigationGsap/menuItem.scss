@@ -1,0 +1,21 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/headlines";
+
+.menu-links-item {
+  li {
+    position: relative;
+    width: 100%;
+
+    a {
+      @extend .hl-three;
+      display: block;
+      position: absolute;
+      color: $whiteColor;
+      cursor: pointer;
+
+      &:hover {
+        color: $secondaryColor;
+      }
+    }
+  }
+}

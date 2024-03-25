@@ -1,3 +1,5 @@
+import "./menuItem.scss";
+
 const MenuItem = ({
   href,
   title,

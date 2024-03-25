@@ -1,0 +1,80 @@
+---
+import { Image } from "astro:assets";
+import MainNav from "../components/NavigationGsap/MainNav";
+import "./header.scss";
+
+const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query headerQuery {
+            menu(id: "Main Menu", idType: NAME) {
+                menuItems {
+                    nodes {
+                        label
+                        uri
+                        parentId
+                        menuOptions {
+                            menuHeaderImage {
+                              sourceUrl
+                              altText
+                            }
+                        }
+
+                        childItems {
+                            nodes {
+                                label
+                                uri
+                                menuOptions {
+                                    menuHeaderImage {
+                                        sourceUrl
+                                        altText
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            logoOptions {
+                logoOptions {
+                    mainLogo {
+                        altText
+                        sourceUrl
+                    }
+                }
+            }
+
+
+        }
+    `,
+  }),
+});
+const { data } = await response.json();
+---
+
+<header>
+  <div class="wrapper">
+    <div class="logo">
+      <div class="logo-wrap">
+        <h1>
+          <a href="/">
+            <Image
+            src={data.logoOptions.logoOptions.mainLogo.sourceUrl}
+            alt={`Orange Frog Productions.`}
+            inferSize={true}
+            />
+          </a>
+          <span>Orange Frog Productions.</span>
+        </h1>
+      </div>
+    </div>
+  </div>
+  <MainNav client:only="react" mainMenu={data.menu} />
+</header>
+
+
