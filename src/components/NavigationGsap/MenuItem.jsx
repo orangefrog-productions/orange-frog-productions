@@ -9,12 +9,13 @@ const MenuItem = ({
   subMenu,
 }) => {
   console.log("subMenu", subMenu);
+  console.log("bgImg", bgImg);
   return (
     <div className="menu-links-item">
       <li>
         <a
           onMouseEnter={(e) => {
-            handlePage(bgImg);
+            handlePage(bgImg ? bgImg.src : null);
             handleHover(e);
           }}
           onMouseOut={(e) => {

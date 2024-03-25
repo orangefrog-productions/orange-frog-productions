@@ -2,6 +2,8 @@
 @use "../../styles/global/headlines";
 @use "../../styles/global/wrappers";
 
+$img-bg: url("./assests/default-menu-image.jpg");
+
 .hamburger-menu {
   display: none;
   position: fixed;
@@ -39,6 +41,20 @@
     height: 100%;
     overflow-x: scroll;
 
+    .menu-city-background-default {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: calc(100% - 30rem);
+      left: 0;
+      width: 100%;
+      opacity: 1;
+      background-image: $img-bg;
+      background-size: cover !important;
+      background-repeat: no-repeat !important;
+      z-index: 1;
+    }
+
     .menu-city-background {
       position: absolute;
       top: 0;
@@ -50,6 +66,7 @@
       background-size: cover !important;
       background-repeat: no-repeat !important;
       animation: camerapan 30s infinite;
+      z-index: 2;
     }
 
     .menu-links {

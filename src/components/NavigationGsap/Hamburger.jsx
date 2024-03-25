@@ -2,14 +2,16 @@ import { useEffect, useRef } from "react";
 import "./hamburger.scss";
 import gsap from "gsap";
 
-import homesrc from "./assests/bls-1074@3x.jpg";
-import servicessrc from "./assests/dsc-7458@3x.jpg";
-import portfoliosrc from "./assests/img-7926@3x.jpg";
-import aboutsrc from "./assests/wedding-3@3x.jpg";
-import testimonialssrc from "./assests/wedding-band-stage@3x.jpg";
-import newssrc from "./assests/wedding-chandelier@3x.jpg";
-import careerssrc from "./assests/wedding-dance-floor-1@3x.jpg";
-import contactssrc from "./assests/wedding-dance-floor-2@3x.jpg";
+// Images. //
+import homesrc from "./assests/home.jpg";
+import servicessrc from "./assests/design-capabilities.jpg";
+import portfoliosrc from "./assests/our-work.jpg";
+import aboutsrc from "./assests/design-team.jpg";
+import testimonialssrc from "./assests/words-from-clients.jpg";
+import newssrc from "./assests/news-ideas.jpg";
+import careerssrc from "./assests/careers.jpg";
+import contactssrc from "./assests/start-a-project.jpg";
+
 import MenuItem from "./MenuItem";
 
 const Hamburger = ({ state, mainMenu }) => {
@@ -21,13 +23,13 @@ const Hamburger = ({ state, mainMenu }) => {
 
   const pagebgs = [
     { name: "Home", image: homesrc },
-    { name: "Services", image: servicessrc },
-    { name: "Portfolio", image: portfoliosrc },
-    { name: "About", image: aboutsrc },
-    { name: "Testimonials", image: testimonialssrc },
-    { name: "News", image: newssrc },
-    { name: "Career", image: careerssrc },
-    { name: "Contact", image: contactssrc },
+    { name: "Design Capabilities", image: servicessrc },
+    { name: "Our Work", image: portfoliosrc },
+    { name: "Design Team", image: aboutsrc },
+    { name: "Words From Our Clients", image: testimonialssrc },
+    { name: "News + Ideas", image: newssrc },
+    { name: "Careers", image: careerssrc },
+    { name: "Start a Project", image: contactssrc },
   ];
 
   useEffect(() => {
@@ -163,6 +165,7 @@ const Hamburger = ({ state, mainMenu }) => {
           ref={(el) => (cityBackground = el)}
           className="menu-city-background"
         ></div>
+        <div className="menu-city-background-default"></div>
 
         <div className="wrapper">
           <div className="menu-links">
@@ -172,6 +175,10 @@ const Hamburger = ({ state, mainMenu }) => {
                   if (item.parentId) {
                     return null;
                   }
+
+                  const bgImg = pagebgs.find((bg) => bg.name === item.label);
+                  console.log("bgImg", bgImg);
+
                   return (
                     <MenuItem
                       key={index}
@@ -181,7 +188,7 @@ const Hamburger = ({ state, mainMenu }) => {
                       handleHover={handleHover}
                       handleHoverExit={handleHoverExit}
                       handlePageReturn={handlePageReturn}
-                      bgImg={item.menuOptions.menuHeaderImage.sourceUrl}
+                      bgImg={bgImg?.image ? bgImg?.image : null}
                       subMenu={item.childItems.nodes}
                     />
                   );
