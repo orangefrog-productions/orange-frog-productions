@@ -332,7 +332,7 @@ const Hamburger = ({ state }) => {
                 </p>
               </div>
 
-              {/* <div className="locations">
+              <div className="locations">
                 Locations:
                 {pagebgs.map((page, index) => {
                   return (
@@ -347,7 +347,7 @@ const Hamburger = ({ state }) => {
                     </span>
                   );
                 })}
-              </div> */}
+              </div>
             </div>
           </div>
         </div>

@@ -1,170 +1,17 @@
 @use "../../styles/abstracts/" as *;
 @use "../../styles/global/headlines";
 
-header {
-  height: 10rem;
-
-  .inner-header {
-    height: 10rem;
-    position: relative;
-    z-index: 10;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .logo {
-      a {
-        font-weight: 700;
-        color: $blackColor;
-      }
-    }
-
-    .menu {
-      button {
-        border: none;
-        background: none;
-        outline: none;
-        cursor: pointer;
-        font-size: 1rem;
-        color: $blackColor;
-      }
-    }
-  }
-
-  // hamburger menu or navigation
-
-  .hamburger-menu {
-    display: none;
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 9;
-    overflow-x: scroll;
-
-    .menu-secondary-background-color {
-      position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: $secondaryColor;
-      z-index: -1;
-    }
-
-    .menu-layer {
-      position: relative;
-      background-color: $blackColor;
-      height: 100%;
-      overflow-x: scroll;
-
-      .menu-city-background {
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        opacity: 0;
-        background-size: cover;
-        background-repeat: no-repeat;
-        animation: camerapan 30s infinite;
-      }
-
-      .wrapper {
-        position: relative;
-
-        .menu-links {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          position: relative;
-          top: 20rem;
-
-          nav {
-            display: block;
-
-            ul {
-              padding: 0;
-              margin: 0;
-
-              .menu-links-item {
-                height: 7.5rem;
-                overflow: hidden;
-              }
-
-              li {
-                font-size: 5rem;
-                cursor: pointer;
-
-                position: relative;
-                width: 70rem;
-
-                a {
-                  @extend .hl-two;
-                  display: block;
-                  position: absolute;
-                  color: $whiteColor;
-
-                  &:hover {
-                    color: $secondaryColor;
-                  }
-                }
-              }
-            }
-          }
-
-          .info {
-            color: $whiteColor;
-            width: 30rem;
-
-            h3 {
-              font-size: 1.2rem;
-              margin: 1rem auto;
-            }
-
-            p {
-              margin: 0 auto;
-              font-size: 0.8rem;
-            }
-          }
-        }
-
-        .locations {
-          position: absolute;
-          bottom: -8rem;
-          color: $whiteColor;
-          margin-top: 1.6rem;
-          font-size: 1.4rem;
-          font-weight: 600;
-
-          span {
-            cursor: pointer;
-            margin: 0 3rem;
-
-            font-weight: 500;
-            transition: 0.3s ease-in-out;
-
-            &:first-child {
-              margin-left: 6rem;
-            }
-
-            &:hover {
-              background-color: $blackColor;
-              padding: 0.8rem 2.4rem;
-              border-radius: 0.4rem;
-            }
-          }
-        }
-      }
-    }
-  }
+.hamburger-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9;
+  overflow-x: scroll;
 
   // not sure if needed. //
   .container {
@@ -174,6 +21,125 @@ header {
 
     .wrapper {
       padding: 0 5rem;
+    }
+  }
+
+  .menu-secondary-background-color {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $secondaryColor;
+    z-index: -1;
+  }
+
+  .menu-layer {
+    position: relative;
+    background-color: $blackColor;
+    height: 100%;
+    overflow-x: scroll;
+
+    .menu-city-background {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 55%;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      // background-size: cover;
+      background-repeat: no-repeat;
+      animation: camerapan 30s infinite;
+    }
+
+    .wrapper {
+      position: relative;
+
+      .menu-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        top: 20rem;
+
+        nav {
+          display: block;
+
+          ul {
+            padding: 0;
+            margin: 0;
+
+            .menu-links-item {
+              height: 7.5rem;
+              overflow: hidden;
+            }
+
+            li {
+              font-size: 5rem;
+              cursor: pointer;
+
+              position: relative;
+              width: 70rem;
+
+              a {
+                @extend .hl-two;
+                display: block;
+                position: absolute;
+                color: $whiteColor;
+
+                &:hover {
+                  color: $secondaryColor;
+                }
+              }
+            }
+          }
+        }
+
+        .info {
+          color: $whiteColor;
+          width: 30rem;
+
+          h3 {
+            font-size: 1.2rem;
+            margin: 1rem auto;
+          }
+
+          p {
+            margin: 0 auto;
+            font-size: 0.8rem;
+          }
+        }
+      }
+
+      .locations {
+        position: absolute;
+        bottom: -8rem;
+        color: $whiteColor;
+        margin-top: 1.6rem;
+        font-size: 1.4rem;
+        font-weight: 600;
+
+        span {
+          cursor: pointer;
+          margin: 0 3rem;
+
+          font-weight: 500;
+          transition: 0.3s ease-in-out;
+
+          &:first-child {
+            margin-left: 6rem;
+          }
+
+          &:hover {
+            background-color: $blackColor;
+            padding: 0.8rem 2.4rem;
+            border-radius: 0.4rem;
+          }
+        }
+      }
     }
   }
 }

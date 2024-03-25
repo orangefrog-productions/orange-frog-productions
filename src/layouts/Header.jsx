@@ -1,6 +1,8 @@
 import { useState } from "react";
 import MainNav from "../components/Navigation/MainNav";
 import Hamburger from "../components/NavigationGsap/Hamburger";
+import NavButton from "../components/NavigationGsap/NavButton";
+import "./header.scss";
 
 const Header = () => {
   const [state, setState] = useState({
@@ -41,20 +43,19 @@ const Header = () => {
 
   return (
     <header>
-      <div className="container">
-        <div className="wrapper">
-          <div className="inner-header">
-            <div className="logo">
-              <a href="/">Orange Frog Productions.</a>
-            </div>
-            <div className="menu">
-              <button onClick={handleMenu} disabled={disabled}>
-                {state.menuName}
-              </button>
-            </div>
+      <div className="wrapper">
+        <div className="inner-header">
+          <div className="logo">
+            <a href="/">Orange Frog Productions.</a>
           </div>
+          <NavButton
+            handleMenu={handleMenu}
+            disabled={disabled}
+            state={state}
+          />
         </div>
       </div>
+
       <Hamburger state={state} />
     </header>
   );

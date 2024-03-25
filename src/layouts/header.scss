@@ -1,0 +1,23 @@
+@use "../styles/abstracts/" as *;
+@use "../styles/global/wrappers";
+
+header {
+  .wrapper {
+    @extend .wrap-med;
+  }
+
+  .inner-header {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+
+    .logo {
+      width: 100%;
+
+      a {
+        font-weight: 700;
+        color: $blackColor;
+      }
+    }
+  }
+}
