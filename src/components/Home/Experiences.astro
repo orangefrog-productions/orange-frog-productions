@@ -22,5 +22,8 @@ console.log("experiences", Astro.props.data)
         <div class="experiences-img-link-bg">
             <Image src={Astro.props.data.linkImage.sourceUrl} alt={`Switchback Creative`} inferSize={true} loading="eager" />
         </div>
+        <div class="experiences-img-link-btn">
+            <Button href={Astro.props.data.linkImageButtonLink.uri}>{Astro.props.data.linkImageButtonText}</Button>
+        </div>
     </div>
 </div>
