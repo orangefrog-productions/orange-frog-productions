@@ -4,7 +4,7 @@ import Hamburger from "./Hamburger";
 import NavButton from "./NavButton";
 import "./mainNav.scss";
 
-const MainNav = ({ mainMenu, contactInfo }) => {
+const MainNav = ({ mainMenu, contactInfo, frogLogo }) => {
   const [state, setState] = useState({
     initial: false,
     clicked: null,
@@ -43,7 +43,12 @@ const MainNav = ({ mainMenu, contactInfo }) => {
   return (
     <>
       <NavButton handleMenu={handleMenu} disabled={disabled} state={state} />
-      <Hamburger state={state} mainMenu={mainMenu} contactInfo={contactInfo} />
+      <Hamburger
+        state={state}
+        mainMenu={mainMenu}
+        contactInfo={contactInfo}
+        frogLogo={frogLogo}
+      />
     </>
   );
 };

@@ -47,6 +47,11 @@ const response = await fetch(`${import.meta.env.PUBLIC_WP_URL}/graphql`, {
                         altText
                         sourceUrl
                     }
+
+                    frogLogo {
+                      altText
+                      sourceUrl
+                    }
                 }
             }
 
@@ -91,7 +96,7 @@ console.log("data: ",data)
         </div>
       </div>
   </Wrapper>
-  <MainNav client:only="react" mainMenu={data.menu} contactInfo={data.contactInformation.contactInformation} />
+  <MainNav client:only="react" mainMenu={data.menu} contactInfo={data.contactInformation.contactInformation} frogLogo={data.logoOptions.logoOptions.frogLogo} />
 </header>
 
 

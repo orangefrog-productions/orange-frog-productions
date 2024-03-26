@@ -12,10 +12,12 @@ import newssrc from "./assests/news-ideas.jpg";
 import careerssrc from "./assests/careers.jpg";
 import contactssrc from "./assests/start-a-project.jpg";
 
+import frogRibbit from "./assests/frog-ribbit-made-with-Voicemod.mp3";
+
 import MenuItem from "./MenuItem";
 import NavInfo from "./NavInfo";
 
-const Hamburger = ({ state, mainMenu, contactInfo }) => {
+const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
   let menu = useRef(null);
   let revealMenu = useRef(null);
   let revealMenuBackground = useRef(null);
@@ -35,6 +37,7 @@ const Hamburger = ({ state, mainMenu, contactInfo }) => {
   useEffect(() => {
     const links = document.querySelectorAll(".menu-links-item li");
     const info = document.querySelectorAll(".info");
+    const frog = document.querySelector(".frog-logo");
 
     if (state.clicked === false) {
       // close menu
@@ -67,6 +70,7 @@ const Hamburger = ({ state, mainMenu, contactInfo }) => {
       });
       staggerReveal(revealMenuBackground, revealMenu);
       fadeInUp(info);
+      fadeSideways(frog);
       staggerText(links);
     }
   }, [state]);
@@ -107,6 +111,16 @@ const Hamburger = ({ state, mainMenu, contactInfo }) => {
       y: 60,
       duration: 1,
       delay: 0.2,
+      opacity: 0,
+      ease: "power3.inOut",
+    });
+  };
+
+  const fadeSideways = (node) => {
+    gsap.from(node, {
+      x: 150,
+      duration: 1,
+      delay: 0.75,
       opacity: 0,
       ease: "power3.inOut",
     });
@@ -179,9 +193,6 @@ const Hamburger = ({ state, mainMenu, contactInfo }) => {
                   }
 
                   const bgImg = pagebgs.find((bg) => bg.name === item.label);
-
-                  console.log("item", item);
-
                   return (
                     <MenuItem
                       key={index}
@@ -199,6 +210,20 @@ const Hamburger = ({ state, mainMenu, contactInfo }) => {
               </ul>
             </nav>
             <NavInfo contactInfo={contactInfo} />
+            <div className="frog-logo">
+              <div className="frog-logo-wrap">
+                <img src={frogLogo.sourceUrl} alt="Orange Frog Productions." />
+                <button
+                  onClick={() => {
+                    console.log("RIBIT!!");
+                    const audio = document.getElementById("audio");
+                    audio.play();
+                  }}
+                  type="button"
+                ></button>
+                <audio id="audio" src={frogRibbit}></audio>
+              </div>
+            </div>
           </div>
         </div>
       </div>
