@@ -1,7 +1,10 @@
 import { useEffect, useRef } from "react";
-import "./hamburger.scss";
 import gsap from "gsap";
-
+import "./hamburger.scss";
+// Menu Components. //
+import MenuItem from "./MenuItem";
+import NavInfo from "./NavInfo";
+import FrogLogo from "./FrogLogo";
 // Images. //
 import homesrc from "./assests/home.jpg";
 import servicessrc from "./assests/design-capabilities.jpg";
@@ -12,10 +15,13 @@ import newssrc from "./assests/news-ideas.jpg";
 import careerssrc from "./assests/careers.jpg";
 import contactssrc from "./assests/start-a-project.jpg";
 
-import frogRibbit from "./assests/frog-ribbit-made-with-Voicemod.mp3";
-
-import MenuItem from "./MenuItem";
-import NavInfo from "./NavInfo";
+// Animations. //
+import {
+  staggerReveal,
+  staggerText,
+  fadeInUp,
+  fadeSideways,
+} from "./animations/animations";
 
 const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
   let menu = useRef(null);
@@ -75,57 +81,6 @@ const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
     }
   }, [state]);
 
-  const staggerReveal = (node1, node2) => {
-    gsap.from([node1, node2], {
-      duration: 0.8,
-      height: 0,
-      transformOrigin: "right top",
-      skewY: 2,
-      ease: "power3.inOut",
-      stagger: {
-        amount: 0.1,
-      },
-    });
-  };
-
-  const staggerText = (links) => {
-    gsap.fromTo(
-      [...links],
-      {
-        y: 100,
-      },
-      {
-        y: 0,
-        delay: 0.2,
-        duration: 0.8,
-        ease: "power3.inOut",
-        stagger: {
-          amount: 0.3,
-        },
-      }
-    );
-  };
-
-  const fadeInUp = (node) => {
-    gsap.from(node, {
-      y: 60,
-      duration: 1,
-      delay: 0.2,
-      opacity: 0,
-      ease: "power3.inOut",
-    });
-  };
-
-  const fadeSideways = (node) => {
-    gsap.from(node, {
-      x: 150,
-      duration: 1,
-      delay: 0.75,
-      opacity: 0,
-      ease: "power3.inOut",
-    });
-  };
-
   const handlePage = (page) => {
     gsap.to(cityBackground, {
       duration: 0,
@@ -182,7 +137,6 @@ const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
         ></div>
         <div className="menu-city-background-default"></div>
         <div className="menu-city-background-graphic"></div>
-
         <div className="wrapper">
           <div className="menu-links">
             <nav>
@@ -210,20 +164,7 @@ const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
               </ul>
             </nav>
             <NavInfo contactInfo={contactInfo} />
-            <div className="frog-logo">
-              <div className="frog-logo-wrap">
-                <img src={frogLogo.sourceUrl} alt="Orange Frog Productions." />
-                <button
-                  onClick={() => {
-                    console.log("RIBIT!!");
-                    const audio = document.getElementById("audio");
-                    audio.play();
-                  }}
-                  type="button"
-                ></button>
-                <audio id="audio" src={frogRibbit}></audio>
-              </div>
-            </div>
+            <FrogLogo frogLogo={frogLogo} />
           </div>
         </div>
       </div>
