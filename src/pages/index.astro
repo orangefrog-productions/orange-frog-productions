@@ -1,9 +1,154 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import LayoutHome from '../layouts/LayoutHome.astro';
+import OpeningHero from '../components/Home/OpeningHero.astro';
+import CreativityComponent from '../components/Home/CreativityComponent.astro';
 
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+	method: "POST",
+	headers: {
+		"content-type": "application/json",
+	},
+	body: JSON.stringify({
+    	query: `
+			query homePageQuery {
+				page(id: "/", idType: URI) {
+					homePage {
+					homeOpeningComponent {
+						homeOpeningButtonLink {
+						... on Page {
+							id
+							uri
+						}
+						}
+						homeOpeningButtonText
+						homeOpeningTitle
+						homeOpeningImage {
+						altText
+						sourceUrl
+						}
+					}
+					creativityComponent {
+						heroImage {
+						sourceUrl
+						altText
+						}
+					}
+					ceoFounderComponent {
+						bigPurple
+						buttonLink {
+						... on Page {
+							id
+							uri
+						}
+						}
+						buttonText
+						smallText
+					}
+					}
+				}
+			}
+		`,
+  	}),
+});
+
+const {data: {page} } = await response.json();
+
+console.log("page", page)
+
+const title = page.seo?.title ? page.seo?.title : null;
+const description = page.seo?.metaDesc
+  ? page.seo?.metaDesc
+  : null;
+const metaImg = page.featuredImage?.node?.sourceUrl
+  ? page.featuredImage?.node?.sourceUrl
+  : null;
 
 ---
 
-<Layout metaTitle="Home Page">
-	<h1>Home Page</h1>
-</Layout>
+<LayoutHome metaTitle={title} metaDescription={description} metaImg={metaImg}>
+	<div class="home-page-wrap">
+		<div class="container">
+			<OpeningHero data={page.homePage.homeOpeningComponent} />
+			<CreativityComponent data={page.homePage.creativityComponent} />
+		</div>
+	</div>
+</LayoutHome>
+
+<script>
+	import { gsap } from "gsap"
+	import { ScrollTrigger } from "gsap/ScrollTrigger"
+	import { DrawSVGPlugin } from "gsap/DrawSVGPlugin"
+	import { TextPlugin } from "gsap/TextPlugin"
+	import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
+	gsap.registerPlugin(ScrollTrigger)
+	gsap.registerPlugin(DrawSVGPlugin)
+	gsap.registerPlugin(TextPlugin)
+	gsap.registerPlugin(ScrambleTextPlugin)
+
+	let container = document.querySelector(".container")
+	let mm = gsap.matchMedia()
+
+	mm.add(
+      {
+        isMobile: "(max-width: 767px)",
+        isDesktop: "(min-width: 768px)",
+      },
+	  context => {
+		let { isMobile, isDesktop } = context.conditions
+        console.log("isMobile: ", isMobile)
+
+		if (isDesktop) {
+  		let mainScroll = gsap.to(['#opening-home-hero'], {
+            x: () =>
+              -(container.scrollWidth - document.documentElement.clientWidth) +
+              "px",
+            ease: "none",
+            scrollTrigger: {
+              invalidateOnRefresh: true,
+              pin: true,
+              scrub: 1,
+              trigger: container,
+              end: () =>
+                container.scrollWidth - document.documentElement.clientWidth,
+            },
+          })
+		}
+		
+	  }
+
+	)
+
+</script>
+
+
+<style lang="scss">
+	.home-page-wrap {
+		background-color: #000;
+		
+		@media (min-width: 768px) {
+			overflow-x: hidden;
+			overflow-y: scroll;
+		}
+
+		.scroll {
+			@media (min-width: 768px) {
+				width: 100vw;
+				height: 100vh;
+			}
+		}
+
+		.container {
+			width: 100%;
+			height: 100%;
+			display: flex;
+			flex-wrap: wrap;
+			overflow: hidden;
+
+			@media (min-width: 768px) {
+			width: 100vw;
+			height: 100vh;
+			flex-wrap: nowrap;
+			}
+		}
+	}	
+</style>

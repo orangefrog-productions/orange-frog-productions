@@ -10,8 +10,6 @@ const MenuItem = ({
   bgImg,
   subMenu,
 }) => {
-  console.log("subMenu", subMenu);
-  console.log("bgImg", bgImg);
   return (
     <div className="menu-links-item">
       <li>
