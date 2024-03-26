@@ -1,6 +1,9 @@
 ---
 import { Image } from 'astro:assets'
 import './experiences.scss'
+import Button from '../shared/Button.astro';
+
+console.log("experiences", Astro.props.data)
 ---
 
 <div class="experiences" id="experiences-component">
@@ -8,4 +11,16 @@ import './experiences.scss'
         <Image src={Astro.props.data.heroImage.sourceUrl} alt={`Switchback Creative`} inferSize={true} loading="eager" />
     </div>
     <div class="bg-outline"></div>
+    <div class="experiences-content">
+        <div class="experiences-content-paragraph" set:html={Astro.props.data.content} />
+        <div class="experiences-content-button">
+            <Button href={Astro.props.data.buttonLink.uri}>{Astro.props.data.buttonText}</Button>
+        </div>
+    </div>
+
+    <div class="experiences-img-link">
+        <div class="experiences-img-link-bg">
+            <Image src={Astro.props.data.linkImage.sourceUrl} alt={`Switchback Creative`} inferSize={true} loading="eager" />
+        </div>
+    </div>
 </div>
