@@ -1,12 +1,33 @@
 ---
 import './founder.scss';
+import { Image } from 'astro:assets';
+import Button from '../shared/Button.astro';
+import signature from './assets/pierre-marleau.png';
+import frog from './assets/orange-frog.png';
+import bubbles from './assets/bubbles.png';
 
-// console.log("Founders", Astro.props.data)
+console.log("Founders", Astro.props.data)
 ---
 
 <div class="founder" id="founder-component">
     <div class="founder-wrap">
-        <div class="founder-purple" set:html={Astro.props.data.bigPurple} />
-        <div class="founder-text" set:html={Astro.props.data.smallText} />
+        <div class="founder-container">
+            <div class="founder-purple" set:html={Astro.props.data.bigPurple} />
+            <div class="founder-text" set:html={Astro.props.data.smallText} />
+            <div class="founder-signature">
+                <Image src={signature} alt="Pierre Marleau" inferSize={true}  />
+                <p>CEO & Founder</p>
+            </div>
+            <div class="founder-link">
+                <Button href={`${Astro.props.data.buttonLink.uri}`}>{Astro.props.data.buttonText}</Button>
+            </div>
+        </div>
+
+        <div class="founder-frog">
+            <Image src={frog} alt="Orange Frog" inferSize={true} />
+        </div>
+        <div class="founder-bubbles">
+            <Image src={bubbles} alt="Bubbles" inferSize={true} />
+        </div>
     </div>
 </div>

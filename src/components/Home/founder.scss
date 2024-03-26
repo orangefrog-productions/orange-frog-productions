@@ -3,7 +3,9 @@
 @use "../../styles/abstracts/" as *;
 
 .founder {
+  position: relative;
   width: 100vw;
+  z-index: 10;
 
   &-wrap {
     display: flex;
@@ -25,19 +27,20 @@
       min-height: auto;
       margin-top: 10rem;
       padding: 2rem 8rem;
-      width: 84rem;
+      width: 74rem;
     }
   }
 
   &-purple {
     width: 100%;
+
     @media (min-width: 768px) {
       margin-bottom: 1.5rem;
     }
 
     p {
       width: 100%;
-      @extend .hl-two;
+      @extend .hl-three;
       color: $primaryColor;
 
       &:last-of-type {
@@ -48,8 +51,35 @@
 
   &-text {
     p {
-      @extend .p-one;
+      @extend .p-two;
       color: $whiteColor;
     }
+  }
+
+  &-signature {
+    width: 20rem;
+    margin-bottom: 2.5rem;
+
+    p {
+      @extend .p-three;
+      margin: 0;
+      color: $whiteColor;
+    }
+  }
+
+  &-frog {
+    position: absolute;
+    bottom: 20rem;
+    left: -5rem;
+    width: 15rem;
+    z-index: 5;
+  }
+
+  &-bubbles {
+    position: absolute;
+    bottom: 10rem;
+    right: -25rem;
+    width: 60rem;
+    z-index: 1;
   }
 }

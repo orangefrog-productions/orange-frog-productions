@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import './creativity.scss';
+
+// console.log("creativity", Astro.props.data)
 ---
 
 
@@ -9,5 +11,19 @@ import './creativity.scss';
         <Image src={Astro.props.data.heroImage.sourceUrl} alt={`Switchback Creative`} inferSize={true} loading="eager" />
     </div>
     <div class="bg-outline"></div>
+    <div class="creativity-images">
+        <div class="creativity-images-link">
+            <a href={Astro.props.data.linkImagePage.uri}>
+                <Image src={Astro.props.data.linkImage.sourceUrl} alt="" inferSize={true} loading="eager" />
+            </a>
+        </div>
+        <div class="creativity-images-video">
+            <Image src={Astro.props.data.videoOrPhoto.sourceUrl} alt="" inferSize={true} loading="eager" />
+        </div>
+        <div class="creativity-images-content" set:html={Astro.props.data.contentUnderImages} />
+    </div>
+    <div class="creativity-main">
+        <h2>{Astro.props.data.orangeTitle}</h2>
+    </div>
 </div>
 

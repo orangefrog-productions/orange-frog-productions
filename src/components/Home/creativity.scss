@@ -1,3 +1,7 @@
+@use "../../styles/global/paragraphs";
+@use "../../styles/global/headlines";
+@use "../../styles/abstracts/" as *;
+
 .creativity {
   position: relative;
   width: 100%;
@@ -5,7 +9,6 @@
   min-height: 55rem;
   height: 100vh;
   flex: 0 0 100vw;
-  overflow: hidden;
 
   @media (min-width: 768px) {
     height: 100vh;
@@ -37,10 +40,59 @@
     height: 100%;
     background: radial-gradient(
       circle,
-      rgba(0, 0, 0, 0) 50%,
-      rgba(0, 0, 0, 1) 85%,
+      rgba(0, 0, 0, 0) 70%,
+      rgba(0, 0, 0, 1) 80%,
       rgba(0, 0, 0, 1) 100%
     );
     z-index: 2;
+  }
+
+  &-images {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding-top: 10rem;
+    z-index: 10;
+
+    &-link {
+      width: 100%;
+
+      @media (min-width: 768px) {
+        width: calc(50% - 8rem);
+        max-width: 80rem;
+        margin: 2rem 4rem;
+      }
+    }
+
+    &-video {
+      width: 100%;
+
+      @media (min-width: 768px) {
+        width: calc(50% - 8rem);
+        max-width: 80rem;
+        margin: 2rem 4rem;
+      }
+    }
+
+    &-content {
+      p {
+        @extend .p-one;
+        color: $whiteColor;
+      }
+    }
+  }
+
+  &-main {
+    position: absolute;
+    bottom: 5rem;
+    left: -10rem;
+    z-index: 9;
+
+    h2 {
+      @extend .hl-two;
+      color: $secondaryColor;
+    }
   }
 }

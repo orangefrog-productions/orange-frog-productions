@@ -46,6 +46,22 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 								sourceUrl
 								altText
 							}
+							contentUnderImages
+							orangeTitle
+							linkImage {
+								sourceUrl
+								altText
+							}
+							videoOrPhoto {
+								sourceUrl
+								altText
+							}
+							linkImagePage {
+							... on Page {
+									id
+									uri
+								}
+							}
 						}
 
 						experiencesComponent {
@@ -62,6 +78,17 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 								altText
 								sourceUrl
 							}
+							linkImage {
+								altText
+								sourceUrl
+							}
+							linkImageButtonLink {
+							... on Page {
+									id
+									uri
+								}
+							}
+        					linkImageButtonText
 						}
 					}
 				}
