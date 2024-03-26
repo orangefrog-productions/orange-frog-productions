@@ -1,7 +1,9 @@
 ---
 import LayoutHome from '../layouts/LayoutHome.astro';
 import OpeningHero from '../components/Home/OpeningHero.astro';
-import CreativityComponent from '../components/Home/CreativityComponent.astro';
+import Founder from '../components/Home/Founder.astro';
+import Creativity from '../components/Home/Creativity.astro';
+import Experiences from '../components/Home/Experiences.astro';
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 	method: "POST",
@@ -13,37 +15,54 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 			query homePageQuery {
 				page(id: "/", idType: URI) {
 					homePage {
-					homeOpeningComponent {
-						homeOpeningButtonLink {
-						... on Page {
-							id
-							uri
+						homeOpeningComponent {
+							homeOpeningButtonLink {
+								... on Page {
+									id
+									uri
+								}
+							}
+							homeOpeningButtonText
+							homeOpeningTitle
+							homeOpeningImage {
+							altText
+							sourceUrl
+							}
 						}
+						ceoFounderComponent {
+							bigPurple
+							buttonText
+							smallText
+							buttonLink {
+								... on Page {
+									id
+									uri
+								}
+							}
+								
 						}
-						homeOpeningButtonText
-						homeOpeningTitle
-						homeOpeningImage {
-						altText
-						sourceUrl
+						creativityComponent {
+							heroImage {
+								sourceUrl
+								altText
+							}
 						}
-					}
-					creativityComponent {
-						heroImage {
-						sourceUrl
-						altText
+
+						experiencesComponent {
+							buttonText
+							content
+							buttonLink {
+								... on Page {
+									id
+									uri
+								}
+							}
+							
+							heroImage {
+								altText
+								sourceUrl
+							}
 						}
-					}
-					ceoFounderComponent {
-						bigPurple
-						buttonLink {
-						... on Page {
-							id
-							uri
-						}
-						}
-						buttonText
-						smallText
-					}
 					}
 				}
 			}
@@ -52,9 +71,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const {data: {page} } = await response.json();
-
-console.log("page", page)
-
 const title = page.seo?.title ? page.seo?.title : null;
 const description = page.seo?.metaDesc
   ? page.seo?.metaDesc
@@ -69,7 +85,9 @@ const metaImg = page.featuredImage?.node?.sourceUrl
 	<div class="home-page-wrap">
 		<div class="container">
 			<OpeningHero data={page.homePage.homeOpeningComponent} />
-			<CreativityComponent data={page.homePage.creativityComponent} />
+			<Founder data={page.homePage.ceoFounderComponent} />
+			<Creativity data={page.homePage.creativityComponent} />
+			<Experiences data={page.homePage.experiencesComponent} />
 		</div>
 	</div>
 </LayoutHome>
@@ -77,14 +95,7 @@ const metaImg = page.featuredImage?.node?.sourceUrl
 <script>
 	import { gsap } from "gsap"
 	import { ScrollTrigger } from "gsap/ScrollTrigger"
-	import { DrawSVGPlugin } from "gsap/DrawSVGPlugin"
-	import { TextPlugin } from "gsap/TextPlugin"
-	import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin"
 	gsap.registerPlugin(ScrollTrigger)
-	gsap.registerPlugin(DrawSVGPlugin)
-	gsap.registerPlugin(TextPlugin)
-	gsap.registerPlugin(ScrambleTextPlugin)
-
 	let container = document.querySelector(".container")
 	let mm = gsap.matchMedia()
 
@@ -95,10 +106,8 @@ const metaImg = page.featuredImage?.node?.sourceUrl
       },
 	  context => {
 		let { isMobile, isDesktop } = context.conditions
-        console.log("isMobile: ", isMobile)
-
 		if (isDesktop) {
-  		let mainScroll = gsap.to(['#opening-home-hero'], {
+  		let mainScroll = gsap.to(['#opening-home-hero','#founder-component', '#creativity-hero', '#experiences-component'], {
             x: () =>
               -(container.scrollWidth - document.documentElement.clientWidth) +
               "px",
@@ -112,10 +121,8 @@ const metaImg = page.featuredImage?.node?.sourceUrl
                 container.scrollWidth - document.documentElement.clientWidth,
             },
           })
-		}
-		
+		}	
 	  }
-
 	)
 
 </script>
@@ -124,7 +131,7 @@ const metaImg = page.featuredImage?.node?.sourceUrl
 <style lang="scss">
 	.home-page-wrap {
 		background-color: #000;
-		
+
 		@media (min-width: 768px) {
 			overflow-x: hidden;
 			overflow-y: scroll;

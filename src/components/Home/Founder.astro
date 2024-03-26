@@ -1,0 +1,12 @@
+---
+import './founder.scss';
+
+console.log("Founders", Astro.props.data)
+---
+
+<div class="founder" id="founder-component">
+    <div class="founder-wrap">
+        <div class="founder-purple" set:html={Astro.props.data.bigPurple} />
+        <div class="founder-text" set:html={Astro.props.data.smallText} />
+    </div>
+</div>

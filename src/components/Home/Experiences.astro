@@ -1,12 +1,10 @@
 ---
-import { Image } from 'astro:assets';
-import './openingHero.scss';
+import { Image } from 'astro:assets'
+import './experiences.scss'
 ---
 
-
-<div class="home-opening-hero" id="opening-home-hero">
+<div class="experiences" id="experiences-component">
     <div class="bg-image">
         <Image src={Astro.props.data.heroImage.sourceUrl} alt={`Switchback Creative`} inferSize={true}/>
     </div>
 </div>
-
