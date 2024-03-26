@@ -5,7 +5,7 @@ import './experiences.scss'
 
 <div class="experiences" id="experiences-component">
     <div class="bg-image">
-        <Image src={Astro.props.data.heroImage.sourceUrl} alt={`Switchback Creative`} inferSize={true}/>
+        <Image src={Astro.props.data.heroImage.sourceUrl} alt={`Switchback Creative`} inferSize={true} loading="eager" />
     </div>
     <div class="bg-outline"></div>
 </div>

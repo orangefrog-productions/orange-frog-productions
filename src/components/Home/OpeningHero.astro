@@ -11,7 +11,7 @@ console.log("HERO", Astro.props.data);
 
 <div class="home-opening-hero" id="opening-home-hero">
     <div class="bg-image">
-        <Image src={Astro.props.data.homeOpeningImage.sourceUrl} alt={`Switchback Creative`} inferSize={true}/>
+        <Image src={Astro.props.data.homeOpeningImage.sourceUrl} alt={`Switchback Creative`} inferSize={true} loading="eager" />
     </div>
     <div class="bg-outline"></div>
     <div class="home-opening-hero-content">
