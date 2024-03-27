@@ -3,6 +3,7 @@ import Header from "./Header.astro";
 import Footer from "./Footer.astro";
 import { baseData } from "../data/siteData";
 import "../styles/styles.scss";
+import { ViewTransitions } from "astro:transitions";
 const {
   metaImg = null,
   metaTitle = null,
@@ -49,6 +50,8 @@ const baseUrl = Astro.url ? Astro.url : baseData.url;
 		 <meta name="twitter:image" content={imgSrc} />
 		 <meta name="twitter:image:alt" content={description} />
 		 <meta name="twitter:creator" content={"Orange Frog Productions"} />
+
+		 <ViewTransitions />
 	</head>
 	<body>
 		<Header />
