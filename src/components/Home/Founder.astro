@@ -6,13 +6,17 @@ import Button from '../shared/Button.astro';
 import signature from './assets/pierre-marleau.png';
 import frog from './assets/orange-frog.png';
 import bubbles from './assets/bubbles.png';
+import quotesLeft from './assets/quotes-left.png'
+import quotesRight from './assets/quotes-right.png'
 ---
 
 <div class="founder" id="founder-component">
     <div class="bg-outline"></div>
     <div class="founder-wrap">
         <div class="founder-container">
+            <span class="quote-left"><Image src={quotesLeft} alt="" inferSize={true} /></span>
             <div class="founder-purple" set:html={Astro.props.data.bigPurple} />
+            <span class="quote-right"><Image src={quotesRight} alt="" inferSize={true} /></span>
             <div class="founder-text" set:html={Astro.props.data.smallText} />
             <div class="founder-signature">
                 <Image src={signature} alt="Pierre Marleau" width={747} height={318} />
@@ -26,7 +30,10 @@ import bubbles from './assets/bubbles.png';
         <div class="founder-frog">
             <Image src={frog} alt="Orange Frog" inferSize={true} />
         </div>
-        <div class="founder-bubbles">
+        <div class="founder-bubbles founder-bubbles-top">
+            <Image src={bubbles} alt="Bubbles" inferSize={true} />
+        </div>
+        <div class="founder-bubbles founder-bubbles-bot">
             <Image src={bubbles} alt="Bubbles" inferSize={true} />
         </div>
     </div>

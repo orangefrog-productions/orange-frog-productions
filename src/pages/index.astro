@@ -151,7 +151,57 @@ const metaImg = page.featuredImage?.node?.sourceUrl
             },
           })
 
+		  // Animations for the Hero Section
+		  const bgOpeningContainer = document.querySelector("#opening-home-hero .bg-image")
+		  gsap.fromTo(bgOpeningContainer,{ x: "-15%", ease: "none"},  {
+            x: "15%",
+            ease: "none",
+            scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#opening-home-hero",
+              start: "top 100%",
+              end: "bottom",
+              markers: false,
+              scrub: true,
+              toggleClass: "active",
+            },
+          })
+
+
 		  // Animations for the Founders Section. //
+		  const bubblesBot = document.querySelector(".founder-bubbles-bot")
+		  const bubblesTop = document.querySelector(".founder-bubbles-top")
+
+		  gsap.fromTo(bubblesBot,{ x: "20%", ease: "none"},  {
+            x: "-20%",
+            ease: "none",
+            scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#founder-component",
+              start: "top 100%",
+              end: "bottom",
+              markers: false,
+              scrub: true,
+              toggleClass: "active",
+            },
+          })
+
+		  gsap.fromTo(bubblesTop,{ x: "-20%", ease: "none"},  {
+            x: "10%",
+            ease: "none",
+            scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#founder-component",
+              start: "top 100%",
+              end: "bottom",
+              markers: false,
+              scrub: true,
+              toggleClass: "active",
+            },
+          })
+
+
+		// Animations for the Creativite Section. //
 
 		  const bgContainer = document.querySelector("#creativity-hero .bg-image")
 		  const creativityTitle = document.querySelector(".creativity-main")
@@ -212,6 +262,22 @@ const metaImg = page.featuredImage?.node?.sourceUrl
 			}
 		)
 
+
+			// Animations for the experience section
+			const bgExpContainer = document.querySelector("#experiences-component .bg-image")
+			gsap.fromTo(bgExpContainer,{ x: "-15%", ease: "none"},  {
+            x: "15%",
+            ease: "none",
+            scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#experiences-component",
+              start: "top 100%",
+              end: "bottom",
+              markers: false,
+              scrub: true,
+              toggleClass: "active",
+            },
+          })
 
 
 		}
