@@ -27,6 +27,7 @@ const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
   let menu = useRef(null);
   let revealMenu = useRef(null);
   let revealMenuBackground = useRef(null);
+  let revealMenuBackgroundTwo = useRef(null);
   let cityBackground = useRef(null);
 
   const pagebgs = [
@@ -47,7 +48,7 @@ const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
 
     if (state.clicked === false) {
       // close menu
-      gsap.to([revealMenu, revealMenuBackground], {
+      gsap.to([revealMenu, revealMenuBackgroundTwo, revealMenuBackground], {
         duration: 0.8,
         height: 0,
         ease: "power3.inOut",
@@ -69,12 +70,12 @@ const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
         css: { display: "block" },
       });
 
-      gsap.to([revealMenuBackground, revealMenu], {
+      gsap.to([revealMenuBackground, revealMenuBackgroundTwo, revealMenu], {
         duration: 0,
         opacity: 1,
         height: "100%",
       });
-      staggerReveal(revealMenuBackground, revealMenu);
+      staggerReveal(revealMenuBackground, revealMenuBackgroundTwo, revealMenu);
       fadeInUp(info);
       fadeSideways(frog);
       staggerText(links);
@@ -129,6 +130,10 @@ const Hamburger = ({ state, mainMenu, contactInfo, frogLogo }) => {
       <div
         ref={(el) => (revealMenuBackground = el)}
         className="menu-secondary-background-color"
+      ></div>
+      <div
+        ref={(el) => (revealMenuBackgroundTwo = el)}
+        className="menu-secondary-background-color-two"
       ></div>
       <div ref={(el) => (revealMenu = el)} className="menu-layer">
         <div
