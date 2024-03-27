@@ -134,6 +134,8 @@ const metaImg = page.featuredImage?.node?.sourceUrl
 	  context => {
 		let { isMobile, isDesktop } = context.conditions
 		if (isDesktop) {
+
+		// This is the GSAP Sidescrolling. //
   		let mainScroll = gsap.to(['#opening-home-hero','#founder-component', '#creativity-hero', '#experiences-component'], {
             x: () =>
               -(container.scrollWidth - document.documentElement.clientWidth) +
@@ -148,7 +150,71 @@ const metaImg = page.featuredImage?.node?.sourceUrl
                 container.scrollWidth - document.documentElement.clientWidth,
             },
           })
-		}	
+
+		  // Animations for the Founders Section. //
+
+		  const bgContainer = document.querySelector("#creativity-hero .bg-image")
+		  const creativityTitle = document.querySelector(".creativity-main")
+
+		  const creativityImageOne = document.querySelector(".creativity-images-link")
+		  const creativityImageTwo = document.querySelector(".creativity-images-video")
+		  const creativityContent = document.querySelector(".creativity-images-content")
+
+          gsap.fromTo(bgContainer,{ x: "-15%", ease: "none"},  {
+            x: "15%",
+            ease: "none",
+            scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#creativity-hero",
+              start: "top 100%",
+              end: "bottom",
+              markers: false,
+              scrub: true,
+              toggleClass: "active",
+            },
+          })
+
+		  gsap.fromTo(creativityTitle,{ x: "300px", ease: "none"},  {
+            x: "0",
+            ease: "none",
+            scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#creativity-hero",
+              start: "top 100%",
+              end: "bottom",
+              markers: false,
+              scrub: true,
+              toggleClass: "active",
+            },
+          })
+
+		  gsap.timeline({
+			scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#creativity-hero",
+              start: "top 50%",
+              end: "bottom",
+              markers: false,
+              scrub: false,
+              toggleClass: "active",
+            },
+		  }).fromTo([creativityImageOne, creativityImageTwo],
+		  {
+			y:-100,
+			autoAlpha:0
+		  },{
+			y:0,
+			autoAlpha:1,
+			duration: 0.5,
+			stagger: {
+				each:0.25
+				}
+			}
+		)
+
+
+
+		}
 	  }
 	)
 

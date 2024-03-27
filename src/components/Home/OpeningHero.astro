@@ -1,9 +1,8 @@
 ---
 import { Image } from 'astro:assets'
-import './openingHero.scss'
 import Headline from '../shared/Headline.astro';
 import Button from '../shared/Button.astro';
-// console.log("HERO", Astro.props.data);
+import './openingHero.scss'
 ---
 
 <div class="home-opening-hero" id="opening-home-hero">
@@ -15,8 +14,21 @@ import Button from '../shared/Button.astro';
         <div class="home-opening-hero-content-title">
             <Headline ele="h2" hlstyle="two">{Astro.props.data.homeOpeningTitle}</Headline>
         </div>
-        <Button href={`${Astro.props.data.homeOpeningButtonLink.uri}`}>
-            {Astro.props.data.homeOpeningButtonText}
-        </Button>
+        <div class="home-opening-hero-content-button">
+            <Button href={`${Astro.props.data.homeOpeningButtonLink.uri}`}>
+                {Astro.props.data.homeOpeningButtonText}
+            </Button>
+        </div>
     </div>
 </div>
+
+<script>
+    import { gsap } from "gsap"
+    let mm = gsap.matchMedia()
+    const heroTitle = document.querySelector(".home-opening-hero-content-title");
+    const heroButton = document.querySelector(".home-opening-hero-content-button");
+    if(heroTitle && heroButton) {
+        gsap.fromTo(heroTitle, {autoAlpha: 0, y: 100}, {delay:0.5,autoAlpha:1, y:0, ease:"power2.out", duration:1})
+        gsap.fromTo(heroButton, {autoAlpha: 0, x: 100}, {delay:1,autoAlpha:1, x:0, ease:"power2.out"})
+    }
+</script>

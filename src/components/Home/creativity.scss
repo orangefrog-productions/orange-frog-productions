@@ -41,7 +41,7 @@
     background: radial-gradient(
       circle,
       rgba(0, 0, 0, 0) 50%,
-      rgba(0, 0, 0, 1) 85%,
+      rgba(0, 0, 0, 1) 70%,
       rgba(0, 0, 0, 1) 100%
     );
     z-index: 2;
@@ -133,7 +133,7 @@
     @media (min-width: 768px) {
       position: absolute;
       bottom: 5rem;
-      left: -10rem;
+      right: 0rem;
       padding: 0;
       text-align: left;
     }
