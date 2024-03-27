@@ -81,9 +81,13 @@
 
     @media (min-width: 768px) {
       bottom: 20rem;
-      left: -5rem;
+      left: 0rem;
       right: auto;
       width: 15rem;
+    }
+
+    @media (min-width: 1025px) {
+      left: -5rem;
     }
   }
 
