@@ -5,7 +5,7 @@ export const staggerReveal = (node1, node2, node3) => {
     duration: 0.8,
     height: 0,
     transformOrigin: "right top",
-    skewY: 2,
+    skewY: 5,
     ease: "power3.inOut",
     stagger: {
       amount: 0.1,
