@@ -1,6 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Intro from '../components/Services/Intro.astro';
+import Events from '../components/Services/Events.astro';
+import Experiences from '../components/Services/Experiences.astro';
+import Quote from '../components/Services/Quote.astro';
+import Collaborative from '../components/Services/Collaborative.astro';
+import Awards from '../components/Services/Awards.astro';
+import Member from '../components/Services/Member.astro';
 
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -18,6 +24,76 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         mainContent
                         mainTitle
                         }
+
+                        eventsComponent {
+                            mainTitle
+                            introContent
+                            mainImage {
+                            altText
+                            sourceUrl
+                            }
+                            eventSectionLinks {
+                            linkTitle
+                            sectionId
+                            }
+                        }
+
+
+                        experiencesComponent {
+                            mainTitle
+                            introContent
+                            mainImage {
+                            altText
+                            sourceUrl
+                            }
+                            experienceSectionLinks {
+                            linkTitle
+                            sectionId
+                            }
+                        }
+
+                        quoteComponent {
+                            quote
+                        }
+
+
+                        collaborativeProcessComponent {
+                            mainTitle
+                            mainContent
+                            buttonText
+                            buttonLink {
+                            ... on Page {
+                                id
+                                uri
+                            }
+                            }
+                            displayTestimonials
+                        }
+
+
+                        awardsComponent {
+                            logos {
+                            logo {
+                                altText
+                                sourceUrl
+                            }
+                            externalUrl
+                            }
+                        }
+
+                        memberComponent {
+                            logos {
+                            externalUrl
+                            logo {
+                                altText
+                                sourceUrl
+                            }
+                            }
+                        }
+
+
+
+
                     }
 				}
 
@@ -37,10 +113,16 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 
 const {data: {page, logoOptions} } = await response.json();
 
-console.log("logoOptions: ", logoOptions.logoOptions.frogLogo.sourceUrl)
+console.log("page: ", page)
 
 ---
 
 <Layout metaTitle="Services">
     <Intro data={page.servicesPage.introComponent} logo={logoOptions.logoOptions.frogLogo} />
+    <Events data={page.servicesPage.eventsComponent} />
+    <Experiences data={page.servicesPage.experiencesComponent} />
+    <Quote data={page.servicesPage.quoteComponent} />
+    <Collaborative data={page.servicesPage.collaborativeProcessComponent} />
+    <Awards data={page.servicesPage.awardsComponent} />
+    <Member data={page.servicesPage.memberComponent} />
 </Layout>
