@@ -3,9 +3,44 @@ import Layout from '../layouts/Layout.astro';
 import Intro from '../components/Services/Intro.astro';
 
 
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+	method: "POST",
+	headers: {
+		"content-type": "application/json",
+	},
+	body: JSON.stringify({
+    	query: `
+			query homePageQuery {
+				page(id: "/services", idType: URI) {
+                    servicesPage {
+                    introComponent {
+                        mainCallout
+                        mainContent
+                        mainTitle
+                        }
+                    }
+				}
+
+                logoOptions {
+                    logoOptions {
+                        frogLogo {
+                            altText
+                            sourceUrl
+                        }
+                    }
+                }
+
+			}
+		`,
+  	}),
+});
+
+const {data: {page, logoOptions} } = await response.json();
+
+console.log("logoOptions: ", logoOptions.logoOptions.frogLogo.sourceUrl)
 
 ---
 
 <Layout metaTitle="Services">
-    <Intro />
+    <Intro data={page.servicesPage.introComponent} logo={logoOptions.logoOptions.frogLogo} />
 </Layout>
