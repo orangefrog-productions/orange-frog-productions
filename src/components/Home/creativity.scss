@@ -94,6 +94,31 @@
       @media (min-width: 1025px) {
         margin-right: 2rem;
       }
+
+      a {
+        position: relative;
+
+        &::after {
+          position: absolute;
+          top: -1.5rem;
+          left: 3rem;
+          display: block;
+          width: 3rem;
+          height: 3rem;
+          transition: all 0.3s ease-in-out;
+          border-radius: 50%;
+          background-color: $secondaryColor;
+          color: $whiteColor;
+          text-align: center;
+          content: "\002B";
+        }
+
+        &:hover {
+          &::after {
+            background-color: $primaryColor;
+          }
+        }
+      }
     }
 
     &-video {
