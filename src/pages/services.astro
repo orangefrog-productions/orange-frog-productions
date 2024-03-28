@@ -17,7 +17,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 	},
 	body: JSON.stringify({
     	query: `
-			query homePageQuery {
+			query servicesPageQuery {
 				page(id: "/services", idType: URI) {
                     servicesPage {
                     introComponent {
@@ -116,12 +116,25 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                     }
                 }
 
+
+                testimonials {
+                    nodes {
+                        title
+                        testimonialContent {
+                            testimonialQuote
+                        }
+                    }
+                }
+
+
+
+
 			}
 		`,
   	}),
 });
 
-const {data: {page, logoOptions} } = await response.json();
+const {data: {page,logoOptions, testimonials} } = await response.json();
 const title = page.seo?.title ? page.seo?.title : null;
 const description = page.seo?.metaDesc
   ? page.seo?.metaDesc
@@ -137,7 +150,7 @@ const metaImg = page.featuredImage?.node?.sourceUrl
     <Events data={page.servicesPage.eventsComponent} />
     <Experiences data={page.servicesPage.experiencesComponent} />
     <Quote data={page.servicesPage.quoteComponent} />
-    <Collaborative data={page.servicesPage.collaborativeProcessComponent} />
+    <Collaborative data={page.servicesPage.collaborativeProcessComponent} logo={logoOptions.logoOptions.frogLogo}  testimonials={testimonials.nodes} />
     <Awards data={page.servicesPage.awardsComponent} />
     <Member data={page.servicesPage.memberComponent} />
 </Layout>
