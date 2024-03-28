@@ -1,32 +1,40 @@
 ---
-import { Image } from 'astro:assets';
-import Wrapper from '../shared/Wrapper.astro';
-import './intro.scss';
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./intro.scss";
 
-import bubbles from '../Home/assets/bubbles.png';
-import Headline from '../shared/Headline.astro';
+import bubbles from "../Home/assets/bubbles.png";
+import Headline from "../shared/Headline.astro";
 ---
 
 <div class="services-intro">
-   <Wrapper wrapType="stand" classes="services-intro-wrapper">
+  <Wrapper wrapType="stand" classes="services-intro-wrapper">
     <div class="services-intro-title">
-        <Headline ele="h1" hlstyle="one">{Astro.props.data.mainTitle}</Headline>
+      <Headline ele="h1" hlstyle="one">{Astro.props.data.mainTitle}</Headline>
     </div>
     <div class="services-intro-content">
-        <div class="services-intro-content-frog">
-            <Image src={Astro.props.logo.sourceUrl} alt="Orange Frog Productions Inc." inferSize={true} />
-        </div>
-        <div class="services-intro-content-para" set:html={Astro.props.data.mainContent} />
+      <div class="services-intro-content-frog">
+        <div class="services-intro-content-glow"></div>
+        <Image
+          src={Astro.props.logo.sourceUrl}
+          alt="Orange Frog Productions Inc."
+          inferSize={true}
+        />
+      </div>
+      <div
+        class="services-intro-content-para"
+        set:html={Astro.props.data.mainContent}
+      />
     </div>
 
     <div class="services-intro-callout">
-        <h3 set:html={Astro.props.data.mainCallout} />
+      <h3 set:html={Astro.props.data.mainCallout} />
     </div>
 
     <div class="services-intro-bubbles">
-        <div class="services-intro-bubbles-inner">
-            <Image src={bubbles} alt="Bubbles" inferSize={true}/>
-        </div>
+      <div class="services-intro-bubbles-inner">
+        <Image src={bubbles} alt="Bubbles" inferSize={true} />
+      </div>
     </div>
-   </Wrapper>
+  </Wrapper>
 </div>
