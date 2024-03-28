@@ -78,23 +78,26 @@ const { data } = await response.json();
 
 <header>
   <Wrapper>
-      <div class="logo">
-        <div class="logo-wrap">
-          <h1>
-            <a href="/">
-              <Image
+    <div class="logo">
+      <div class="logo-wrap">
+        <h1>
+          <a href="/">
+            <Image
               src={data.logoOptions.logoOptions.mainLogo.sourceUrl}
               alt={`Orange Frog Productions.`}
               inferSize={true}
               loading="eager"
-              />
-            </a>
-            <span>Orange Frog Productions.</span>
-          </h1>
-        </div>
+            />
+          </a>
+          <span>Orange Frog Productions.</span>
+        </h1>
       </div>
+    </div>
   </Wrapper>
-  <MainNav client:only="react" mainMenu={data.menu} contactInfo={data.contactInformation.contactInformation} frogLogo={data.logoOptions.logoOptions.frogLogo} />
+  <MainNav
+    client:only="react"
+    mainMenu={data.menu}
+    contactInfo={data.contactInformation.contactInformation}
+    frogLogo={data.logoOptions.logoOptions.frogLogo}
+  />
 </header>
-
-
