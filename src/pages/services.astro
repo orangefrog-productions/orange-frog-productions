@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Intro from '../components/Services/Intro.astro';
-import Slider from '../components/Services/Slider.astro';
+import CapabilitiesSlider from '../components/Services/CapabilitiesSlider.jsx';
 import Events from '../components/Services/Events.astro';
 import Experiences from '../components/Services/Experiences.astro';
 import Quote from '../components/Services/Quote.astro';
@@ -133,7 +133,7 @@ const metaImg = page.featuredImage?.node?.sourceUrl
 
 <Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
     <Intro data={page.servicesPage.introComponent} logo={logoOptions.logoOptions.frogLogo} />
-    <Slider data={page.servicesPage.capabilitiesSliderComponent} />
+    <CapabilitiesSlider client:only="react" data={page.servicesPage.capabilitiesSliderComponent} />
     <Events data={page.servicesPage.eventsComponent} />
     <Experiences data={page.servicesPage.experiencesComponent} />
     <Quote data={page.servicesPage.quoteComponent} />
