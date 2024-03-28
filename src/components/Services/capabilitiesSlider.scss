@@ -1,0 +1,54 @@
+@use "../../styles/abstracts/" as *;
+
+.cap-slider {
+  width: 100%;
+
+  &-wrap {
+    width: 100%;
+  }
+
+  .slick-dots {
+    bottom: 2.5rem;
+    z-index: 10;
+
+    li {
+      width: 2rem;
+      height: 2rem;
+
+      button {
+        width: 2rem;
+        height: 2rem;
+
+        &::before {
+          font-size: 1.2rem;
+          width: 2rem;
+          height: 2rem;
+          color: $whiteColor;
+          opacity: 1;
+        }
+      }
+
+      &.slick-active {
+        button {
+          &::before {
+            color: $secondaryColor;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  &-slide {
+    position: relative;
+    width: 100%;
+    height: 80rem;
+
+    &-inner {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}
