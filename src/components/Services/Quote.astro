@@ -1,7 +1,16 @@
 ---
-
+import Headline from '../shared/Headline.astro';
+import Wrapper from '../shared/Wrapper.astro';
+import './quote.scss';
+import bubbleSrc from '../Home/assets/bubbles.png';
+import { Image } from 'astro:assets';
 ---
 
-<div>
-    <h1>Quote</h1>
+<div class="quote">
+    <Wrapper wrapType="stand" >
+        <Headline ele="p" hlstyle="four">{Astro.props.data.quote}</Headline>
+    </Wrapper>
+    <div class="quote-bubbles">
+        <Image src={bubbleSrc} alt="Bubbles" width={bubbleSrc.width} densities={[1.5, 2]}/>
+    </div>
 </div>

@@ -1,0 +1,20 @@
+@use "../../styles/abstracts/" as *;
+
+.quote {
+  position: relative;
+  padding: 7rem 0;
+
+  p {
+    color: $secondaryColor;
+    text-align: center;
+    line-height: 1.31;
+  }
+
+  &-bubbles {
+    position: absolute;
+    top: 0;
+    left: -15rem;
+    width: 74.4rem;
+    z-index: -1;
+  }
+}
