@@ -1,0 +1,39 @@
+@use "../../styles/abstracts/" as *;
+
+.awards {
+  &-title {
+    width: 100%;
+    margin: 2rem auto 2rem;
+    text-align: center;
+
+    h2 {
+      color: $primaryColor;
+      text-transform: uppercase;
+    }
+  }
+
+  &-logos {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    justify-content: center;
+    width: 100%;
+
+    &-logo {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      width: calc(100% / 2);
+      background-color: $whiteColor;
+
+      @media (min-width: 768px) {
+        width: calc(100% / 4);
+      }
+
+      @media (min-width: 1025px) {
+        width: calc((100% / 5) - 2rem);
+        margin: 0 1rem;
+      }
+    }
+  }
+}

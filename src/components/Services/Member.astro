@@ -1,7 +1,31 @@
 ---
-
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import Headline from "../shared/Headline.astro";
+import "./member.scss";
 ---
 
-<div>
-    <h1>Member</h1>
+<div class="member">
+  <Wrapper>
+    <div class="member-title">
+      <Headline ele="h2" hlstyle="four">Member Associations</Headline>
+    </div>
+    <div class="member-logos">
+      {
+        Astro.props.data.logos.map((logo) => {
+          return (
+            <div class="member-logos-logo">
+              <div class="member-logos-logo-wrap">
+                <Image
+                  src={logo.logo.sourceUrl}
+                  alt={logo.logo.altText}
+                  inferSize={true}
+                />
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </Wrapper>
 </div>

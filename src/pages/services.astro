@@ -1,22 +1,21 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Intro from '../components/Services/Intro.astro';
-import CapabilitiesSlider from '../components/Services/CapabilitiesSlider.jsx';
-import Events from '../components/Services/Events.astro';
-import Experiences from '../components/Services/Experiences.astro';
-import Quote from '../components/Services/Quote.astro';
-import Collaborative from '../components/Services/Collaborative.astro';
-import Awards from '../components/Services/Awards.astro';
-import Member from '../components/Services/Member.astro';
-
+import Layout from "../layouts/Layout.astro";
+import Intro from "../components/Services/Intro.astro";
+import CapabilitiesSlider from "../components/Services/CapabilitiesSlider.jsx";
+import Events from "../components/Services/Events.astro";
+import Experiences from "../components/Services/Experiences.astro";
+import Quote from "../components/Services/Quote.astro";
+import Collaborative from "../components/Services/Collaborative.astro";
+import Awards from "../components/Services/Awards.astro";
+import Member from "../components/Services/Member.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
-	method: "POST",
-	headers: {
-		"content-type": "application/json",
-	},
-	body: JSON.stringify({
-    	query: `
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
 			query servicesPageQuery {
 				page(id: "/services", idType: URI) {
                     servicesPage {
@@ -131,26 +130,36 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 
 			}
 		`,
-  	}),
+  }),
 });
 
-const {data: {page,logoOptions, testimonials} } = await response.json();
+const {
+  data: { page, logoOptions, testimonials },
+} = await response.json();
 const title = page.seo?.title ? page.seo?.title : null;
-const description = page.seo?.metaDesc
-  ? page.seo?.metaDesc
-  : null;
+const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
 const metaImg = page.featuredImage?.node?.sourceUrl
   ? page.featuredImage?.node?.sourceUrl
   : null;
 ---
 
 <Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
-    <Intro data={page.servicesPage.introComponent} logo={logoOptions.logoOptions.frogLogo} />
-    <CapabilitiesSlider client:only="react" data={page.servicesPage.capabilitiesSliderComponent} />
-    <Events data={page.servicesPage.eventsComponent} />
-    <Experiences data={page.servicesPage.experiencesComponent} />
-    <Quote data={page.servicesPage.quoteComponent} />
-    <Collaborative data={page.servicesPage.collaborativeProcessComponent} logo={logoOptions.logoOptions.frogLogo}  testimonials={testimonials.nodes} />
-    <Awards data={page.servicesPage.awardsComponent} />
-    <Member data={page.servicesPage.memberComponent} />
+  <Intro
+    data={page.servicesPage.introComponent}
+    logo={logoOptions.logoOptions.frogLogo}
+  />
+  <CapabilitiesSlider
+    client:only="react"
+    data={page.servicesPage.capabilitiesSliderComponent}
+  />
+  <Events data={page.servicesPage.eventsComponent} />
+  <Experiences data={page.servicesPage.experiencesComponent} />
+  <Quote data={page.servicesPage.quoteComponent} />
+  <Collaborative
+    data={page.servicesPage.collaborativeProcessComponent}
+    logo={logoOptions.logoOptions.frogLogo}
+    testimonials={testimonials.nodes}
+  />
+  <Awards data={page.servicesPage.awardsComponent} />
+  <Member data={page.servicesPage.memberComponent} />
 </Layout>
