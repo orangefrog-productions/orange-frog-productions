@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Intro from '../components/Services/Intro.astro';
+import Slider from '../components/Services/Slider.astro';
 import Events from '../components/Services/Events.astro';
 import Experiences from '../components/Services/Experiences.astro';
 import Quote from '../components/Services/Quote.astro';
@@ -23,6 +24,15 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         mainCallout
                         mainContent
                         mainTitle
+                        }
+
+                        capabilitiesSliderComponent {
+                            slideImages {
+                            slideImage {
+                                altText
+                                sourceUrl
+                            }
+                            }
                         }
 
                         eventsComponent {
@@ -112,13 +122,18 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const {data: {page, logoOptions} } = await response.json();
-
-console.log("page: ", page)
-
+const title = page.seo?.title ? page.seo?.title : null;
+const description = page.seo?.metaDesc
+  ? page.seo?.metaDesc
+  : null;
+const metaImg = page.featuredImage?.node?.sourceUrl
+  ? page.featuredImage?.node?.sourceUrl
+  : null;
 ---
 
-<Layout metaTitle="Services">
+<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
     <Intro data={page.servicesPage.introComponent} logo={logoOptions.logoOptions.frogLogo} />
+    <Slider data={page.servicesPage.capabilitiesSliderComponent} />
     <Events data={page.servicesPage.eventsComponent} />
     <Experiences data={page.servicesPage.experiencesComponent} />
     <Quote data={page.servicesPage.quoteComponent} />
