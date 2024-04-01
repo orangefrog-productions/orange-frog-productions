@@ -1,7 +1,57 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ExperiencesTypes from "../../components/Experiences/ExperiencesTypes.astro";
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query servicesPageQuery {
+            page(id: "/services/experiences", idType: URI) {
+              experiencesPage {
+                experiencesTypesComponent {
+                    mainTitle
+                    sections {
+                        content
+                        linkText
+                        sectionId
+                        title
+                        linkPage {
+                            ... on Page {
+                            uri
+                            }
+                            ... on Post {
+                            uri
+                            }
+                        }
+                        image {
+                            altText
+                            sourceUrl
+                        }
+                    }
+                }
+            }
+        }
+		}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
+
+const title = page.seo?.title ? page.seo?.title : null;
+const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
+const metaImg = page.featuredImage?.node?.sourceUrl
+  ? page.featuredImage?.node?.sourceUrl
+  : null;
+
+// console.log("Events Page: ", page);
 ---
 
 <Layout metaTitle="Experiences Page">
-  <h1>Experiences Page</h1>
+  <ExperiencesTypes data={page.experiencesPage.experiencesTypesComponent} />
 </Layout>

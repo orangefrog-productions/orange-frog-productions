@@ -1,7 +1,7 @@
 @use "../../styles/abstracts/" as *;
 @use "../../styles/global/paragraphs";
 
-.event-types {
+.experience-types {
   &-wrappper {
     display: flex;
     flex-wrap: wrap;
@@ -22,7 +22,7 @@
     }
   }
 
-  .event-type {
+  .experience-type {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -38,7 +38,7 @@
 
       h2 {
         @extend .p-one;
-        color: $secondaryColor;
+        color: $primaryColor;
       }
 
       p {
@@ -49,11 +49,11 @@
       a {
         @extend .p-three;
         position: relative;
-        color: $secondaryColor;
+        color: $primaryColor;
         text-transform: uppercase;
 
         &:hover {
-          color: $primaryColor;
+          color: $secondaryColor;
         }
 
         &::after {
@@ -87,10 +87,10 @@
     }
   }
 
-  .event-type:nth-of-type(2n + 1) {
+  .experience-type:nth-of-type(2n + 1) {
     flex-direction: row-reverse;
 
-    .event-type-content {
+    .experience-type-content {
       margin-left: 0;
       margin-right: auto;
     }

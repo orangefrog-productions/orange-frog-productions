@@ -1,29 +1,45 @@
 ---
-import { Image } from 'astro:assets';
-import Wrapper from '../shared/Wrapper.astro';
-import './experiences.scss';
-import Headline from '../shared/Headline.astro';
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./experiences.scss";
+import Headline from "../shared/Headline.astro";
 ---
 
 <div class="swb-experiences">
-   <Wrapper classes="swb-experiences-wrapper">
+  <Wrapper classes="swb-experiences-wrapper">
     <div class="swb-experiences-content">
-        <div class="swb-experiences-content-main-title">
-            <Headline ele="h2" hlstyle="four">{Astro.props.data.mainTitle}</Headline>
-        </div>
-        <div class="swb-experiences-content-intro" set:html={Astro.props.data.introContent} />
-        <div class="swb-experiences-content-links">
-            <ul>
-                {Astro.props.data.experienceSectionLinks.map(link => {
-                    return <li><a href={`/services/events#${link.sectionId}`}>{link.linkTitle}</a></li>
-                })}
-            </ul>
-        </div>
+      <div class="swb-experiences-content-main-title">
+        <Headline ele="h2" hlstyle="four">{Astro.props.data.mainTitle}</Headline
+        >
+      </div>
+      <div
+        class="swb-experiences-content-intro"
+        set:html={Astro.props.data.introContent}
+      />
+      <div class="swb-experiences-content-links">
+        <ul>
+          {
+            Astro.props.data.experienceSectionLinks.map((link) => {
+              return (
+                <li>
+                  <a href={`/services/experiences#${link.sectionId}`}>
+                    {link.linkTitle}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
     </div>
     <div class="swb-experiences-image">
-        <div class="swb-experiences-image-wrap">
-            <Image src={Astro.props.data.mainImage.sourceUrl} alt={Astro.props.data.mainImage.altText} inferSize={true} />
-        </div>
+      <div class="swb-experiences-image-wrap">
+        <Image
+          src={Astro.props.data.mainImage.sourceUrl}
+          alt={Astro.props.data.mainImage.altText}
+          inferSize={true}
+        />
+      </div>
     </div>
-   </Wrapper>
+  </Wrapper>
 </div>
