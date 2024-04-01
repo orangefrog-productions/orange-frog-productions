@@ -1,0 +1,41 @@
+---
+import { Image } from "astro:assets";
+import "./eventTypes.scss";
+---
+
+<div class="event-types">
+  <div class="event-types-wrappper">
+    <div class="event-types-title">
+      <h1>
+        {Astro.props.data.mainTitle}
+      </h1>
+    </div>
+    {
+      Astro.props.data.sections.map((section) => {
+        return (
+          <div id={`${section.sectionId}`} class="event-type">
+            <div class="event-type-content">
+              <div class="event-type-content-title">
+                <h2>{section.title}</h2>
+              </div>
+              <div class="event-type-content-para" set:html={section.content} />
+              <div class="event-type-content-button">
+                <a href={`${section.linkPage.uri}`}>{section.linkText}</a>
+              </div>
+            </div>
+            <div class="event-type-image">
+              <div class="event-type-image-wrapper">
+                <Image
+                  src={section.image.sourceUrl}
+                  alt={section.image.altText}
+                  width="1500"
+                  height="1500"
+                />
+              </div>
+            </div>
+          </div>
+        );
+      })
+    }
+  </div>
+</div>

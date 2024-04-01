@@ -1,0 +1,93 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+
+.event-types {
+  &-wrappper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &-title {
+    width: 100%;
+    max-width: 120rem;
+    margin: 12rem auto 0;
+    padding: 2rem 2rem 0 2rem;
+
+    h1 {
+      @extend .p-one;
+      color: $primaryColor;
+    }
+  }
+
+  .event-type {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    background-color: #212326;
+
+    &-content {
+      width: calc(50%);
+      max-width: 65rem;
+      margin-left: auto;
+      margin-right: 0;
+      padding: 6rem;
+
+      h2 {
+        @extend .p-one;
+        color: $secondaryColor;
+      }
+
+      p {
+        @extend .p-three;
+        color: $whiteColor;
+      }
+
+      a {
+        @extend .p-three;
+        position: relative;
+        color: $secondaryColor;
+        text-transform: uppercase;
+
+        &::after {
+          position: absolute;
+          top: -1rem;
+          right: -4rem;
+          font-size: 3rem;
+          content: "\2192";
+        }
+      }
+    }
+
+    &-image {
+      position: relative;
+      width: calc(50%);
+      min-height: 60rem;
+
+      &-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .event-type:nth-of-type(2n + 1) {
+    flex-direction: row-reverse;
+
+    .event-type-content {
+      margin-left: 0;
+      margin-right: auto;
+    }
+  }
+}

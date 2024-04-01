@@ -60,8 +60,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const {
   data: { menu, logoOptions, contactInformation },
 } = await response.json();
-
-console.log("Footer", contactInformation);
 ---
 
 <footer class="main-footer">
@@ -80,7 +78,6 @@ console.log("Footer", contactInformation);
         <ul>
           {
             menu.menuItems.nodes.map((item) => {
-              console.log(item);
               return (
                 <li>
                   <a href={item.uri}>{item.label}</a>
