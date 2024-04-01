@@ -2,20 +2,20 @@
 import { Image } from "astro:assets";
 import Wrapper from "../shared/Wrapper.astro";
 import "./process.scss";
-console.log(Astro.props.data);
+import Headline from "../shared/Headline.astro";
 ---
 
-<div>
-  <Wrapper>
-    <div>
-      <h2>{Astro.props.data.title}</h2>
+<div class="process">
+  <Wrapper classes="process-wrapper">
+    <div class="process-title">
+      <Headline ele="h2" hlstyle="two">{Astro.props.data.title}</Headline>
     </div>
-    <div set:html={Astro.props.data.intro} />
-    <div>
+    <div class="process-intro" set:html={Astro.props.data.intro} />
+    <div class="process-steps">
       {
         Astro.props.data.steps.map((step) => {
           return (
-            <div>
+            <div class="process-steps-step">
               <Image
                 src={step.step.sourceUrl}
                 alt={step.step.altText}
@@ -27,6 +27,6 @@ console.log(Astro.props.data);
         })
       }
     </div>
-    <div set:html={Astro.props.data.outro} />
+    <div class="process-outro" set:html={Astro.props.data.outro} />
   </Wrapper>
 </div>
