@@ -1,13 +1,13 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Intro from "../components/Services/Intro.astro";
-import CapabilitiesSlider from "../components/Services/CapabilitiesSlider.jsx";
-import Events from "../components/Services/Events.astro";
-import Experiences from "../components/Services/Experiences.astro";
-import Quote from "../components/Services/Quote.astro";
-import Collaborative from "../components/Services/Collaborative.astro";
-import Awards from "../components/Services/Awards.astro";
-import Member from "../components/Services/Member.astro";
+import Layout from "../../layouts/Layout.astro";
+import Intro from "../../components/Services/Intro.astro";
+import CapabilitiesSlider from "../../components/Services/CapabilitiesSlider.jsx";
+import Events from "../../components/Services/Events.astro";
+import Experiences from "../../components/Services/Experiences.astro";
+import Quote from "../../components/Services/Quote.astro";
+import Collaborative from "../../components/Services/Collaborative.astro";
+import Awards from "../../components/Services/Awards.astro";
+import Member from "../../components/Services/Member.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
