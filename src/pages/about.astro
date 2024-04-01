@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/about/Intro.astro";
+import DesignSlider from "../components/about/DesignSlider.jsx";
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
   headers: {
@@ -15,6 +16,14 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         mainCallout
                         mainContent
                         mainTitle
+                    }
+                    designSliderComponent {
+                        slideImages {
+                        slideImage {
+                            altText
+                            sourceUrl
+                            }
+                        }
                     }
                 }
             }
@@ -51,5 +60,9 @@ const metaImg = page.featuredImage?.node?.sourceUrl
   <Intro
     data={page.aboutPage.introComponent}
     logo={logoOptions.logoOptions.frogLogo}
+  />
+  <DesignSlider
+    client:only="react"
+    data={page.aboutPage.designSliderComponent}
   />
 </Layout>
