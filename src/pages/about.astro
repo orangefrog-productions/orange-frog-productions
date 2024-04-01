@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/about/Intro.astro";
 import DesignSlider from "../components/about/DesignSlider.jsx";
+import VisionStatement from "../components/about/VisionStatement.astro";
+import Process from "../components/about/Process.astro";
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
   headers: {
@@ -22,6 +24,21 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         slideImage {
                             altText
                             sourceUrl
+                            }
+                        }
+                    }
+                    visionStatementComponent {
+                        statement
+                        title
+                    }
+                    process {
+                        title
+                        intro
+                        outro
+                        steps {
+                            step {
+                                altText
+                                sourceUrl
                             }
                         }
                     }
@@ -65,4 +82,6 @@ const metaImg = page.featuredImage?.node?.sourceUrl
     client:only="react"
     data={page.aboutPage.designSliderComponent}
   />
+  <VisionStatement data={page.aboutPage.visionStatementComponent} />
+  <Process data={page.aboutPage.process} />
 </Layout>

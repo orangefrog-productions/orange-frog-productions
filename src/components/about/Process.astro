@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./process.scss";
+console.log(Astro.props.data);
+---
+
+<div>
+  <Wrapper>
+    <div>
+      <h2>{Astro.props.data.title}</h2>
+    </div>
+    <div set:html={Astro.props.data.intro} />
+    <div>
+      {
+        Astro.props.data.steps.map((step) => {
+          return (
+            <div>
+              <Image
+                src={step.step.sourceUrl}
+                alt={step.step.altText}
+                width="750"
+                height="750"
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+    <div set:html={Astro.props.data.outro} />
+  </Wrapper>
+</div>

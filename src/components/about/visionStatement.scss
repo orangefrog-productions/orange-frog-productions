@@ -1,0 +1,43 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/headlines";
+
+.vision {
+  padding: 7.5rem 0;
+
+  &-wrapper {
+    position: relative;
+  }
+
+  &-title {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 20%;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+
+    h2 {
+      width: 100%;
+      max-height: 20rem;
+      margin: auto;
+      text-transform: uppercase;
+      text-align: center;
+      color: $primaryColor;
+    }
+  }
+
+  &-statement {
+    width: 80%;
+
+    p {
+      @extend .hl-four;
+      color: $primaryColor;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
