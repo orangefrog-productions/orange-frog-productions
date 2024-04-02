@@ -1,0 +1,12 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import "./mainContent.scss";
+const { pull, content } = Astro.props;
+---
+
+<div class="proj-content">
+  <Wrapper>
+    <div class="proj-content-pull" set:html={pull} />
+    <div class="proj-content-description" set:html={content} />
+  </Wrapper>
+</div>

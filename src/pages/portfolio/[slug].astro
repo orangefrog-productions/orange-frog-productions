@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HeroImage from "../../components/SinglePortfolio/HeroImage.astro";
+import MainContent from "../../components/SinglePortfolio/MainContent.astro";
+import GallerySlider from "../../components/SinglePortfolio/GallerySlider.astro";
+
+export async function getStaticPaths() {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query projectsQuery {
+            project(first: 999999) {
+                nodes {
+                    slug
+                    uri
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  return data.project.nodes.map((proj) => {
+    return {
+      params: { slug: `${proj.slug}` },
+    };
+  });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query projectsQuery($id: ID!) {
+        projects(idType: SLUG, id: $id) {
+            title
+            projects {
+                pullQuote
+                projectCategory
+                projectDescription
+                featuredImage {
+                    sourceUrl
+                    altText
+                }
+                projectGallerySlider {
+                    altText
+                    sourceUrl
+                }
+            }
+        }
+    }
+    `,
+    variables: {
+      id: Astro.params["slug"],
+    },
+  }),
+});
+
+const {
+  data: { projects },
+} = await response.json();
+---
+
+<Layout>
+  <HeroImage
+    image={projects.projects.featuredImage}
+    title={projects.title}
+    category={projects.projects.projectCategory}
+  />
+  <MainContent
+    pull={projects.projects.pullQuote}
+    content={projects.projects.projectDescription}
+  />
+  <GallerySlider gallery={projects.projects.projectGallerySlider} />
+</Layout>

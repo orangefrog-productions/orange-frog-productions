@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import "./heroImage.scss";
+
+const { image, title, category } = Astro.props;
+---
+
+<div class="proj-hero">
+  <div class="proj-hero-image">
+    <Image
+      src={image.sourceUrl}
+      alt={image.altText}
+      width="2500"
+      height="1250"
+    />
+  </div>
+  <div class="proj-hero-title">
+    <h1>{title}</h1>
+    <p>{category}</p>
+  </div>
+</div>

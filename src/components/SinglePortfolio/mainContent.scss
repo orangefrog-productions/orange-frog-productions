@@ -1,0 +1,33 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+
+.proj-content {
+  padding: 5rem 0;
+  background-color: $whiteColor;
+
+  &-pull {
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 2.5rem);
+      margin-right: 2.5rem;
+    }
+
+    p {
+      @extend .p-one;
+    }
+  }
+
+  &-description {
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: calc(50% - 2.5rem);
+      margin-left: 2.5rem;
+    }
+
+    p {
+      @extend .p-three;
+    }
+  }
+}
