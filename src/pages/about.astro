@@ -4,7 +4,8 @@ import Intro from "../components/about/Intro.astro";
 import DesignSlider from "../components/about/DesignSlider.jsx";
 import VisionStatement from "../components/about/VisionStatement.astro";
 import Process from "../components/about/Process.astro";
-import CreativeTeam from "../components/about/CreativeTeam.astro";
+import CreativeTeam from "../components/about/CreativeTeam.jsx";
+
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
   headers: {
@@ -102,5 +103,5 @@ const metaImg = page.featuredImage?.node?.sourceUrl
   />
   <VisionStatement data={page.aboutPage.visionStatementComponent} />
   <Process data={page.aboutPage.process} />
-  <CreativeTeam data={creativeTeams.nodes} />
+  <CreativeTeam client:only="react" data={creativeTeams.nodes} />
 </Layout>
