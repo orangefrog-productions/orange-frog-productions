@@ -1,8 +1,9 @@
 ---
 import { Image } from "astro:assets";
 import Wrapper from "../shared/Wrapper.astro";
-import "./process.scss";
 import Headline from "../shared/Headline.astro";
+import ribbonSrc from "./assets/ribbon.png";
+import "./process.scss";
 ---
 
 <div class="process">
@@ -29,4 +30,7 @@ import Headline from "../shared/Headline.astro";
     </div>
     <div class="process-outro" set:html={Astro.props.data.outro} />
   </Wrapper>
+  <div class="process-ribbon">
+    <Image src={ribbonSrc} alt="" width="2000" height="300" />
+  </div>
 </div>
