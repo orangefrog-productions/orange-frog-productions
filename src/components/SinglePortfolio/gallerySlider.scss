@@ -1,0 +1,13 @@
+@use "../../styles/abstracts/" as *;
+
+.proj-gallery {
+  background-color: $whiteColor;
+  &-slider-display {
+  }
+
+  &-slider-nav {
+    &-image {
+      padding: 1rem;
+    }
+  }
+}
