@@ -1,7 +1,54 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import Intro from "../components/portfolio/Intro.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query aboutPageQuery {
+            page(id: "/portfolio", idType: URI) {
+                portfolioPage {
+                    introComponent {
+                        mainCallout
+                        mainContent
+                        mainTitle
+                    }               
+                }
+            }
+
+
+            logoOptions {
+                logoOptions {
+                    frogLogo {
+                        altText
+                        sourceUrl
+                    }
+                }
+            }
+
+		}
+		`,
+  }),
+});
+
+const {
+  data: { page, logoOptions },
+} = await response.json();
+
+const title = page.seo?.title ? page.seo?.title : null;
+const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
+const metaImg = page.featuredImage?.node?.sourceUrl
+  ? page.featuredImage?.node?.sourceUrl
+  : null;
 ---
 
-<Layout metaTitle="Portfolio Page">
-    <h1>Portfolio Page</h1>
+<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
+  <Intro
+    data={page.portfolioPage.introComponent}
+    logo={logoOptions.logoOptions.frogLogo}
+  />
 </Layout>
