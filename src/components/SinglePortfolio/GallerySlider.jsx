@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import "lazysizes";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -39,9 +40,15 @@ const GallerySlider = ({ gallery }) => {
         ref={(slider) => (sliderRef1 = slider)}
       >
         {gallery.map((item) => {
+          console.log(item);
           return (
             <div>
-              <img src={item.sourceUrl} alt={item.altText} />
+              <img
+                data-sizes="auto"
+                data-src={item.sourceUrl}
+                data-srcset={item.sourceUr}
+                className="lazyload"
+              />
             </div>
           );
         })}
@@ -58,7 +65,12 @@ const GallerySlider = ({ gallery }) => {
         {gallery.map((item) => {
           return (
             <div className="proj-gallery-slider-nav-image">
-              <img src={item.sourceUrl} alt={item.altText} />
+              <img
+                data-sizes="auto"
+                data-src={item.sourceUrl}
+                data-srcset={item.sourceUr}
+                className="lazyload"
+              />
             </div>
           );
         })}
