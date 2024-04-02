@@ -1,0 +1,22 @@
+@use "../../styles/abstracts/" as *;
+
+.giving-back {
+  &-title {
+    width: 100%;
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+
+    h2 {
+      color: $shadowColor;
+      text-transform: uppercase;
+    }
+  }
+
+  &-logo {
+    width: calc((100% / 5) - 4rem);
+    margin: 2rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+}

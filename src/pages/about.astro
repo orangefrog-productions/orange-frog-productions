@@ -5,6 +5,7 @@ import DesignSlider from "../components/about/DesignSlider.jsx";
 import VisionStatement from "../components/about/VisionStatement.astro";
 import Process from "../components/about/Process.astro";
 import CreativeTeam from "../components/about/CreativeTeam.jsx";
+import GivingBack from "../components/about/GivingBack.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -39,6 +40,16 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         outro
                         steps {
                             step {
+                                altText
+                                sourceUrl
+                            }
+                        }
+                    }
+
+                    givingBackComponent {
+                        mainTitle
+                        logos {
+                            logo {
                                 altText
                                 sourceUrl
                             }
@@ -88,8 +99,6 @@ const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
 const metaImg = page.featuredImage?.node?.sourceUrl
   ? page.featuredImage?.node?.sourceUrl
   : null;
-
-// console.log("Events Page: ", page);
 ---
 
 <Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
@@ -104,4 +113,5 @@ const metaImg = page.featuredImage?.node?.sourceUrl
   <VisionStatement data={page.aboutPage.visionStatementComponent} />
   <Process data={page.aboutPage.process} />
   <CreativeTeam client:only="react" data={creativeTeams.nodes} />
+  <GivingBack data={page.aboutPage.givingBackComponent} />
 </Layout>
