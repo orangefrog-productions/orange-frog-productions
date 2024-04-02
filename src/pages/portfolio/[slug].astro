@@ -2,7 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import HeroImage from "../../components/SinglePortfolio/HeroImage.astro";
 import MainContent from "../../components/SinglePortfolio/MainContent.astro";
-import GallerySlider from "../../components/SinglePortfolio/GallerySlider.astro";
+import GallerySlider from "../../components/SinglePortfolio/GallerySlider.jsx";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -79,5 +79,8 @@ const {
     pull={projects.projects.pullQuote}
     content={projects.projects.projectDescription}
   />
-  <GallerySlider gallery={projects.projects.projectGallerySlider} />
+  <GallerySlider
+    client:only="react"
+    gallery={projects.projects.projectGallerySlider}
+  />
 </Layout>
