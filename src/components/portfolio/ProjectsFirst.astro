@@ -1,0 +1,27 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./projectsFirst.scss";
+---
+
+<div class="project-first">
+  <Wrapper>
+    <div class="project-first-item">
+      <a href={`/portfolio/${Astro.props.data.slug}`}>
+        <div class="project-first-item-image">
+          <Image
+            src={Astro.props.data.projects.featuredImage.sourceUrl}
+            alt={Astro.props.data.projects.featuredImage.altText}
+            width="2500"
+            height="1250"
+          />
+        </div>
+
+        <div class="project-first-item-title">
+          <h2>{Astro.props.data.title}</h2>
+          <p>{Astro.props.data.projects.projectCategory}</p>
+        </div>
+      </a>
+    </div>
+  </Wrapper>
+</div>
