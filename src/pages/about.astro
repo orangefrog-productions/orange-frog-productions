@@ -4,6 +4,7 @@ import Intro from "../components/about/Intro.astro";
 import DesignSlider from "../components/about/DesignSlider.jsx";
 import VisionStatement from "../components/about/VisionStatement.astro";
 import Process from "../components/about/Process.astro";
+import CreativeTeam from "../components/about/CreativeTeam.astro";
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
   headers: {
@@ -55,13 +56,30 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 }
             }
 
+
+            creativeTeams {
+                nodes {
+                    title
+                    creativeTeam {
+                        titlePosition
+                        bio
+                        image {
+                            altText
+                            sourceUrl
+                        }
+                    }
+                }
+            }
+
+
+
 		}
 		`,
   }),
 });
 
 const {
-  data: { page, logoOptions },
+  data: { page, logoOptions, creativeTeams },
 } = await response.json();
 
 const title = page.seo?.title ? page.seo?.title : null;
@@ -84,4 +102,5 @@ const metaImg = page.featuredImage?.node?.sourceUrl
   />
   <VisionStatement data={page.aboutPage.visionStatementComponent} />
   <Process data={page.aboutPage.process} />
+  <CreativeTeam data={creativeTeams.nodes} />
 </Layout>
