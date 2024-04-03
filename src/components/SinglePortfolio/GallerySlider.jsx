@@ -40,7 +40,6 @@ const GallerySlider = ({ gallery }) => {
         ref={(slider) => (sliderRef1 = slider)}
       >
         {gallery.map((item) => {
-          console.log(item);
           return (
             <div>
               <img

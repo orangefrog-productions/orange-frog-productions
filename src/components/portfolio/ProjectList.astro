@@ -2,9 +2,6 @@
 import { Image } from "astro:assets";
 import Wrapper from "../shared/Wrapper.astro";
 import "./projectList.scss";
-
-console.log("Astro", Astro.props.data);
-
 let rowCount = 0;
 let classListEven = ["projects-item-small", "projects-item-big"];
 let classListOdd = ["projects-item-big", "projects-item-small"];
@@ -28,7 +25,6 @@ const classProjects = Astro.props.data.map((item, index) => {
   <Wrapper>
     {
       classProjects.map((proj) => {
-        console.log("PROJECT", proj);
         return (
           <div class={`projects-item ${proj.className}`}>
             <a href={`/portfolio/${proj.slug}`}>
