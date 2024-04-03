@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import "./gallerySideScroll.scss";
+---
+
+<div class="proj-gallery">
+  <div class="proj-gallery-wrapper">
+    <div class="proj-gallery-images">
+      {
+        Astro.props.gallery.map((item) => {
+          return (
+            <div class="proj-gallery-images-image">
+              <Image
+                src={item.sourceUrl}
+                alt={item.altText}
+                width="1500"
+                height="1000"
+              />
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const races = document.querySelector(".proj-gallery-images");
+
+  function getScrollAmount() {
+    let racesWidth = races.scrollWidth;
+    return -(racesWidth - window.innerWidth);
+  }
+
+  const tween = gsap.to(races, {
+    x: getScrollAmount,
+    duration: 3,
+    ease: "none",
+  });
+
+  let mm = gsap.matchMedia();
+
+  mm.add(
+    {
+      isMobile: "(max-width: 767px)",
+      isDesktop: "(min-width: 768px)",
+    },
+    (context) => {
+      let { isMobile, isDesktop } = context.conditions;
+      if (isDesktop) {
+        ScrollTrigger.create({
+          trigger: ".proj-gallery-wrapper",
+          start: "top 10%",
+          end: () => `+=${getScrollAmount() * -1}`,
+          pin: true,
+          animation: tween,
+          scrub: 1,
+          invalidateOnRefresh: true,
+          markers: false,
+        });
+      }
+    },
+  );
+</script>
