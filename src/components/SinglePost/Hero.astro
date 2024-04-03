@@ -1,0 +1,28 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./hero.scss";
+import Headline from "../shared/Headline.astro";
+---
+
+<div class="post-hero">
+  <Wrapper>
+    <div class="post-hero-cat">
+      <p>News + Ideas</p>
+    </div>
+    <div class="post-hero-image">
+      <div class="post-hero-image-wrap">
+        <Image
+          src={Astro.props.featuredImage.sourceUrl}
+          alt={Astro.props.featuredImage.altText}
+          width="2000"
+          height="1500"
+        />
+      </div>
+    </div>
+
+    <div class="post-hero-title">
+      <Headline ele="h1" hlstyle="four">{Astro.props.title}</Headline>
+    </div>
+  </Wrapper>
+</div>

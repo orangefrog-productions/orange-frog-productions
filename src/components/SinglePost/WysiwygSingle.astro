@@ -1,0 +1,13 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import Wysiwyg from "../shared/Wysiwyg.astro";
+import "./wysiwyg.scss";
+---
+
+<main class="main-content">
+  <Wrapper>
+    <Wysiwyg>
+      <div set:html={Astro.props.wysiwyg} />
+    </Wysiwyg>
+  </Wrapper>
+</main>

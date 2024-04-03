@@ -1,5 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Hero from "../../components/SinglePost/Hero.astro";
+import WysiwygSingle from "../../components/SinglePost/WysiwygSingle.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -29,10 +31,40 @@ export async function getStaticPaths() {
     };
   });
 }
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+    query postQuery($id: ID!) {
+        post(idType: SLUG, id: $id) {
+            title
+            post {
+              mainContent
+              featuredImage {
+                altText
+                sourceUrl
+            }
+          }
+        }
+
+    }
+    `,
+    variables: {
+      id: Astro.params["slug"],
+    },
+  }),
+});
+
+const {
+  data: { post },
+} = await response.json();
 ---
 
 <Layout>
-  <div>
-    <h1>Single Post</h1>
-  </div>
+  <Hero featuredImage={post.post.featuredImage} title={post.title} />
+  <WysiwygSingle wysiwyg={post.post.mainContent} />
 </Layout>
