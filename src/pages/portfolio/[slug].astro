@@ -2,7 +2,6 @@
 import Layout from "../../layouts/Layout.astro";
 import HeroImage from "../../components/SinglePortfolio/HeroImage.astro";
 import MainContent from "../../components/SinglePortfolio/MainContent.astro";
-import GallerySlider from "../../components/SinglePortfolio/GallerySlider.jsx";
 import GallerySideScroll from "../../components/SinglePortfolio/GallerySideScroll.astro";
 
 export async function getStaticPaths() {
@@ -82,8 +81,4 @@ const {
     content={projects.projects.projectDescription}
   />
   <GallerySideScroll gallery={projects.projects.projectGallerySlider} />
-  <!-- <GallerySlider
-    client:only="react"
-    gallery={projects.projects.projectGallerySlider}
-  /> -->
 </Layout>

@@ -1,0 +1,82 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import IntroTitle from "../../components/News/IntroTitle.astro";
+import CatNav from "../../components/News/CatNav.astro";
+import Posts from "../../components/News/Posts.astro";
+import Pagination from "../../components/News/Pagination.astro";
+
+export async function getStaticPaths({ paginate }) {
+  const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({
+      query: `
+        query postsQuery {
+          posts(first: 999999) {
+                nodes {
+                  title
+                  slug
+                  uri
+                  post {
+                    excerpt
+                    featuredImage {
+                      altText
+                      sourceUrl
+                    }
+                  }
+                }
+            }
+        }
+      `,
+    }),
+  });
+
+  const { data } = await response.json();
+  const allposts = data.posts.nodes;
+  return paginate(allposts, { pageSize: 3 });
+}
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+        query newsPageQuery {
+            page(id: "/news", idType: URI) {
+              title
+            }
+
+            categories {
+              nodes {
+                name
+                slug
+                uri
+              }
+            }
+		      }
+		`,
+  }),
+});
+
+const {
+  data: { page, categories },
+} = await response.json();
+const postsData = Astro.props;
+
+const title = page.seo?.title ? page.seo?.title : null;
+const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
+const metaImg = page.featuredImage?.node?.sourceUrl
+  ? page.featuredImage?.node?.sourceUrl
+  : null;
+---
+
+<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
+  <IntroTitle title={page.title} />
+  <CatNav categories={categories} />
+  <Posts posts={postsData} />
+  <Pagination page={postsData} />
+</Layout>

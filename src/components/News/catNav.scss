@@ -1,0 +1,42 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs.scss";
+
+.cat-nav {
+  width: 100%;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    li {
+      position: relative;
+      margin-right: 1rem;
+      padding-right: 1rem;
+
+      &::after {
+        @extend .p-two;
+        position: absolute;
+        top: 0;
+        right: -0.25rem;
+        color: $whiteColor;
+        content: "|";
+      }
+
+      &:last-of-type {
+        &::after {
+          display: none;
+        }
+      }
+
+      a {
+        @extend .p-two;
+        color: $whiteColor;
+
+        &:hover {
+          color: $primaryColor;
+        }
+      }
+    }
+  }
+}

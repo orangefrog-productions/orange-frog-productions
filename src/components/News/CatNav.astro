@@ -1,0 +1,25 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import "./catNav.scss";
+
+const { categories } = Astro.props;
+
+console.log("categories", categories);
+---
+
+<div class="cat-nav">
+  <Wrapper>
+    <ul>
+      <li><a href="/news">All</a></li>
+      {
+        categories.nodes.map((cat) => {
+          return (
+            <li>
+              <a href={cat.uri}>{cat.name}</a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </Wrapper>
+</div>

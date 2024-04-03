@@ -1,0 +1,60 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+
+.post-list {
+  &-item {
+    width: calc(100%);
+    background-color: #212326;
+
+    @media (min-width: 768px) {
+      width: calc((100% / 3) - 2rem);
+      margin: 1rem;
+    }
+
+    &-image {
+      position: relative;
+      width: 100%;
+      height: 30rem;
+
+      &-wrap {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    &-intro {
+      width: 100%;
+      padding: 3rem;
+
+      &-title {
+        h2 {
+          @extend .p-two;
+          color: $whiteColor;
+        }
+      }
+
+      &-excerpt {
+        p {
+          @extend .p-three;
+          color: $whiteColor;
+
+          &:last-of-type {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+}

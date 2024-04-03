@@ -1,0 +1,18 @@
+---
+import Headline from "../shared/Headline.astro";
+import Wrapper from "../shared/Wrapper.astro";
+import "./introTitle.scss";
+import swooshSrc from "./assets/swoosh.png";
+import { Image } from "astro:assets";
+---
+
+<div class="news-intro">
+  <Wrapper>
+    <div class="news-intro-title">
+      <Headline ele="h1" hlstyle="one">{Astro.props.title}</Headline>
+    </div>
+  </Wrapper>
+  <div class="news-intro-graphic">
+    <Image src={swooshSrc} alt="" width="834" height="603" />
+  </div>
+</div>
