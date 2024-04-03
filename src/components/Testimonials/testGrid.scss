@@ -1,0 +1,25 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs.scss";
+
+.grid {
+  .grid-wrapper {
+    justify-content: flex-start;
+  }
+
+  &-item {
+    width: 100%;
+
+    @media (min-width: 768px) {
+      width: calc(33.333333%);
+    }
+
+    &-content {
+      padding: 4rem;
+
+      p {
+        @extend .p-four;
+        color: $whiteColor;
+      }
+    }
+  }
+}

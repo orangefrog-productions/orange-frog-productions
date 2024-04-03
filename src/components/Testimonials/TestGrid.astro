@@ -1,0 +1,24 @@
+---
+import "./testGrid.scss";
+import GridImage from "./GridItems/GridImage.astro";
+import GridContent from "./GridItems/GridContent.astro";
+import GridVideo from "./GridItems/GridVideo.astro";
+import Wrapper from "../shared/Wrapper.astro";
+---
+
+<div class="grid">
+  <Wrapper classes="grid-wrapper">
+    {
+      Astro.props.data.map((item) => {
+        console.log("item", item);
+        if (item.type === "image") {
+          return <GridImage image={item.image} />;
+        } else if (item.type === "video") {
+          return <GridVideo video={item.video} />;
+        } else if (item.type === "content") {
+          return <GridContent test={item.testimonial} />;
+        }
+      })
+    }
+  </Wrapper>
+</div>

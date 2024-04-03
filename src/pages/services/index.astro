@@ -116,7 +116,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 }
 
 
-                testimonials {
+                testimonials(first: 3) {
                     nodes {
                         title
                         testimonialContent {
@@ -124,9 +124,6 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         }
                     }
                 }
-
-
-
 
 			}
 		`,

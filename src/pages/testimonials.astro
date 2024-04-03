@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import IntroTitle from "../components/Testimonials/IntroTitle.astro";
+import TestGrid from "../components/Testimonials/TestGrid.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -12,6 +13,27 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 			query testimonialsPageQuery {
 				page(id: "/testimonials", idType: URI) {
 					title
+                    testimonialsPage {
+                        testimonialsGridComponent {
+                            gridItems {
+                                type
+                                video
+                                testimonial {
+                                    ... on Testimonial {
+                                    title
+                                    testimonialContent {
+                                        testimonialQuote
+                                        testimonialCompany
+                                    }
+                                    }
+                                }
+                                image {
+                                    altText
+                                    sourceUrl
+                                }
+                            }
+                        }
+                    }
 				}
 			}
 		`,
@@ -26,10 +48,9 @@ const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
 const metaImg = page.featuredImage?.node?.sourceUrl
   ? page.featuredImage?.node?.sourceUrl
   : null;
-
-console.log("page", page);
 ---
 
 <Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
   <IntroTitle title={page.title} />
+  <TestGrid data={page.testimonialsPage.testimonialsGridComponent.gridItems} />
 </Layout>

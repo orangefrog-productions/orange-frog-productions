@@ -1,0 +1,14 @@
+---
+import { Image } from "astro:assets";
+---
+
+<div class="grid-item">
+  <div>
+    <Image
+      src={Astro.props.image.sourceUrl}
+      alt={Astro.props.image.altText}
+      width="500"
+      height="500"
+    />
+  </div>
+</div>
