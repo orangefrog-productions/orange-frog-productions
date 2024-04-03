@@ -1,7 +1,35 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import IntroTitle from "../components/Testimonials/IntroTitle.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query testimonialsPageQuery {
+				page(id: "/testimonials", idType: URI) {
+					title
+				}
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
+const title = page.seo?.title ? page.seo?.title : null;
+const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
+const metaImg = page.featuredImage?.node?.sourceUrl
+  ? page.featuredImage?.node?.sourceUrl
+  : null;
+
+console.log("page", page);
 ---
 
-<Layout metaTitle="Testimonials Page">
-    <h1>Testimonials Page</h1>
+<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
+  <IntroTitle title={page.title} />
 </Layout>

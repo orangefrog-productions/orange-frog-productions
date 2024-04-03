@@ -1,7 +1,34 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query contactPageQuery {
+				page(id: "/contact", idType: URI) {
+					title
+				}
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
+const title = page.seo?.title ? page.seo?.title : null;
+const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
+const metaImg = page.featuredImage?.node?.sourceUrl
+  ? page.featuredImage?.node?.sourceUrl
+  : null;
+
+console.log("page", page);
 ---
 
-<Layout metaTitle="Contact Page">
-    <h1>Contact Page</h1>
+<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
+  <h1>Contact Page</h1>
 </Layout>
