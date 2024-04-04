@@ -1,0 +1,11 @@
+.image-row {
+  width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
+  display: flex;
+
+  &-image {
+    width: calc((100% / 4) - 1rem);
+    margin: 1rem 0.5rem;
+  }
+}

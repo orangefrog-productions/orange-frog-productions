@@ -1,0 +1,21 @@
+---
+import { Image } from "astro:assets";
+import "./imageRow.scss";
+---
+
+<div class="image-row">
+  {
+    Astro.props.data.images.map((img) => {
+      return (
+        <div class="image-row-image">
+          <Image
+            src={img.image.sourceUrl}
+            alt={img.image.altText}
+            width="1500"
+            height="1000"
+          />
+        </div>
+      );
+    })
+  }
+</div>

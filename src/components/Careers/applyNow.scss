@@ -1,0 +1,13 @@
+@use "../../styles/abstracts/" as *;
+
+.apply-now {
+  background-color: $primaryColor;
+
+  &-image {
+    width: calc(25%);
+  }
+
+  &-content {
+    width: calc(75%);
+  }
+}

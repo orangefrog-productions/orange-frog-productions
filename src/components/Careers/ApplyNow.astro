@@ -1,0 +1,35 @@
+---
+import { Image } from "astro:assets";
+import Wrapper from "../shared/Wrapper.astro";
+import "./applyNow.scss";
+import Headline from "../shared/Headline.astro";
+import Button from "../shared/Button.astro";
+
+console.log(Astro.props.data);
+---
+
+<div class="apply-now">
+  <Wrapper>
+    <div class="apply-now-image">
+      <div>
+        <Image
+          src={Astro.props.data.image.sourceUrl}
+          alt={Astro.props.data.image.altText}
+          width="800"
+          height="1000"
+        />
+      </div>
+    </div>
+    <div class="apply-now-content">
+      <div>
+        <Headline ele="h2" hlstyle="two">{Astro.props.data.title}</Headline>
+      </div>
+      <div set:html={Astro.props.data.content} />
+      <div>
+        <Button href={`mailto: ${Astro.props.data.buttonEmail}`}
+          >{Astro.props.data.buttonText}</Button
+        >
+      </div>
+    </div>
+  </Wrapper>
+</div>

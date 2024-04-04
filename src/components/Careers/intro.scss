@@ -85,14 +85,32 @@
 
       ul {
         li {
+          position: relative;
           color: $whiteColor;
           margin: 0;
+
+          &::after {
+            position: absolute;
+            top: 0;
+            left: 0;
+            font-size: 1em;
+            content: "\2022";
+          }
         }
       }
 
       p {
         @extend .p-one;
         color: $whiteColor;
+      }
+
+      a {
+        @extend .p-one;
+        color: $whiteColor;
+
+        &:hover {
+          color: $primaryColor;
+        }
       }
     }
   }
