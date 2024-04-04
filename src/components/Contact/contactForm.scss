@@ -7,6 +7,8 @@
 
   &-wrapper {
     @extend .wrap-stand;
+    width: calc(75% + 2rem);
+    margin-left: calc(25% - 2rem);
   }
 
   &-intro {

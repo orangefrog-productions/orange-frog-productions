@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/Contact/Intro.astro";
 import ContactForm from "../components/Contact/ContactForm.jsx";
+import RentalLocation from "../components/Contact/RentalLocation.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -17,6 +18,27 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
             introComponent {
               mainContent
               mainTitle
+            }
+
+            contactFormComponent {
+              backgroundImage {
+                altText
+                sourceUrl
+              }
+            }
+
+            rentalLocationComponent {
+              locationContent
+              locationGoogleUrl
+              locationTitle
+              locationMap {
+                altText
+                sourceUrl
+              }
+              rentalButtonLink
+              rentalButtonText
+              rentalContent
+              rentalTitle
             }
           }
 				}
@@ -52,5 +74,9 @@ const metaImg = page.featuredImage?.node?.sourceUrl
     data={page.contactPage.introComponent}
     logo={logoOptions.logoOptions.frogLogo}
   />
-  <ContactForm client:only="react" />
+  <ContactForm
+    client:only="react"
+    data={page.contactPage.contactFormComponent}
+  />
+  <RentalLocation data={page.contactPage.rentalLocationComponent} />
 </Layout>

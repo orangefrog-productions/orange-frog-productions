@@ -3,7 +3,8 @@ import Input from "./form/Input";
 import Textarea from "./form/Textarea";
 import "./contactForm.scss";
 
-const ContactForm = () => {
+const ContactForm = ({ data }) => {
+  console.log(data);
   const handleSumitForm = () => {
     const contactForm = document.querySelector("form");
     const submitForm = async (e) => {

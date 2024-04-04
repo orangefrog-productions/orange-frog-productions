@@ -1,0 +1,55 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import Button from "../shared/Button.astro";
+import "./rentalLocation.scss";
+import { Image } from "astro:assets";
+import Headline from "../shared/Headline.astro";
+---
+
+<div class="loc-rent">
+  <Wrapper>
+    <div class="loc-rent-rentals">
+      <div class="loc-rent-rentals-title">
+        <p class="loc-rent-rentals-title-intro">Rentals</p>
+        <Headline ele="h2" hlstyle="four"
+          >{Astro.props.data.rentalTitle}</Headline
+        >
+      </div>
+      <div
+        class="loc-rent-rentals-content"
+        set:html={Astro.props.data.rentalContent}
+      />
+      <div class="loc-rent-rentals-button">
+        <Button href={Astro.props.data.rentalButtonLink}>
+          {Astro.props.data.rentalButtonText}
+        </Button>
+      </div>
+    </div>
+    <div class="loc-rent-location">
+      <div class="loc-rent-location-title">
+        <p class="loc-rent-location-title-intro">Visit Us</p>
+        <Headline ele="h2" hlstyle="four"
+          >{Astro.props.data.locationTitle}</Headline
+        >
+      </div>
+      <div
+        class="loc-rent-location-content"
+        set:html={Astro.props.data.locationContent}
+      />
+      <div class="loc-rent-location-map">
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={Astro.props.data.locationGoogleUrl}
+        >
+          <Image
+            src={Astro.props.data.locationMap.sourceUrl}
+            alt={Astro.props.data.locationMap.altText}
+            width="800"
+            height="500"
+          />
+        </a>
+      </div>
+    </div>
+  </Wrapper>
+</div>
