@@ -4,10 +4,38 @@
   background-color: $primaryColor;
 
   &-image {
-    width: calc(25%);
+    width: calc(25% - 5rem);
+    margin-right: 5rem;
   }
 
   &-content {
     width: calc(75%);
+
+    &-title {
+      h2 {
+        color: $whiteColor;
+        text-transform: uppercase;
+      }
+    }
+
+    &-wysiwyg {
+      p {
+        color: $whiteColor;
+      }
+
+      a {
+        color: $whiteColor;
+      }
+    }
+
+    &-button {
+      a {
+        background-color: $blackColor;
+
+        &:hover {
+          background-color: $secondaryColor;
+        }
+      }
+    }
   }
 }
