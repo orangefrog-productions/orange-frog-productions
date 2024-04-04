@@ -7,10 +7,15 @@
   }
 
   &-item {
+    position: relative;
     width: 100%;
 
     @media (min-width: 768px) {
       width: calc(33.333333%);
+    }
+
+    @media (min-width: 768px) {
+      min-height: 40rem;
     }
 
     &-content {
@@ -23,9 +28,7 @@
     }
 
     &-image {
-      position: relative;
       width: 100%;
-      min-height: 40rem;
 
       &-wrapper {
         position: absolute;
@@ -46,9 +49,7 @@
     }
 
     &-video {
-      position: relative;
       width: 100%;
-      min-height: 40rem;
 
       &-wrapper {
         position: absolute;
