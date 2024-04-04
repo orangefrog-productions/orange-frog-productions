@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Intro from "../components/Careers/Intro.astro";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -11,22 +12,42 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 			query careersPageQuery {
 				page(id: "/careers", idType: URI) {
 					title
+          careersPage {
+            introComponent {
+              mainContent
+              mainTitle
+            }
+          }
 				}
+
+        logoOptions {
+                logoOptions {
+                    frogLogo {
+                        altText
+                        sourceUrl
+                    }
+                }
+            }
 			}
 		`,
   }),
 });
 
 const {
-  data: { page },
+  data: { page, logoOptions },
 } = await response.json();
 const title = page.seo?.title ? page.seo?.title : null;
 const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
 const metaImg = page.featuredImage?.node?.sourceUrl
   ? page.featuredImage?.node?.sourceUrl
   : null;
+
+// console.log("CAREERS: ", page);
 ---
 
 <Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
-  <h1>Careers Page</h1>
+  <Intro
+    data={page.careersPage.introComponent}
+    logo={logoOptions.logoOptions.frogLogo}
+  />
 </Layout>
