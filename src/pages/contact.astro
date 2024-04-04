@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/Contact/Intro.astro";
+import ContactForm from "../components/Contact/ContactForm.jsx";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -51,4 +52,5 @@ const metaImg = page.featuredImage?.node?.sourceUrl
     data={page.contactPage.introComponent}
     logo={logoOptions.logoOptions.frogLogo}
   />
+  <ContactForm client:only="react" />
 </Layout>

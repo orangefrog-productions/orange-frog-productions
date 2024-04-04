@@ -1,0 +1,31 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/wrappers";
+@use "../../styles/global/paragraphs";
+
+.contact-us {
+  width: 100%;
+
+  &-wrapper {
+    @extend .wrap-stand;
+  }
+
+  &-intro {
+    width: 100%;
+
+    p {
+      @extend .p-one;
+      color: $primaryColor;
+    }
+  }
+
+  &-form {
+    width: 100%;
+
+    &-input-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: 100%;
+    }
+  }
+}
