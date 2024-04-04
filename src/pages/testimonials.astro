@@ -17,7 +17,9 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         testimonialsGridComponent {
                             gridItems {
                                 type
-                                video
+                                video {
+                                    mediaItemUrl
+                                }
                                 testimonial {
                                     ... on Testimonial {
                                     title

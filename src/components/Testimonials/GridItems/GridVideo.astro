@@ -1,7 +1,12 @@
 ---
-
+console.log("Astro.props.video", Astro.props.video);
 ---
 
 <div class="grid-item">
-  <iframe src={Astro.props.video}></iframe>
+  <div class="grid-item-video">
+    <div class="grid-item-video-wrapper">
+      <video controls autoplay loop muted src={Astro.props.video.mediaItemUrl}
+      ></video>
+    </div>
+  </div>
 </div>
