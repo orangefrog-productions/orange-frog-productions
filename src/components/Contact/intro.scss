@@ -1,0 +1,101 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+@use "../../styles/global/headlines";
+
+@keyframes glowing {
+  from {
+    box-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 30px #f0f,
+      0 0 40px #0ff,
+      0 0 50px #e60073,
+      0 0 60px #e60073,
+      0 0 70px #e60073;
+  }
+  to {
+    box-shadow:
+      0 0 20px #fff,
+      0 0 30px #ff4da6,
+      0 0 40px #ff4da6,
+      0 0 50px #ff4da6,
+      0 0 60px #ff4da6,
+      0 0 70px #ff4da6,
+      0 0 80px #ff4da6;
+  }
+}
+
+.services-intro {
+  padding-top: 9rem;
+
+  &-wrapper {
+    position: relative;
+  }
+  &-title {
+    width: 100%;
+
+    h1 {
+      color: $secondaryColor;
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+
+    &-frog {
+      position: relative;
+      width: calc(100% - 20rem);
+      margin-top: 2rem;
+      margin-right: 20rem;
+      margin-bottom: 5rem;
+      transform: rotate(-20deg);
+
+      @media (min-width: 768px) {
+        width: calc(15% - 2rem);
+        margin-bottom: 0;
+        margin-right: 2rem;
+      }
+    }
+
+    &-glow {
+      position: absolute;
+      top: 0;
+      left: 1.5rem;
+      width: 9rem;
+      height: 9rem;
+      border-radius: 50%;
+      background-color: #fff;
+      animation: glowing 1s ease-in-out infinite alternate;
+      z-index: -1;
+    }
+
+    &-para {
+      width: 100%;
+
+      @media (min-width: 768px) {
+        width: 85%;
+      }
+      p {
+        @extend .p-one;
+        color: $whiteColor;
+      }
+    }
+  }
+
+  &-ribbon {
+    position: absolute;
+    top: -15rem;
+    right: -50rem;
+    width: 100%;
+    z-index: -1;
+
+    &-inner {
+      max-width: 50rem;
+      margin: auto;
+    }
+  }
+}
