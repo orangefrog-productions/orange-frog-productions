@@ -7,6 +7,10 @@ import "./contactForm.scss";
 import submitToServer from "./utils/submitToServer";
 import { handleOnChange, handleOnSubmit } from "./utils/formFunctions";
 
+import FormError from "./models/FormError";
+import FormSuccess from "./models/FormSuccess";
+import FormSubmitting from "./models/FormSubmitting";
+
 const ContactForm = ({ data }) => {
   const [formData, setFormData] = useState({
     firstname: "",
@@ -177,6 +181,18 @@ const ContactForm = ({ data }) => {
           </div>
         </form>
       </div>
+
+      {formStatus.submitting && <FormSubmitting />}
+      {formStatus.success && (
+        <FormSuccess
+          setFormStatus={setFormStatus}
+          formStatus={formStatus}
+          clearFormFields={clearFormFields}
+        />
+      )}
+      {formStatus.errorWarnDisplay && (
+        <FormError setFormStatus={setFormStatus} formStatus={formStatus} />
+      )}
     </div>
   );
 };
