@@ -1,37 +1,51 @@
-import React from "react";
+import React, { useState } from "react";
+
 import Input from "./form/Input";
 import Textarea from "./form/Textarea";
 import "./contactForm.scss";
 
+import submitToServer from "./utils/submitToServer";
+import { handleOnChange, handleOnSubmit } from "./utils/formFunctions";
+
 const ContactForm = ({ data }) => {
-  console.log(data);
-  const handleSumitForm = () => {
-    const contactForm = document.querySelector("form");
-    const submitForm = async (e) => {
-      e.preventDefault();
-      const formdata = new FormData(contactForm);
-      formdata.append("_wpcf7_unit_tag", "ddabdd4");
-      const { yourname, youremail } = Object.fromEntries(formdata);
+  const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
+    youremail: "",
+    phonenumber: "",
+    eventtype: "",
+    eventname: "",
+    eventlocation: "",
+    numberattendess: "",
+    dateevent: "",
+    hear: "",
+    description: "",
+  });
 
-      console.log("yourname, youremail", yourname, youremail);
+  const [formStatus, setFormStatus] = useState({
+    submitting: false,
+    errorWarnDisplay: false,
+    success: false,
+    errors: [],
+    captachError: false,
+  });
 
-      try {
-        const res = await fetch(
-          "https://orangefrog.swbdatabases3.com/wp-json/contact-form-7/v1/contact-forms/517/feedback",
-          {
-            method: "POST",
-            body: formdata,
-          },
-        );
-
-        const response = await res.json();
-        console.log("Success: ", response);
-      } catch (e) {
-        console.log("Error: ", e);
-      }
-    };
-
-    contactForm.addEventListener("submit", submitForm);
+  const clearFormFields = () => {
+    setFormData(() => {
+      return {
+        firstname: "",
+        lastname: "",
+        youremail: "",
+        phonenumber: "",
+        eventtype: "",
+        eventname: "",
+        eventlocation: "",
+        numberattendess: "",
+        dateevent: "",
+        hear: "",
+        description: "",
+      };
+    });
   };
 
   return (
@@ -43,20 +57,36 @@ const ContactForm = ({ data }) => {
             <br /> We’re excited to help turn your dreams into reality!
           </p>
         </div>
-        <form id="contact-form" className="contact-us-form">
+        <form
+          id="contact-form"
+          className="contact-us-form"
+          onSubmit={(event) =>
+            handleOnSubmit(
+              event,
+              setFormStatus,
+              formData,
+              submitToServer,
+              517,
+              clearFormFields,
+              formStatus,
+            )
+          }
+        >
           <div className="contact-us-form-input-wrapper">
             <Input
+              handler={(event) => handleOnChange(setFormData, formData, event)}
+              value={formData.firstname}
               label="First Name"
               id="firstname"
               type="text"
-              value=""
               required={true}
             />
             <Input
               label="Last Name"
               id="lastname"
               type="text"
-              value=""
+              value={formData.lastname}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
           </div>
@@ -66,14 +96,16 @@ const ContactForm = ({ data }) => {
               label="Your Email"
               id="youremail"
               type="email"
-              value=""
+              value={formData.youremail}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
             <Input
               label="Phone Number"
               id="phonenumber"
               type="text"
-              value=""
+              value={formData.phonenumber}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
           </div>
@@ -83,14 +115,16 @@ const ContactForm = ({ data }) => {
               label="Type of Event"
               id="eventtype"
               type="text"
-              value=""
+              value={formData.eventtype}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
             <Input
               label="Name of Event"
               id="eventname"
               type="text"
-              value=""
+              value={formData.eventname}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
           </div>
@@ -100,14 +134,16 @@ const ContactForm = ({ data }) => {
               label="Location of Event"
               id="eventlocation"
               type="text"
-              value=""
+              value={formData.eventlocation}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
             <Input
               label="Number of Attendees"
               id="numberattendess"
               type="text"
-              value=""
+              value={formData.numberattendess}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
           </div>
@@ -117,14 +153,16 @@ const ContactForm = ({ data }) => {
               label="Date of Event"
               id="dateevent"
               type="text"
-              value=""
+              value={formData.dateevent}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
             <Input
               label="How did you hear about us?"
               id="hear"
               type="text"
-              value=""
+              value={formData.hear}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
               required={true}
             />
           </div>

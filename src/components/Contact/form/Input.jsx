@@ -1,14 +1,15 @@
 import React from "react";
 import "./input.scss";
 
-const Input = ({ label, id, type, value, required }) => {
+const Input = ({ label, id, type, handler, value, required }) => {
+  console.log("INPUT: ", value);
   return (
     <div className="of-form-input">
       <label htmlFor={id}>
         {label}
-        {required && <span class="required">&#42;</span>}
+        {required && <span className="required">&#42;</span>}
       </label>
-      <input name={id} type={type} value={value} id={id} />
+      <input name={id} type={type} onChange={handler} value={value} id={id} />
     </div>
   );
 };
