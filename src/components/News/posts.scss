@@ -4,6 +4,7 @@
 .post-list {
   &-item {
     width: calc(100%);
+    margin-bottom: 2rem;
     background-color: #212326;
 
     @media (min-width: 768px) {
