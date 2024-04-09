@@ -2,7 +2,11 @@
 
 .quote {
   position: relative;
-  padding: 7rem 0;
+  padding: 1rem 0;
+
+  @media (min-width: 768px) {
+    padding: 7rem 0;
+  }
 
   p {
     color: $secondaryColor;
@@ -13,8 +17,13 @@
   &-bubbles {
     position: absolute;
     top: 0;
-    left: -15rem;
-    width: 74.4rem;
+    left: 0rem;
+    width: 60rem;
     z-index: -1;
+
+    @media (min-width: 768px) {
+      left: -15rem;
+      width: 74.4rem;
+    }
   }
 }

@@ -33,7 +33,12 @@ import Headline from "../shared/Headline.astro";
 
     <div class="services-intro-bubbles">
       <div class="services-intro-bubbles-inner">
-        <Image src={bubbles} alt="Bubbles" inferSize={true} />
+        <Image
+          src={bubbles}
+          alt="Bubbles"
+          width={bubbles.width}
+          densities={[1.5, 2]}
+        />
       </div>
     </div>
   </Wrapper>

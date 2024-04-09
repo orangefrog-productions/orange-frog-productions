@@ -36,9 +36,6 @@
 
     h1 {
       color: $secondaryColor;
-      // text-shadow:
-      //   0px 0px 10px $secondaryColor,
-      //   0px 0px 25px #fff;
     }
   }
 
@@ -92,8 +89,12 @@
 
   &-callout {
     width: 100%;
-    margin-top: 10rem;
+    margin-top: 2rem;
     text-align: center;
+
+    @media (min-width: 768px) {
+      margin-top: 10rem;
+    }
 
     h3 {
       @extend .hl-one;
@@ -103,10 +104,15 @@
 
   &-bubbles {
     position: absolute;
-    bottom: -10rem;
-    left: 14rem;
+    bottom: 15rem;
+    left: 5rem;
     width: 100%;
     z-index: -1;
+
+    @media (min-width: 768px) {
+      bottom: -10rem;
+      left: 14rem;
+    }
 
     &-inner {
       max-width: 100rem;
