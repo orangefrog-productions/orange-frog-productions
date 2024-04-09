@@ -39,7 +39,7 @@ const CreativeTeam = ({ data }) => {
         </div>
       </div>
 
-      {!!activeBio && (
+      {activeBio !== null && (
         <div
           className={`creative-team-modal ${activeBio !== null ? "creative-team-modal-active" : ""}`}
         >
