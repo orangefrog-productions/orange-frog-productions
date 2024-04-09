@@ -4,12 +4,24 @@
   background-color: $primaryColor;
 
   &-image {
-    width: calc(25% - 5rem);
-    margin-right: 5rem;
+    width: calc(100%);
+    padding: 0 6rem;
+    margin-bottom: 5rem;
+
+    @media (min-width: 768px) {
+      width: calc(25% - 5rem);
+      padding: 0;
+      margin-right: 5rem;
+      margin-bottom: 0;
+    }
   }
 
   &-content {
-    width: calc(75%);
+    width: calc(100%);
+
+    @media (min-width: 768px) {
+      width: calc(75%);
+    }
 
     &-title {
       h2 {

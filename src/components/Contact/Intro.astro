@@ -28,7 +28,12 @@ import Headline from "../shared/Headline.astro";
     </div>
     <div class="services-intro-ribbon">
       <div class="services-intro-ribbon-inner">
-        <Image src={ribbon} alt="ribbon" inferSize={true} />
+        <Image
+          src={ribbon}
+          alt="Ribbon"
+          width={ribbon.width}
+          densities={[1.5, 2]}
+        />
       </div>
     </div>
   </Wrapper>
