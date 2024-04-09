@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import Input from "./form/Input";
 import Textarea from "./form/Textarea";
@@ -12,6 +12,7 @@ import FormSuccess from "./models/FormSuccess";
 import FormSubmitting from "./models/FormSubmitting";
 
 const ContactForm = ({ data }) => {
+  console.log("data", data);
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",
@@ -172,7 +173,18 @@ const ContactForm = ({ data }) => {
           </div>
 
           <div className="contact-us-form-input-wrapper">
-            <Textarea />
+            <Textarea
+              value={formData.questionsComments}
+              handler={(event) => handleOnChange(setFormData, formData, event)}
+              errors={formStatus.errors}
+              size="full"
+              position="last"
+              title="Description of event and ideas"
+              type="text"
+              nameId="description"
+              required={true}
+              rows="5"
+            />
           </div>
 
           <div className="button-wrapper">
@@ -193,6 +205,11 @@ const ContactForm = ({ data }) => {
       {formStatus.errorWarnDisplay && (
         <FormError setFormStatus={setFormStatus} formStatus={formStatus} />
       )}
+      <div
+        className="contact-us-background-image"
+        style={{ backgroundImage: `url(${data.backgroundImage.sourceUrl})` }}
+      />
+      <div className="contact-us-background-overlay" />
     </div>
   );
 };

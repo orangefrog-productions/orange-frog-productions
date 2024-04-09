@@ -1,0 +1,42 @@
+@use "../../../styles/abstracts/" as *;
+@use "../../../styles/global/paragraphs";
+
+.of-form-textarea {
+  width: calc(100% - 7rem);
+  margin: 1rem auto;
+  margin-right: 7rem;
+  padding: 1rem 0;
+
+  label {
+    @extend .p-two;
+    color: $whiteColor;
+    display: block;
+    width: 100%;
+    line-height: 1.5;
+
+    .error-message {
+      display: none;
+    }
+
+    .error-active {
+      display: inline-block;
+      color: red;
+      padding-left: 2rem;
+    }
+
+    textarea {
+      display: block;
+      margin-top: 0.25rem;
+      margin-bottom: 0.5rem;
+      padding: 0.9rem 1rem;
+      background-color: $blackColor;
+      border-radius: 0;
+      color: $whiteColor;
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      border: none;
+      border: 0.1rem $whiteColor solid;
+    }
+  }
+}
