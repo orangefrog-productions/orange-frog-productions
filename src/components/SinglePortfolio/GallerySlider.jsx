@@ -6,7 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./gallerySlider.scss";
 
 const settings = {
-  slidesToShow: 1,
+  slidesToShow: 2,
   slidesToScroll: 1,
   fade: true,
   draggable: true,
@@ -18,6 +18,24 @@ const settings = {
   arrows: false,
   dots: true,
   adaptiveHeight: true,
+  responsive: [
+    {
+      breakpoint: 1025,
+      settings: {
+        centerPadding: "0px",
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        centerPadding: "0px",
+        slidesToShow: 1,
+        slidesToScroll: 1,
+      },
+    },
+  ],
 };
 
 const GallerySlider = ({ gallery }) => {

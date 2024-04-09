@@ -12,7 +12,6 @@ import FormSuccess from "./models/FormSuccess";
 import FormSubmitting from "./models/FormSubmitting";
 
 const ContactForm = ({ data }) => {
-  console.log("data", data);
   const [formData, setFormData] = useState({
     firstname: "",
     lastname: "",

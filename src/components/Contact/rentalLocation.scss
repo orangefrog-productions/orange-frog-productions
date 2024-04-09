@@ -7,10 +7,12 @@
 
   &-rentals {
     width: calc(100%);
+    margin-bottom: 5rem;
 
     @media (min-width: 768px) {
       width: calc(50% - 2.5rem);
       margin-right: 2.5rem;
+      margin-bottom: 0;
     }
   }
 
