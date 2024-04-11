@@ -1,11 +1,13 @@
 @use "../../styles/abstracts/" as *;
 @use "../../styles/global/paragraphs";
+@use "../../styles/global/wrappers";
 
 .swb-experiences {
   width: 100%;
   margin-top: 5rem;
 
   &-wrapper {
+    @extend .wrap-med;
     flex-direction: row-reverse;
   }
 

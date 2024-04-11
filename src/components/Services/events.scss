@@ -1,9 +1,14 @@
 @use "../../styles/abstracts/" as *;
 @use "../../styles/global/paragraphs";
+@use "../../styles/global/wrappers";
 
 .swb-events {
   width: 100%;
   margin-top: 5rem;
+
+  &-wrapper {
+    @extend .wrap-med;
+  }
 
   &-content {
     width: calc(100%);

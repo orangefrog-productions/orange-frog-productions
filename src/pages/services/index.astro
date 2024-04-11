@@ -2,8 +2,8 @@
 import Layout from "../../layouts/Layout.astro";
 import Intro from "../../components/Services/Intro.astro";
 import CapabilitiesSlider from "../../components/Services/CapabilitiesSlider.jsx";
-import Events from "../../components/Services/Events.astro";
-import Experiences from "../../components/Services/Experiences.astro";
+import Events from "../../components/Services/Events.jsx";
+import Experiences from "../../components/Services/Experiences.jsx";
 import Quote from "../../components/Services/Quote.astro";
 import Collaborative from "../../components/Services/Collaborative.astro";
 import Awards from "../../components/Services/Awards.astro";
@@ -44,6 +44,10 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                             eventSectionLinks {
                             linkTitle
                             sectionId
+                            sectionImage {
+                                altText
+                                sourceUrl
+                                }
                             }
                         }
 
@@ -58,6 +62,10 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                             experienceSectionLinks {
                             linkTitle
                             sectionId
+                            sectionImage {
+                                altText
+                                sourceUrl
+                                }
                             }
                         }
 
@@ -149,8 +157,11 @@ const metaImg = page.featuredImage?.node?.sourceUrl
     client:only="react"
     data={page.servicesPage.capabilitiesSliderComponent}
   />
-  <Events data={page.servicesPage.eventsComponent} />
-  <Experiences data={page.servicesPage.experiencesComponent} />
+  <Events client:only="react" data={page.servicesPage.eventsComponent} />
+  <Experiences
+    client:only="react"
+    data={page.servicesPage.experiencesComponent}
+  />
   <Quote data={page.servicesPage.quoteComponent} />
   <Collaborative
     data={page.servicesPage.collaborativeProcessComponent}
