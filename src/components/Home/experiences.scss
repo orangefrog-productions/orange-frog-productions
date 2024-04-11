@@ -35,13 +35,19 @@
 
   .bg-image-parallax {
     position: absolute;
-    top: 14rem;
-    left: 35%;
-    width: calc(143.5rem / 2);
-    height: calc(200rem / 2);
+    top: 20rem;
+    left: 15%;
+    width: calc(143.5rem / 3);
+    height: calc(200rem / 3);
     transform-origin: center center;
-
     z-index: 2;
+
+    @media (min-width: 768px) {
+      top: 14rem;
+      left: 35%;
+      width: calc(143.5rem / 2);
+      height: calc(200rem / 2);
+    }
 
     img {
       display: block !important;
