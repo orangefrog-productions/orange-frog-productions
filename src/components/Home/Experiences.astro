@@ -1,27 +1,52 @@
 ---
-import { Image } from 'astro:assets'
-import Button from '../shared/Button.astro';
-import './experiences.scss';
+import { Image } from "astro:assets";
+import Button from "../shared/Button.astro";
+import "./experiences.scss";
 ---
 
 <div class="experiences" id="experiences-component">
-    <div class="bg-image">
-        <Image src={Astro.props.data.heroImage.sourceUrl} alt={`Switchback Creative`} inferSize={true} loading="eager" />
+  <div class="bg-image">
+    <Image
+      src={Astro.props.data.heroImage.sourceUrl}
+      alt={`Switchback Creative`}
+      inferSize={true}
+      loading="eager"
+    />
+  </div>
+  <div class="bg-image-parallax">
+    <Image
+      src={Astro.props.data.heroImageParallax.sourceUrl}
+      alt={`Switchback Creative`}
+      inferSize={true}
+      loading="eager"
+    />
+  </div>
+  <div class="bg-outline"></div>
+  <div class="experiences-content">
+    <div
+      class="experiences-content-paragraph"
+      set:html={Astro.props.data.content}
+    />
+    <div class="experiences-content-button">
+      <Button href={Astro.props.data.buttonLink.uri}
+        >{Astro.props.data.buttonText}</Button
+      >
     </div>
-    <div class="bg-outline"></div>
-    <div class="experiences-content">
-        <div class="experiences-content-paragraph" set:html={Astro.props.data.content} />
-        <div class="experiences-content-button">
-            <Button href={Astro.props.data.buttonLink.uri}>{Astro.props.data.buttonText}</Button>
-        </div>
-    </div>
+  </div>
 
-    <div class="experiences-img-link">
-        <div class="experiences-img-link-bg">
-            <Image src={Astro.props.data.linkImage.sourceUrl} alt={`Switchback Creative`} inferSize={true} loading="eager" />
-        </div>
-        <div class="experiences-img-link-btn">
-            <Button href={Astro.props.data.linkImageButtonLink.uri}>{Astro.props.data.linkImageButtonText}</Button>
-        </div>
+  <div class="experiences-img-link">
+    <div class="experiences-img-link-bg">
+      <Image
+        src={Astro.props.data.linkImage.sourceUrl}
+        alt={`Switchback Creative`}
+        inferSize={true}
+        loading="eager"
+      />
     </div>
+    <div class="experiences-img-link-btn">
+      <Button href={Astro.props.data.linkImageButtonLink.uri}
+        >{Astro.props.data.linkImageButtonText}</Button
+      >
+    </div>
+  </div>
 </div>

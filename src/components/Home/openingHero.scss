@@ -30,6 +30,23 @@
     }
   }
 
+  .bg-image-parallax {
+    position: absolute;
+    bottom: -7rem;
+    left: 0;
+    width: calc(204.8rem);
+    height: calc(36.1rem);
+    transform-origin: center center;
+    z-index: 2;
+
+    img {
+      display: block !important;
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover;
+    }
+  }
+
   .bg-outline {
     position: absolute;
     top: 0;

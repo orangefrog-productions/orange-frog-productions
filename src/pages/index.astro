@@ -25,8 +25,12 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 							homeOpeningButtonText
 							homeOpeningTitle
 							homeOpeningImage {
-							altText
-							sourceUrl
+							  altText
+							  sourceUrl
+							}
+              homeOpeningImageParallax {
+							  altText
+							  sourceUrl
 							}
 						}
 						ceoFounderComponent {
@@ -78,6 +82,10 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 								altText
 								sourceUrl
 							}
+              heroImageParallax {
+								altText
+								sourceUrl
+							}
 							linkImage {
 								altText
 								sourceUrl
@@ -88,7 +96,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 									uri
 								}
 							}
-        					linkImageButtonText
+        			linkImageButtonText
 						}
 					}
 				}
@@ -161,11 +169,32 @@ const metaImg = page.featuredImage?.node?.sourceUrl
         const bgOpeningContainer = document.querySelector(
           "#opening-home-hero .bg-image",
         );
+
+        const bgOpeningParallax = document.querySelector(
+          "#opening-home-hero .bg-image-parallax",
+        );
         gsap.fromTo(
           bgOpeningContainer,
           { x: "-15%", ease: "none" },
           {
             x: "15%",
+            ease: "none",
+            scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#opening-home-hero",
+              start: "top 100%",
+              end: "bottom",
+              markers: false,
+              scrub: true,
+              toggleClass: "active",
+            },
+          },
+        );
+        gsap.fromTo(
+          bgOpeningParallax,
+          { x: "-13%", ease: "none" },
+          {
+            x: "13%",
             ease: "none",
             scrollTrigger: {
               containerAnimation: mainScroll,
@@ -304,11 +333,32 @@ const metaImg = page.featuredImage?.node?.sourceUrl
         const bgExpContainer = document.querySelector(
           "#experiences-component .bg-image",
         );
+        const bgExpParallax = document.querySelector(
+          "#experiences-component .bg-image-parallax",
+        );
         gsap.fromTo(
           bgExpContainer,
           { x: "-15%", ease: "none" },
           {
             x: "15%",
+            ease: "none",
+            scrollTrigger: {
+              containerAnimation: mainScroll,
+              trigger: "#experiences-component",
+              start: "top 100%",
+              end: "bottom",
+              markers: false,
+              scrub: true,
+              toggleClass: "active",
+            },
+          },
+        );
+
+        gsap.fromTo(
+          bgExpParallax,
+          { x: "50%", ease: "none" },
+          {
+            x: "-70%",
             ease: "none",
             scrollTrigger: {
               containerAnimation: mainScroll,
