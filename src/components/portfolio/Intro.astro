@@ -7,14 +7,16 @@ import bubbles from "../Home/assets/bubbles.png";
 import Headline from "../shared/Headline.astro";
 ---
 
-<div class="services-intro">
-  <Wrapper wrapType="stand" classes="services-intro-wrapper">
-    <div class="services-intro-title">
-      <Headline ele="h1" hlstyle="one">{Astro.props.data.mainTitle}</Headline>
+<div class="portfolio-intro">
+  <Wrapper wrapType="stand" classes="portfolio-intro-wrapper">
+    <div class="portfolio-intro-title">
+      <Headline id="Intro-title" ele="h1" hlstyle="one"
+        >{Astro.props.data.mainTitle}</Headline
+      >
     </div>
-    <div class="services-intro-content">
-      <div class="services-intro-content-frog">
-        <div class="services-intro-content-glow"></div>
+    <div class="portfolio-intro-content">
+      <div class="portfolio-intro-content-frog">
+        <div class="portfolio-intro-content-glow"></div>
         <Image
           src={Astro.props.logo.sourceUrl}
           alt="Orange Frog Productions Inc."
@@ -22,19 +24,115 @@ import Headline from "../shared/Headline.astro";
         />
       </div>
       <div
-        class="services-intro-content-para"
+        id="main-intro-text"
+        class="portfolio-intro-content-para"
         set:html={Astro.props.data.mainContent}
       />
     </div>
 
-    <div class="services-intro-callout">
-      <h3 set:html={Astro.props.data.mainCallout} />
+    <div class="portfolio-intro-callout">
+      <h3 id="main-title-callout" set:html={Astro.props.data.mainCallout} />
     </div>
 
-    <div class="services-intro-bubbles">
-      <div class="services-intro-bubbles-inner">
-        <Image src={bubbles} alt="Bubbles" inferSize={true} />
+    <div class="portfolio-intro-bubbles">
+      <div class="portfolio-intro-bubbles-inner">
+        <Image
+          src={bubbles}
+          alt="Bubbles"
+          width={bubbles.width}
+          densities={[1.5, 2]}
+        />
       </div>
     </div>
   </Wrapper>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { SplitText } from "gsap/SplitText";
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(SplitText);
+
+  const container = document.querySelector(".portfolio-intro");
+  const bubbles = document.querySelector(".portfolio-intro-bubbles-inner");
+
+  const mainTitle = new SplitText("#Intro-title", {
+    type: "words, chars",
+  });
+
+  const mainIntroPara = document.querySelectorAll("#main-intro-text p");
+
+  const mainCallout = new SplitText("#main-title-callout", {
+    type: "words, chars",
+  });
+
+  const allDoneTitle = () => {
+    mainTitle.revert();
+  };
+
+  const allDoneCallout = () => {
+    mainCallout.revert();
+  };
+
+  gsap.set("#main-title-callout", { perspective: 400 });
+
+  gsap.from(mainTitle.chars, {
+    opacity: 0,
+    rotation: -100,
+    y: -100,
+    duration: 0.4,
+    ease: "back.out(1.7)",
+    stagger: {
+      each: 0.02,
+    },
+    onComplete: allDoneTitle,
+  });
+
+  gsap.from([mainIntroPara], {
+    autoAlpha: 0,
+    y: 30,
+    duration: 0.75,
+    delay: 0.75,
+    stagger: {
+      each: 0.5,
+    },
+  });
+
+  gsap.from(mainCallout.chars, {
+    opacity: 0,
+    scale: 0,
+    rotationX: 180,
+    y: 80,
+    duration: 0.8,
+    transformOrigin: "0% 50% -%0",
+    ease: "back.out(1.7)",
+    scrollTrigger: {
+      start: "top -10%",
+      markers: false,
+      trigger: container,
+    },
+    stagger: {
+      each: 0.01,
+    },
+    onComplete: allDoneCallout,
+  });
+
+  gsap.fromTo(
+    bubbles,
+    { x: "3%", y: "-2%", scale: 0.9, ease: "none" },
+    {
+      x: "-3%",
+      y: "2%",
+      scale: 1,
+      ease: "none",
+      scrollTrigger: {
+        trigger: container,
+        start: "top 0%",
+        end: "bottom",
+        markers: false,
+        scrub: 5,
+      },
+    },
+  );
+</script>
