@@ -35,6 +35,10 @@
         width: calc((100% / 5) - 2rem);
         margin: 0 1rem;
       }
+
+      a {
+        cursor: pointer;
+      }
     }
   }
 }

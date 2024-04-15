@@ -16,11 +16,26 @@ import "./member.scss";
           return (
             <div class="member-logos-logo">
               <div class="member-logos-logo-wrap">
-                <Image
-                  src={logo.logo.sourceUrl}
-                  alt={logo.logo.altText}
-                  inferSize={true}
-                />
+                {logo.externalUrl !== "" ? (
+                  <a
+                    target="_blank"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={logo.externalUrl}
+                  >
+                    <Image
+                      src={logo.logo.sourceUrl}
+                      alt={logo.logo.altText}
+                      inferSize={true}
+                    />
+                  </a>
+                ) : (
+                  <Image
+                    src={logo.logo.sourceUrl}
+                    alt={logo.logo.altText}
+                    inferSize={true}
+                  />
+                )}
               </div>
             </div>
           );
