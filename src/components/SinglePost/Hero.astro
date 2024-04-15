@@ -19,6 +19,7 @@ import Headline from "../shared/Headline.astro";
           height="1500"
         />
       </div>
+      <div class="post-hero-overlay"></div>
     </div>
 
     <div class="post-hero-title">
@@ -26,3 +27,24 @@ import Headline from "../shared/Headline.astro";
     </div>
   </Wrapper>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const heroOverlay = document.querySelector(".post-hero-overlay");
+  const heroTitle = document.querySelector(".post-hero-title");
+
+  gsap.fromTo(
+    heroOverlay,
+    { scaleX: 1 },
+    { scaleX: 0, delay: 0.25, duration: 1, transformOrigin: "center right" },
+  );
+
+  gsap.fromTo(
+    heroTitle,
+    { autoAlpha: 0, x: 300 },
+    { delay: 1.25, duration: 1, autoAlpha: 1, x: 0 },
+  );
+</script>
