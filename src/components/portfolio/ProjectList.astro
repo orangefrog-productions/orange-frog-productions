@@ -27,7 +27,7 @@ const classProjects = Astro.props.data.map((item, index) => {
       classProjects.map((proj) => {
         return (
           <div class={`projects-item ${proj.className}`}>
-            <a href={`/portfolio/${proj.slug}`}>
+            <a class="projects-item-wrap" href={`/portfolio/${proj.slug}`}>
               <div class="projects-item-image">
                 <Image
                   src={proj.projects.featuredImage.sourceUrl}
@@ -47,3 +47,28 @@ const classProjects = Astro.props.data.map((item, index) => {
     }
   </Wrapper>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+  const listItems = [...document.querySelectorAll(".projects-item ")];
+  listItems.forEach((item, index) => {
+    const itemWrap = item.querySelector(".projects-item-wrap");
+    gsap.fromTo(
+      itemWrap,
+      { autoAlpha: 0, y: 25 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.2,
+        delay: index % 2 === 0 ? 0 : 0.2,
+        scrollTrigger: {
+          start: "top 35%",
+          markers: false,
+          trigger: item,
+        },
+      },
+    );
+  });
+</script>

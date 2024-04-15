@@ -19,6 +19,12 @@
       @extend .p-one;
       color: $primaryColor;
       text-transform: uppercase;
+
+      a {
+        @extend .p-one;
+        color: $primaryColor;
+        text-transform: uppercase;
+      }
     }
   }
 

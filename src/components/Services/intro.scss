@@ -5,8 +5,8 @@
 @keyframes glowing {
   from {
     box-shadow:
-      0 0 10px #fff,
-      0 0 20px #fff,
+      0 0 10px #c9afaf,
+      0 0 20px #c9afaf,
       0 0 30px #f0f,
       0 0 40px #0ff,
       0 0 50px #e60073,
@@ -15,7 +15,7 @@
   }
   to {
     box-shadow:
-      0 0 20px #fff,
+      0 0 20px #c9afaf,
       0 0 30px #ff4da6,
       0 0 40px #ff4da6,
       0 0 50px #ff4da6,
@@ -68,7 +68,7 @@
       width: 9rem;
       height: 9rem;
       border-radius: 50%;
-      background-color: #fff;
+      background-color: #c9afaf;
       animation: glowing 1s ease-in-out infinite alternate;
       z-index: -1;
     }
