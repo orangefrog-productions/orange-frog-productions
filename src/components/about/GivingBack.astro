@@ -14,12 +14,28 @@ import "./givingBack.scss";
       Astro.props.data.logos.map((logo) => {
         return (
           <div class="giving-back-logo">
-            <Image
-              src={logo.logo.sourceUrl}
-              alt={logo.logo.altText}
-              width="500"
-              height="500"
-            />
+            {logo.url !== "" ? (
+              <a
+                target="_blank"
+                target="_blank"
+                rel="noopener noreferrer"
+                href={logo.url}
+              >
+                <Image
+                  src={logo.logo.sourceUrl}
+                  alt={logo.logo.altText}
+                  width="500"
+                  height="500"
+                />
+              </a>
+            ) : (
+              <Image
+                src={logo.logo.sourceUrl}
+                alt={logo.logo.altText}
+                width="500"
+                height="500"
+              />
+            )}
           </div>
         );
       })

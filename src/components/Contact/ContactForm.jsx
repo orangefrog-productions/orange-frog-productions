@@ -173,7 +173,7 @@ const ContactForm = ({ data }) => {
 
           <div className="contact-us-form-input-wrapper">
             <Textarea
-              value={formData.questionsComments}
+              value={formData.description}
               handler={(event) => handleOnChange(setFormData, formData, event)}
               errors={formStatus.errors}
               size="full"
