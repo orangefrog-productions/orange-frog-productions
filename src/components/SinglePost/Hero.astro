@@ -39,12 +39,12 @@ import Headline from "../shared/Headline.astro";
   gsap.fromTo(
     heroOverlay,
     { scaleX: 1 },
-    { scaleX: 0, delay: 0.25, duration: 1, transformOrigin: "center right" },
+    { scaleX: 0, delay: 0.5, duration: 0.75, transformOrigin: "center right" },
   );
 
   gsap.fromTo(
     heroTitle,
     { autoAlpha: 0, x: 300 },
-    { delay: 1.25, duration: 1, autoAlpha: 1, x: 0 },
+    { delay: 1.25, duration: 0.75, autoAlpha: 1, x: 0 },
   );
 </script>
