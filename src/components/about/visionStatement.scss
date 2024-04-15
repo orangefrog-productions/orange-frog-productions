@@ -1,5 +1,6 @@
 @use "../../styles/abstracts/" as *;
 @use "../../styles/global/headlines";
+@use "../../styles/global/paragraphs";
 
 .vision {
   padding: 2.5rem 0;
@@ -46,7 +47,7 @@
     }
 
     p {
-      @extend .hl-four;
+      @extend .p-one;
       color: $primaryColor;
 
       &:last-of-type {
