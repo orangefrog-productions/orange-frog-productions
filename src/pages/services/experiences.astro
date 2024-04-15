@@ -30,6 +30,12 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                             altText
                             sourceUrl
                         }
+                        images {
+                          image {
+                            altText
+                            sourceUrl
+                          }
+                        }
                     }
                 }
             }

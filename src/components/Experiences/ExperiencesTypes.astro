@@ -1,6 +1,6 @@
 ---
-import { Image } from "astro:assets";
 import "./experiencesTypes.scss";
+import EventImageSlider from "../Events/EventImageSlider";
 ---
 
 <div class="experience-types">
@@ -27,14 +27,7 @@ import "./experiencesTypes.scss";
               </div>
             </div>
             <div class="experience-type-image">
-              <div class="experience-type-image-wrapper">
-                <Image
-                  src={section.image.sourceUrl}
-                  alt={section.image.altText}
-                  width="1500"
-                  height="1500"
-                />
-              </div>
+              <EventImageSlider client:only="react" images={section.images} />
             </div>
           </div>
         );
