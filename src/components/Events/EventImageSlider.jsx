@@ -18,7 +18,6 @@ const settings = {
 };
 
 const EventImageSlider = ({ images }) => {
-  console.log("images", images);
   return (
     <div className="event-images-slider">
       <Slider className="event-images-slider-wrap" {...settings}>
