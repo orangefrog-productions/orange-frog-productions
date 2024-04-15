@@ -1,5 +1,5 @@
 import "./formError.scss";
-import errorImg from "../assets/error.png";
+import errorImg from "../assets/error.gif";
 
 import { handleErrorModalClose } from "../utils/formFunctions";
 
