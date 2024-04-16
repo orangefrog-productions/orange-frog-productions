@@ -1,0 +1,30 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import "./portfolioNavigation.scss";
+
+console.log(Astro.props.nav);
+---
+
+<div class="port-nav">
+  <Wrapper classes="port-nav-wrapper">
+    <nav>
+      {
+        Astro.props.nav.next && (
+          <a href={`/portfolio/${Astro.props.nav.next.slug}`}>
+            <span>&lt;</span>
+            {Astro.props.nav.next.title}
+          </a>
+        )
+      }
+      <a href="/portfolio">Our Work</a>
+      {
+        Astro.props.nav.prev && (
+          <a href={`/portfolio/${Astro.props.nav.prev.slug}`}>
+            {Astro.props.nav.prev.title}
+            <span>&gt;</span>
+          </a>
+        )
+      }
+    </nav>
+  </Wrapper>
+</div>

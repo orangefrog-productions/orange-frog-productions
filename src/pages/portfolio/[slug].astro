@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import HeroImage from "../../components/SinglePortfolio/HeroImage.astro";
 import MainContent from "../../components/SinglePortfolio/MainContent.astro";
 import GallerySideScroll from "../../components/SinglePortfolio/GallerySideScroll.astro";
+import PortfolioNavigation from "../../components/SinglePortfolio/PortfolioNavigation.astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -17,6 +18,7 @@ export async function getStaticPaths() {
                 nodes {
                     slug
                     uri
+                    title
                 }
             }
         }
@@ -25,9 +27,16 @@ export async function getStaticPaths() {
   });
 
   const { data } = await response.json();
-  return data.project.nodes.map((proj) => {
+  return data.project.nodes.map((proj, index) => {
     return {
       params: { slug: `${proj.slug}` },
+      props: {
+        next: index === 0 ? null : data.project.nodes[index - 1],
+        prev:
+          index === data.project.nodes.length - 1
+            ? null
+            : data.project.nodes[index + 1],
+      },
     };
   });
 }
@@ -81,4 +90,5 @@ const {
     content={projects.projects.projectDescription}
   />
   <GallerySideScroll gallery={projects.projects.projectGallerySlider} />
+  <PortfolioNavigation nav={Astro.props} />
 </Layout>
