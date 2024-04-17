@@ -1,8 +1,46 @@
 @use "../../styles/global/buttons";
 @use "../../styles/global/wrappers";
+@use "../../styles/global/paragraphs";
+@use "../../styles//abstracts/" as *;
 
 .projects-more {
   width: 100%;
+
+  &-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 100;
+
+    &-image {
+      width: 100%;
+      text-align: center;
+
+      img {
+        width: 15rem;
+        height: 15rem;
+      }
+    }
+
+    &-message {
+      width: 100%;
+      text-align: center;
+
+      p {
+        @extend .p-one;
+        text-transform: uppercase;
+        color: $whiteColor;
+      }
+    }
+  }
 
   &-wrapper {
     @extend .wrap-med;

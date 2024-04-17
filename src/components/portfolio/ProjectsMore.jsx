@@ -1,8 +1,10 @@
 import { useState } from "react";
 import ProjectList from "./ProjectList.jsx";
 import "./projectsMore.scss";
+import loadingSrc from "../Contact/assets/loading.gif";
 
 const ProjectsMore = ({ total, current }) => {
+  console.log("loadingSrc", loadingSrc);
   const [profolioState, setPortfolioState] = useState({
     current: current,
     total: total,
@@ -56,19 +58,20 @@ const ProjectsMore = ({ total, current }) => {
       data: { nextProjects },
     } = await response.json();
 
-    setPortfolioState((prevState) => {
-      return {
-        ...prevState,
-        current: prevState.current + nextProjects.nodes.length,
-        projectsDisplay: [...prevState.projectsDisplay, ...nextProjects.nodes],
-        loadingMore: false,
-      };
-    });
-
-    console.log("nextProjects: ", nextProjects);
+    setTimeout(() => {
+      setPortfolioState((prevState) => {
+        return {
+          ...prevState,
+          current: prevState.current + nextProjects.nodes.length,
+          projectsDisplay: [
+            ...prevState.projectsDisplay,
+            ...nextProjects.nodes,
+          ],
+          loadingMore: false,
+        };
+      });
+    }, 1000);
   };
-
-  console.log("profolioState: ", profolioState);
 
   return (
     <div className="projects-more">
@@ -76,7 +79,21 @@ const ProjectsMore = ({ total, current }) => {
         <ProjectList projects={profolioState.projectsDisplay} />
       )}
       <div className="projects-more-wrapper">
-        {profolioState.loadingMore && <h1>Loading.....</h1>}
+        {profolioState.loadingMore && (
+          <div className="projects-more-loading">
+            <div className="projects-more-loading-image">
+              <img
+                src={loadingSrc.src}
+                width={loadingSrc.width}
+                height={loadingSrc.height}
+                alt="loading...."
+              />
+            </div>
+            <div className="projects-more-loading-message">
+              <p>Loading More Projects.....</p>
+            </div>
+          </div>
+        )}
         <button
           disabled={profolioState.current >= profolioState.total}
           type="button"
