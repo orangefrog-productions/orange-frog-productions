@@ -49,3 +49,32 @@ import "./collaborative.scss";
   <div class="bg-image"></div>
   <div class="bg-overlay"></div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+  const testContainer = document.querySelector(".collab");
+  const testimonials = document.querySelectorAll(".collab-testimonials-single");
+
+  if (testimonials && testContainer) {
+    gsap.fromTo(
+      testimonials,
+      { autoAlpha: 0, y: 100 },
+      {
+        duration: 1,
+        autoAlpha: 1,
+        y: 0,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          start: "top 10%",
+          markers: false,
+          trigger: testContainer,
+        },
+        stagger: {
+          each: 0.5,
+        },
+      },
+    );
+  }
+</script>
