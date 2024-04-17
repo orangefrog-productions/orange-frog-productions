@@ -1,0 +1,14 @@
+@use "../../styles/global/buttons";
+@use "../../styles/global/wrappers";
+
+.projects-more {
+  width: 100%;
+
+  &-wrapper {
+    @extend .wrap-med;
+  }
+
+  button {
+    @extend .btn-two;
+  }
+}

@@ -1,8 +1,13 @@
 @use "../../styles/abstracts/" as *;
 @use "../../styles/global/paragraphs";
+@use "../../styles/global/wrappers";
 
 .projects {
   width: 100%;
+
+  &-wrapper {
+    @extend .wrap-med;
+  }
 
   &-item {
     position: relative;

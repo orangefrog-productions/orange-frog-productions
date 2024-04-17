@@ -3,6 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Intro from "../../components/portfolio/Intro.astro";
 import ProjectsFirst from "../../components/portfolio/ProjectsFirst.astro";
 import ProjectList from "../../components/portfolio/ProjectList.astro";
+import ProjectsMore from "../../components/portfolio/ProjectsMore.jsx";
 
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
@@ -32,9 +33,8 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 }
             }
 
-
-            project {
-                nodes {
+            firstProject: project(first: 1) {
+              nodes {
                     title
                     slug
                     projects {
@@ -47,6 +47,24 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                 }
             }
 
+            restProject: project(where: {offsetPagination: {offset: 1, size: 2}}) {
+              nodes {
+                    title
+                    slug
+                    projects {
+                        projectCategory
+                        featuredImage {
+                            sourceUrl
+                            altText
+                        }
+                    }
+                }
+                pageInfo {
+                offsetPagination {
+                  total
+                }
+              }
+            }
 
 		}
 		`,
@@ -54,7 +72,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 });
 
 const {
-  data: { page, logoOptions, project },
+  data: { page, logoOptions, firstProject, restProject },
 } = await response.json();
 
 const title = page.seo?.title ? page.seo?.title : null;
@@ -62,7 +80,6 @@ const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
 const metaImg = page.featuredImage?.node?.sourceUrl
   ? page.featuredImage?.node?.sourceUrl
   : null;
-const projectsRest = project.nodes.slice(1);
 ---
 
 <Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
@@ -70,6 +87,11 @@ const projectsRest = project.nodes.slice(1);
     data={page.portfolioPage.introComponent}
     logo={logoOptions.logoOptions.frogLogo}
   />
-  <ProjectsFirst data={project.nodes[0]} />
-  <ProjectList data={[...projectsRest, ...projectsRest]} />
+  <ProjectsFirst data={firstProject.nodes[0]} />
+  <ProjectList data={restProject.nodes} />
+  <ProjectsMore
+    client:only="react"
+    total={restProject.pageInfo.offsetPagination.total}
+    current={3}
+  />
 </Layout>
