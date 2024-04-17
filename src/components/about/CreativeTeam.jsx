@@ -1,8 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./creativeTeam.scss";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const CreativeTeam = ({ data }) => {
   const [activeBio, setActiveBio] = useState(null);
+
+  useEffect(() => {
+    const trigger = document.querySelector(".creative-team");
+    const listItems = [
+      ...document.querySelectorAll(".creative-team-list-item"),
+    ];
+    gsap.fromTo(
+      listItems,
+      { autoAlpha: 0, y: 25 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        stagger: {
+          each: 0.25,
+        },
+        scrollTrigger: {
+          start: "top 25%",
+          markers: false,
+          trigger: trigger,
+        },
+      },
+    );
+  }, []);
+
   return (
     <div className="creative-team">
       <div className="creative-team-wrapper">
@@ -78,7 +105,7 @@ const CreativeTeam = ({ data }) => {
         </div>
       )}
 
-      {!!activeBio && (
+      {activeBio >= 0 && activeBio !== null && (
         <div
           className="creative-team-blur"
           onClick={() => {
