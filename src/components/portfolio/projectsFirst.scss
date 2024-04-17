@@ -50,5 +50,12 @@
         text-transform: uppercase;
       }
     }
+
+    &:hover {
+      .project-first-item-title {
+        transition: all 0.3s ease;
+        background-color: $primaryColor;
+      }
+    }
   }
 }
