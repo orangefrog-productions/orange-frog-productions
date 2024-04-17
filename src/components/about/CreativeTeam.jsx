@@ -22,8 +22,8 @@ const CreativeTeam = ({ data }) => {
           each: 0.25,
         },
         scrollTrigger: {
-          start: "top 25%",
-          markers: true,
+          start: "top 15%",
+          markers: false,
           trigger: trigger,
         },
       },
