@@ -14,7 +14,7 @@ import "./process.scss";
     <div class="process-intro" set:html={Astro.props.data.intro} />
     <div class="process-steps">
       {
-        Astro.props.data.steps.map((step) => {
+        Astro.props.data.steps.map((step, index) => {
           return (
             <div class="process-steps-step">
               <Image
@@ -23,6 +23,9 @@ import "./process.scss";
                 width="750"
                 height="750"
               />
+              {index > 0 && (
+                <span class="process-steps-step-arrow">&rarr;</span>
+              )}
             </div>
           );
         })
@@ -34,3 +37,55 @@ import "./process.scss";
     <Image src={ribbonSrc} alt="" width="2000" height="300" />
   </div>
 </div>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const triggerContainer = document.querySelector(".process-steps");
+  const steps = document.querySelectorAll(".process-steps-step img");
+  const stepsArrow = document.querySelectorAll(".process-steps-step-arrow");
+
+  if (triggerContainer && steps) {
+    gsap.fromTo(
+      steps,
+      { autoAlpha: 0, y: 100 },
+      {
+        duration: 1,
+        autoAlpha: 1,
+        y: 0,
+        ease: "power2.out",
+        scrollTrigger: {
+          start: "top 30%",
+          markers: false,
+          trigger: triggerContainer,
+        },
+        stagger: {
+          each: 0.5,
+        },
+      },
+    );
+
+    gsap.fromTo(
+      stepsArrow,
+      { autoAlpha: 0, scale: 4 },
+      {
+        transformOrigin: "center center",
+        delay: 1.5,
+        duration: 1,
+        autoAlpha: 1,
+        scale: 1,
+        ease: "back.out(1.7)",
+        scrollTrigger: {
+          start: "top 10%",
+          markers: false,
+          trigger: triggerContainer,
+        },
+        stagger: {
+          each: 0.5,
+        },
+      },
+    );
+  }
+</script>

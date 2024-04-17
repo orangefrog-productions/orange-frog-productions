@@ -61,7 +61,7 @@
       }
 
       &:nth-of-type(1n + 2) {
-        &::before {
+        .process-steps-step-arrow {
           position: absolute;
           top: 50%;
           left: -1.5rem;
@@ -73,7 +73,7 @@
       }
 
       &:nth-of-type(3) {
-        &::before {
+        .process-steps-step-arrow {
           @media (max-width: 767px) {
             position: absolute;
             top: -4rem;
