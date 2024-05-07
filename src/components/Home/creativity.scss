@@ -15,6 +15,17 @@
     min-height: 75rem;
   }
 
+  &-strip {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: -1rem;
+    width: 2rem;
+    height: 100%;
+    background-color: #000;
+    z-index: 100;
+  }
+
   .bg-image {
     position: absolute;
     top: 0;
@@ -81,9 +92,9 @@
       }
 
       @media (min-width: 1400px) {
-        width: calc(50% - 24rem);
+        width: calc(50% - 32rem);
         max-width: 80rem;
-        margin: 2rem 22rem;
+        margin: 2rem 30rem;
       }
     }
 
