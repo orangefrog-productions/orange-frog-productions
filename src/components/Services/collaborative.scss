@@ -6,6 +6,10 @@ $bg-img: url("./assets/quote-bg.jpg");
 .collab {
   position: relative;
 
+  &-test-link {
+    margin-top: 2.5rem;
+  }
+
   .bg-image {
     position: absolute;
     top: 0;

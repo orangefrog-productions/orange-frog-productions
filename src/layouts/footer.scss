@@ -80,6 +80,28 @@
         margin-left: 0;
         margin-right: 2rem;
       }
+
+      &-contact {
+        width: 100%;
+        margin-top: 2rem;
+        text-align: center;
+
+        p {
+          @extend .p-three;
+          color: $whiteColor;
+          margin-bottom: 0;
+        }
+
+        a {
+          @extend .p-three;
+          display: inline-block;
+          color: $whiteColor;
+
+          &:hover {
+            color: $primaryColor;
+          }
+        }
+      }
     }
 
     &-links {

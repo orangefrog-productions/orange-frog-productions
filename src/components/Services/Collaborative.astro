@@ -13,7 +13,7 @@ import "./collaborative.scss";
     </div>
     <div class="collab-content" set:html={Astro.props.data.mainContent} />
     <div class="collab-button">
-      <Button href={Astro.props.data.buttonLink.uri}
+      <Button href={`${Astro.props.data.buttonLink.uri}#our-process`}
         >{Astro.props.data.buttonText}</Button
       >
     </div>
@@ -42,6 +42,9 @@ import "./collaborative.scss";
               </div>
             );
           })}
+          <div class="collab-test-link">
+            <Button href="/testimonials">Client Testimonials</Button>
+          </div>
         </div>
       )
     }
