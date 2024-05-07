@@ -38,7 +38,7 @@ const ProjectList = ({ projects }) => {
                 </div>
                 <div className="projects-item-title">
                   <h3>{proj.title}</h3>
-                  <p>{proj.projects.projectCategory}</p>
+                  {/* <p>{proj.projects.projectCategory}</p> */}
                 </div>
               </a>
             </div>

@@ -178,7 +178,7 @@ const ContactForm = ({ data }) => {
               errors={formStatus.errors}
               size="full"
               position="last"
-              title="Description of event and ideas"
+              title="What are you looking for?"
               type="text"
               nameId="description"
               required={true}

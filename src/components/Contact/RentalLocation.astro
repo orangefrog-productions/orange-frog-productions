@@ -32,10 +32,21 @@ import Headline from "../shared/Headline.astro";
           >{Astro.props.data.locationTitle}</Headline
         >
       </div>
-      <div
-        class="loc-rent-location-content"
-        set:html={Astro.props.data.locationContent}
-      />
+      <div class="loc-rent-location-content">
+        <a
+          class="loc-rent-location-content-location"
+          target="_blank"
+          rel="noopener noreferrer"
+          href={Astro.props.data.locationGoogleUrl}
+          set:html={Astro.props.data.locationContent}
+        />
+
+        <div
+          class="loc-rent-location-content-hours"
+          set:html={Astro.props.data.locationContentHoursPhone}
+        />
+      </div>
+
       <div class="loc-rent-location-map">
         <a
           target="_blank"

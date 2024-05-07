@@ -44,4 +44,18 @@
   a {
     background-color: $blackColor;
   }
+
+  .loc-rent-location-content {
+    a {
+      @extend .p-three;
+      display: inline-block;
+      margin-bottom: 2.5rem;
+      color: $whiteColor;
+      background-color: transparent;
+
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+  }
 }

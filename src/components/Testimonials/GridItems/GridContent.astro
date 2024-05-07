@@ -5,8 +5,8 @@
 <div class="grid-item">
   <div class="grid-item-content">
     <div set:html={Astro.props.test.testimonialContent.testimonialQuote} />
-    <div>
-      <p>&#8211; {Astro.props.test.title}</p>
+    <div class="grid-item-content-names">
+      <p>{Astro.props.test.title}</p>
       <p>{Astro.props.test.testimonialContent.testimonialCompany}</p>
     </div>
   </div>

@@ -30,6 +30,12 @@
         @extend .p-four;
         color: $whiteColor;
       }
+
+      &-names {
+        p {
+          margin-bottom: 0;
+        }
+      }
     }
 
     &-image {
