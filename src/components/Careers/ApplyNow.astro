@@ -7,9 +7,9 @@ import "./applyNow.scss";
 ---
 
 <div class="apply-now">
-  <Wrapper>
+  <Wrapper classes="apply-now-wrapper">
     <div class="apply-now-image">
-      <div>
+      <div class="apply-now-image-wrap">
         <Image
           src={Astro.props.data.image.sourceUrl}
           alt={Astro.props.data.image.altText}
@@ -17,6 +17,7 @@ import "./applyNow.scss";
           height="1000"
         />
       </div>
+      <div class="apply-now-image-overlay"></div>
     </div>
     <div class="apply-now-content">
       <div class="apply-now-content-title">
