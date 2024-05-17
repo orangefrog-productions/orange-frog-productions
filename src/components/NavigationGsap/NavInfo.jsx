@@ -49,11 +49,15 @@ const NavInfo = ({ contactInfo }) => {
           </a>
         </p>
       </div>
-      <div
+      <a
         className="info-address"
-        dangerouslySetInnerHTML={{ __html: contactInfo.streetLocation }}
-      />
-
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Clicking this link will open a new browser window."
+        href={contactInfo.googleMapsLink}
+      >
+        <div dangerouslySetInnerHTML={{ __html: contactInfo.streetLocation }} />
+      </a>
       <div
         className="info-hours"
         dangerouslySetInnerHTML={{ __html: contactInfo.hoursOfOperation }}
