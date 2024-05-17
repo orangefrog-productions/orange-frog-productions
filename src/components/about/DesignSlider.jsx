@@ -15,6 +15,7 @@ const settings = {
   centerMode: false,
   arrows: false,
   dots: true,
+  pauseOnHover: true,
 };
 
 const DesignSlider = ({ data }) => {
@@ -22,16 +23,26 @@ const DesignSlider = ({ data }) => {
     <div className="design-slider">
       <Slider className="design-slider-wrap" {...settings}>
         {data.slideImages.map((slide, index) => {
-          return (
-            <div className="design-slider-slide" key={index}>
-              <div className="design-slider-slide-inner">
-                <img
-                  src={slide.slideImage.sourceUrl}
-                  alt={slide.slideImage.altText}
-                />
+          if (slide.imageOrVideo === "image") {
+            return (
+              <div className="design-slider-slide" key={index}>
+                <div className="design-slider-slide-inner">
+                  <img
+                    src={slide.slideImage.sourceUrl}
+                    alt={slide.slideImage.altText}
+                  />
+                </div>
               </div>
-            </div>
-          );
+            );
+          } else {
+            return (
+              <div className="design-slider-slide" key={index}>
+                <div className="design-slider-slide-video">
+                  <div dangerouslySetInnerHTML={{ __html: slide.slideVideo }} />
+                </div>
+              </div>
+            );
+          }
         })}
       </Slider>
     </div>

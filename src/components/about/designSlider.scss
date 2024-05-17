@@ -77,5 +77,14 @@
         object-fit: cover;
       }
     }
+
+    &-video {
+      max-width: 130rem;
+      margin: 0 auto;
+
+      iframe {
+        height: 100%;
+      }
+    }
   }
 }
