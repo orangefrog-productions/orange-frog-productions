@@ -1,0 +1,17 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import "./promoVideo.scss";
+---
+
+<div class="promo-video">
+  <Wrapper classes="promo-video-wrapper">
+    <div class="promo-video-container">
+      <video
+        controls
+        autoplay
+        loop
+        muted
+        src={Astro.props.data.video.mediaItemUrl}></video>
+    </div>
+  </Wrapper>
+</div>

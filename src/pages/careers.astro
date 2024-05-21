@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Intro from "../components/Careers/Intro.astro";
+import PromoVideo from "../components/Careers/PromoVideo.astro";
 import ImageRow from "../components/Careers/ImageRow.astro";
 import ApplyNow from "../components/Careers/ApplyNow.astro";
 
@@ -27,6 +28,12 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                   altText
                   sourceUrl
                 }
+              }
+            }
+
+            promoVideoComponent {
+              video {
+                mediaItemUrl
               }
             }
 
@@ -71,6 +78,7 @@ const metaImg = page.featuredImage?.node?.sourceUrl
     data={page.careersPage.introComponent}
     logo={logoOptions.logoOptions.frogLogo}
   />
+  <PromoVideo data={page.careersPage.promoVideoComponent} />
   <ImageRow data={page.careersPage.imageRowComponent} />
   <ApplyNow data={page.careersPage.applyNowComponent} />
 </Layout>
