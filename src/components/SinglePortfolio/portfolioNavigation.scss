@@ -2,9 +2,12 @@
 @use "../../styles/global/paragraphs";
 
 .port-nav {
+  padding-top: 2rem;
   background-color: $whiteColor;
 
   &-wrapper {
+    border-top: solid 0.3rem $blackColor;
+
     nav {
       width: 100%;
       display: flex;
