@@ -28,7 +28,9 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
                         capabilitiesSliderComponent {
                             slideImages {
                                 imageOrVideo
-                                slideVideo
+                                slideVideo {
+                                    mediaItemUrl
+                                }
                                 slideImage {
                                     altText
                                     sourceUrl

@@ -10,7 +10,7 @@ const settings = {
   draggable: true,
   infinite: true,
   speed: 500,
-  autoplay: true,
+  autoplay: false,
   autoplaySpeed: 10000,
   centerMode: false,
   arrows: false,
@@ -38,7 +38,14 @@ const CapabilitiesSlider = ({ data }) => {
             return (
               <div className="cap-slider-slide" key={index}>
                 <div className="cap-slider-slide-video">
-                  <div dangerouslySetInnerHTML={{ __html: slide.slideVideo }} />
+                  <video
+                    controls
+                    autoPlay
+                    loop
+                    muted
+                    src={slide.slideVideo.mediaItemUrl}
+                  ></video>
+                  {/* <div dangerouslySetInnerHTML={{ __html: slide.slideVideo }} /> */}
                 </div>
               </div>
             );

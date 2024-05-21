@@ -38,7 +38,14 @@ const DesignSlider = ({ data }) => {
             return (
               <div className="design-slider-slide" key={index}>
                 <div className="design-slider-slide-video">
-                  <div dangerouslySetInnerHTML={{ __html: slide.slideVideo }} />
+                  <video
+                    controls
+                    autoPlay
+                    loop
+                    muted
+                    src={slide.slideVideo.mediaItemUrl}
+                  ></video>
+                  {/* <div dangerouslySetInnerHTML={{ __html: slide.slideVideo }} /> */}
                 </div>
               </div>
             );
