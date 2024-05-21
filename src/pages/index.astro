@@ -56,7 +56,9 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 								sourceUrl
 								altText
 							}
-							videoOrPhoto
+							videoOrPhoto {
+                mediaItemUrl
+              }
 							linkImagePage {
 							... on Page {
 									id

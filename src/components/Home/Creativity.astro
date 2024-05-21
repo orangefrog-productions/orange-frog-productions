@@ -25,13 +25,22 @@ import "./creativity.scss";
       </a>
     </div>
     <div class="creativity-images-video">
-      <div set:html={Astro.props.data.videoOrPhoto} />
+      <!-- <div set:html={Astro.props.data.videoOrPhoto} /> -->
       <!-- <Image
         src={Astro.props.data.videoOrPhoto.sourceUrl}
         alt=""
         inferSize={true}
         loading="eager"
       /> -->
+
+      <div class="creativity-images-video-container">
+        <video
+          controls
+          autoplay
+          loop
+          muted
+          src={Astro.props.data.videoOrPhoto.mediaItemUrl}></video>
+      </div>
     </div>
     <div
       class="creativity-images-content"
