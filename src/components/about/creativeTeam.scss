@@ -196,6 +196,28 @@
           }
         }
       }
+
+      &-fact {
+        margin-top: 2rem;
+
+        p {
+          display: flex;
+          align-items: center;
+          @extend .p-two;
+          color: $shadowColor;
+          margin: 0;
+
+          .creative-team-modal-bio-fact-icon {
+            display: inline-block;
+            padding-right: 2rem;
+            max-width: 8rem;
+
+            img {
+              max-width: 9rem;
+            }
+          }
+        }
+      }
     }
   }
 

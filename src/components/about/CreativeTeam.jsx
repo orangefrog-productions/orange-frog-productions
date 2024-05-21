@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "./creativeTeam.scss";
+import funFactSrc from "./assets/fun-fact.png";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
@@ -91,6 +92,18 @@ const CreativeTeam = ({ data }) => {
                 __html: data[activeBio].creativeTeam.bio,
               }}
             />
+            {data[activeBio].creativeTeam.funFact ? (
+              <div className="creative-team-modal-bio-fact">
+                <p>
+                  <span className="creative-team-modal-bio-fact-icon">
+                    <img src={funFactSrc.src} alt="Fun Fact" />
+                  </span>
+                  <span className="creative-team-modal-bio-fact-text">
+                    {data[activeBio].creativeTeam.funFact}
+                  </span>
+                </p>
+              </div>
+            ) : null}
           </div>
           <div className="creative-team-modal-button">
             <button

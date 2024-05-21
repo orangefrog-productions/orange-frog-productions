@@ -72,12 +72,13 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
             }
 
 
-            creativeTeams {
+            creativeTeams(first: 99999) {
                 nodes {
                     title
                     creativeTeam {
                         titlePosition
                         bio
+                        funFact
                         image {
                             altText
                             sourceUrl
