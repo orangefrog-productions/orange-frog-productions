@@ -41,14 +41,15 @@
 
       &-title {
         h2 {
-          @extend .p-two;
+          @extend .p-one;
+          line-height: 1.1;
           color: $whiteColor;
         }
       }
 
       &-excerpt {
         p {
-          @extend .p-three;
+          @extend .p-four;
           color: $whiteColor;
 
           &:last-of-type {
