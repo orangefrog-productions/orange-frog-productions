@@ -47,6 +47,18 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     query: `
         query newsPageQuery {
             page(id: "/news", idType: URI) {
+
+                seoMetaTags {
+                seoMetaInformation {
+                  metaImage {
+                    altText
+                    sourceUrl
+                  }
+                  metaTitle
+                  metaDescription
+                }
+              }
+
               title
             }
 
@@ -66,15 +78,13 @@ const {
   data: { page, categories },
 } = await response.json();
 const postsData = Astro.props;
-
-const title = page.seo?.title ? page.seo?.title : null;
-const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
-const metaImg = page.featuredImage?.node?.sourceUrl
-  ? page.featuredImage?.node?.sourceUrl
-  : null;
 ---
 
-<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
+<Layout
+  metaImg={page.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={page.seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={page.seoMetaTags.seoMetaInformation.metaDescription}
+>
   <IntroTitle title={page.title} />
   <CatNav categories={categories} />
   <Posts posts={postsData} />

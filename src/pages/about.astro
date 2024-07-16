@@ -16,6 +16,20 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     query: `
         query aboutPageQuery {
             page(id: "/about", idType: URI) {
+
+                   seoMetaTags {
+						seoMetaInformation {
+							metaImage {
+								altText
+								sourceUrl
+							}
+							metaTitle
+							metaDescription
+						}
+					}
+
+
+            
                 aboutPage {
                     introComponent {
                         mainCallout
@@ -99,15 +113,13 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const {
   data: { page, logoOptions, creativeTeams },
 } = await response.json();
-
-const title = page.seo?.title ? page.seo?.title : null;
-const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
-const metaImg = page.featuredImage?.node?.sourceUrl
-  ? page.featuredImage?.node?.sourceUrl
-  : null;
 ---
 
-<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
+<Layout
+  metaImg={page.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={page.seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={page.seoMetaTags.seoMetaInformation.metaDescription}
+>
   <Intro
     data={page.aboutPage.introComponent}
     logo={logoOptions.logoOptions.frogLogo}

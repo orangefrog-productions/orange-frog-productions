@@ -10,6 +10,19 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     query: `
         query servicesPageQuery {
             page(id: "/services/events", idType: URI) {
+
+                  seoMetaTags {
+                  seoMetaInformation {
+                    metaImage {
+                      altText
+                      sourceUrl
+                    }
+                    metaTitle
+                    metaDescription
+                  }
+                }
+
+
                 eventsPage {
                     eventTypesComponent {
                         mainTitle
@@ -44,14 +57,12 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
 const {
   data: { page },
 } = await response.json();
-
-const title = page.seo?.title ? page.seo?.title : null;
-const description = page.seo?.metaDesc ? page.seo?.metaDesc : null;
-const metaImg = page.featuredImage?.node?.sourceUrl
-  ? page.featuredImage?.node?.sourceUrl
-  : null;
 ---
 
-<Layout metaTitle={title} metaDescription={description} metaImg={metaImg}>
+<Layout
+  metaImg={page.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={page.seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={page.seoMetaTags.seoMetaInformation.metaDescription}
+>
   <EventTypes data={page.eventsPage.eventTypesComponent} />
 </Layout>
