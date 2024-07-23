@@ -1,0 +1,25 @@
+@use "../../styles/abstracts/" as *;
+@use "../../styles/global/paragraphs";
+.CookieConsent {
+  .cookie-wrap {
+    width: 100%;
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 0rem 0;
+  }
+
+  p {
+    @extend .p-three;
+    color: $whiteColor;
+    margin-bottom: 0;
+  }
+
+  a {
+    @extend .p-three;
+    color: $whiteColor;
+
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+}

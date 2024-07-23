@@ -1,6 +1,7 @@
 ---
 import Header from "./Header.astro";
 import Footer from "./Footer.astro";
+import CookiePopup from "../components/shared/CookiePopup.jsx";
 import { baseData } from "../data/siteData";
 import "../styles/styles.scss";
 // import { ViewTransitions } from "astro:transitions";
@@ -18,46 +19,47 @@ const baseUrl = Astro.url ? Astro.url : baseData.url;
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="HandheldFriendly" content="true" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
-		<meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
 
-		<!-- SEO -->
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<meta name="image" content={imgSrc} />
-		<link rel="canonical" href={baseUrl} />
-		<!-- <link rel="sitemap" href="/sitemap-index.xml" /> -->
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="image" content={imgSrc} />
+    <link rel="canonical" href={baseUrl} />
+    <!-- <link rel="sitemap" href="/sitemap-index.xml" /> -->
 
-		 <!-- OpenGraph Tags -->
-		 <meta property="og:type" content="website" />
-		 <meta property="og:url" content={baseUrl} />
-		 <meta property="og:title" content={title} />
-		 <meta property="og:description" content={description} />
-		 <meta property="og:image" content={imgSrc} />
-		 <meta property="og:image:alt" content={description} />
-		 <meta property="og:site_name" content={title} />
-		 <meta property="og:locale" content={`en_US`} />
-	 
-		 <!-- Twitter Card -->
-		 <meta name="twitter:card" content="summary_large_image" />
-		 <meta name="twitter:url" content={baseUrl} />
-		 <meta name="twitter:title" content={title} />
-		 <meta name="twitter:description" content={description} />
-		 <meta name="twitter:image" content={imgSrc} />
-		 <meta name="twitter:image:alt" content={description} />
-		 <meta name="twitter:creator" content={"Orange Frog Productions"} />
+    <!-- OpenGraph Tags -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={baseUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imgSrc} />
+    <meta property="og:image:alt" content={description} />
+    <meta property="og:site_name" content={title} />
+    <meta property="og:locale" content={`en_US`} />
 
-		 <!-- <ViewTransitions /> -->
-	</head>
-	<body>
-		<Header />
-		<main>
-			<slot />
-		</main>
-		<Footer />
-	</body>
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={baseUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imgSrc} />
+    <meta name="twitter:image:alt" content={description} />
+    <meta name="twitter:creator" content={"Orange Frog Productions"} />
+
+    <!-- <ViewTransitions /> -->
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <CookiePopup client:only="react" />
+    <Footer />
+  </body>
 </html>
