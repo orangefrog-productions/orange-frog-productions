@@ -1,3 +1,5 @@
+@use "../../styles/abstracts/" as *;
+
 .not-found {
   padding-top: 15rem;
   min-height: 90vh;
@@ -11,11 +13,24 @@
 
   &-title {
     width: 100%;
-    text-align: center;
+
+    h1 {
+      color: $secondaryColor;
+    }
   }
 
   &-content {
     width: 100%;
-    text-align: center;
+    padding-left: 15rem;
+
+    p {
+      text-transform: uppercase;
+    }
+  }
+
+  &-nav {
+    width: 100%;
+    padding-left: 15rem;
+    padding-bottom: 15rem;
   }
 }
