@@ -4,3 +4,21 @@ http://www.orangefrogproductions.ca/_ https://orangefrogproductions.ca/:splat 30
 https://orange-frog-productions.netlify.app/* https://orangefrogproductions.ca/:splat 301!
 
 /home/ /
+
+/rentals-2 /
+/rentals-2/\* /
+
+/products/ /services
+/what-is-uv-uvc/ /
+/faqs/ /
+
+/news-blog/ /news
+/resources/ /news
+
+/design/ /services
+
+/design/uv-clean/ /
+
+/design/contact-us-uv/ /contact
+
+/gallery/ /portfolio
