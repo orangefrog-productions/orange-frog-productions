@@ -6,7 +6,7 @@ https://orange-frog-productions.netlify.app/* https://orangefrogproductions.ca/:
 /home/ /
 
 /rentals-2 /
-/rentals-2/\* /
+/rentals-2/* /
 
 /products/ /services
 /what-is-uv-uvc/ /
@@ -22,3 +22,9 @@ https://orange-frog-productions.netlify.app/* https://orangefrogproductions.ca/:
 /design/contact-us-uv/ /contact
 
 /gallery/ /portfolio
+
+/design/about/ /about/
+/design/join-our-team/ /careers/
+/design/contact/ /contact
+/design/clients/ /testimonials/
+/design/gallery/ /portfolio
