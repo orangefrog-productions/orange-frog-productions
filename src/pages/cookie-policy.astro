@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import MainContent from "../components/cookiePolicy/MainContent.astro";
+
+const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
+  method: "POST",
+  headers: {
+    "content-type": "application/json",
+  },
+  body: JSON.stringify({
+    query: `
+			query cookiePolicyPageQuery {
+				page(id: "/cookie-policy", idType: URI) {
+
+                seoMetaTags {
+                        seoMetaInformation {
+                            metaImage {
+                                altText
+                                sourceUrl
+                            }
+                            metaTitle
+                            metaDescription
+                        }
+                    }
+
+
+			title
+            cookiePolicyPage {
+                cookiePolicyComponent {
+                    mainContent
+                        }
+           
+                    }
+				}
+			}
+		`,
+  }),
+});
+
+const {
+  data: { page },
+} = await response.json();
+---
+
+<Layout
+  metaImg={page.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={page.seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={page.seoMetaTags.seoMetaInformation.metaDescription}
+>
+  <MainContent data={page.cookiePolicyPage.cookiePolicyComponent} />
+</Layout>

@@ -1,0 +1,15 @@
+---
+import Wrapper from "../shared/Wrapper.astro";
+import "./mainContent.scss";
+---
+
+<div class="cookie-main">
+  <Wrapper>
+    <div>
+      <h1>Cookie/Privacy Policy</h1>
+    </div>
+    <div>
+      <div set:html={Astro.props.data.mainContent} />
+    </div>
+  </Wrapper>
+</div>
