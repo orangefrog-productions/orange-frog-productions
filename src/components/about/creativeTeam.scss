@@ -4,6 +4,7 @@
 @use "../../styles/global/wrappers";
 
 .creative-team {
+  position: relative;
   &-wrapper {
     @extend .wrap-med;
   }
@@ -99,23 +100,45 @@
 
   &-modal {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    width: 97.5%;
+    top: 0;
+    bottom: 0;
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    transform: translate(-50%, -50%);
+    padding: 8rem 0;
     z-index: 10;
+    overflow: scroll;
 
     @media (min-width: 768px) {
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      padding: 0;
+    }
+
+    @media (min-width: 1025px) {
       width: 80%;
+      top: 50%;
+      left: 50%;
+      bottom: auto;
+      transform: translate(-50%, -50%);
     }
 
     &-button {
-      position: absolute;
-      top: 2rem;
-      right: 2rem;
+      position: fixed;
+      top: 4rem;
+      left: 2rem;
+      right: 0;
+
+      @media (min-width: 768px) {
+      }
+
+      @media (min-width: 1025px) {
+        top: 2rem;
+        right: 2rem;
+        left: auto;
+      }
 
       button {
         @extend .p-two;
@@ -129,9 +152,14 @@
 
     &-image {
       position: relative;
-      width: calc(40%);
+      width: calc(90%);
+      min-height: 40rem;
 
       @media (min-width: 768px) {
+        width: calc(40%);
+      }
+
+      @media (min-width: 1025px) {
         width: calc(30%);
       }
 
@@ -154,20 +182,27 @@
     }
 
     &-bio {
-      width: calc(60%);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      width: calc(100%);
       padding: 2rem;
       background-color: #212326;
 
       @media (min-width: 768px) {
-        width: calc(70%);
+        width: calc(60%);
+        padding: 5rem;
       }
 
-      @media (min-width: 768px) {
-        padding: 5rem;
+      @media (min-width: 1025px) {
+        width: calc(70%);
       }
 
       &-titles {
         width: 100%;
+        align-self: center;
 
         h3 {
           @extend .p-one;
