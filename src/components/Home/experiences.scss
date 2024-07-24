@@ -86,10 +86,15 @@
 
   &-content {
     position: relative;
-    width: 45rem;
+    width: 100%;
     padding-top: 10rem;
-    padding-left: 5rem;
+    padding-left: 2rem;
     z-index: 10;
+
+    @media (min-width: 768px) {
+      width: 45rem;
+      padding-left: 5rem;
+    }
 
     p {
       @extend .p-one;
