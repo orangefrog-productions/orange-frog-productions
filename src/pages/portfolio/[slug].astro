@@ -50,6 +50,17 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     query: `
     query projectsQuery($id: ID!) {
         projects(idType: SLUG, id: $id) {
+              seoMetaTags {
+                seoMetaInformation {
+                  metaImage {
+                    altText
+                    sourceUrl
+                  }
+                  metaTitle
+                  metaDescription
+                }
+              }
+
             title
             projects {
                 pullQuote
@@ -79,7 +90,11 @@ const {
 } = await response.json();
 ---
 
-<Layout>
+<Layout
+  metaImg={projects.seoMetaTags.seoMetaInformation.metaImage.sourceUrl}
+  metaTitle={projects.seoMetaTags.seoMetaInformation.metaTitle}
+  metaDescription={projects.seoMetaTags.seoMetaInformation.metaDescription}
+>
   <HeroImage
     image={projects.projects.featuredImage}
     title={projects.title}
