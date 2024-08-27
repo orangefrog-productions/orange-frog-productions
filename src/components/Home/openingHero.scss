@@ -111,5 +111,17 @@
         max-width: 62.5rem;
       }
     }
+
+    .btn-rentals {
+      padding: 1.5rem 2rem;
+      background-color: transparent;
+      border: 0.2rem solid $secondaryColor;
+      color: $secondaryColor;
+
+      &:hover {
+        background-color: $secondaryColor;
+        color: $whiteColor;
+      }
+    }
   }
 }
