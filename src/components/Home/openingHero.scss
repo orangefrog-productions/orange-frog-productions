@@ -103,6 +103,7 @@
     h2 {
       color: $whiteColor;
       max-width: 62.5rem;
+
       @media (min-width: 768px) {
         max-width: 45rem;
       }
@@ -121,6 +122,14 @@
       &:hover {
         background-color: $secondaryColor;
         color: $whiteColor;
+      }
+    }
+
+    &-button {
+      margin-bottom: 4rem;
+
+      @media (min-width: 768px) {
+        margin-bottom: 0;
       }
     }
   }
